@@ -1,0 +1,1 @@
+# geoinformatics-leanring-notes
