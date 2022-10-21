@@ -43,13 +43,13 @@
 - [模块 2: Earth Engine 中级](#模块-2-earth-engine-中级)
 	- [01. Earth Engine 对象](#01-earth-engine-对象)
 		- [练习](#练习-8)
-	- [02. 计算指标](#02-计算指标)
+	- [02. 计算指数](#02-计算指数)
 		- [练习](#练习-9)
-	- [03. Computation on ImageCollections](#03-computation-on-imagecollections)
+	- [03. 在图像集合上进行计算](#03-在图像集合上进行计算)
 		- [练习](#练习-10)
 	- [04. 云遮蔽（Cloud Masking）](#04-云遮蔽cloud-masking)
 		- [练习](#练习-11)
-	- [05. Reducers](#05-reducers)
+	- [05. 规约器（Reducer）](#05-规约器reducer)
 		- [练习](#练习-12)
 	- [06. Time-Series Charts](#06-time-series-charts)
 		- [练习](#练习-13)
@@ -725,8 +725,7 @@ Export.image.toDrive({
 # 模块 2: Earth Engine 中级
 
 
-Module 2 builds on the basic Earth Engine skills you have gained. This model introduces the parallel programming concepts using Map/Reduce - which is key in effectively using Earth Engine for analyzing large volumes of data. You will learn how to use the Earth Engine API for calculating various spectral indices, do cloud masking and then use map/reduce to do apply these computations to collections of imagery. You will also learn how to take long time-series of data and create charts.
-
+模块 2 基于 Earth Engine 基本知识。该模块介绍了使用 Map/Reduce 进行并行编程的概念，这是有效使用 Earth Engine 分析大量数据的关键。你将学习到如何使用 Earth Engine API 计算各种光谱指数，进行云遮罩（cloud masking），然后使用 map/reduce 将这些计算应用于图像集合。你还将学习如何获取长时间序列数据并创建图表。
 
 [![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/map_reduce.png)](https://docs.google.com/presentation/d/10qOyxhubkwnsAVjniW54ETgwUHq3DXYKo3HGb6Gemi0/edit?usp=sharing)
 
@@ -734,18 +733,14 @@ Module 2 builds on the basic Earth Engine skills you have gained. This model int
 [查看演示文档 ↗](https://docs.google.com/presentation/d/10qOyxhubkwnsAVjniW54ETgwUHq3DXYKo3HGb6Gemi0/edit?usp=sharing)
 
 
-
 ## 01. Earth Engine 对象
 
-
-This script introduces the basics of the Earth Engine API. When programming in Earth Engine, you must use the Earth Engine API so that your computations can use the Google Earth Engine servers. To learn more, visit [Earth Engine 对象和方法](https://developers.google.com/earth-engine/tutorial_js_02) section of the Earth Engine User Guide.
-
+该脚本介绍了 Earth Engine API 的基础知识。当在 Earth Engine 中编程时，你必须使用 Earth Engine API，以便你的计算可以使用 Google Earth Engine 服务器。要了解更多信息，请访问 Earth Engine 用户指南中的 [Earth Engine 对象和方法](https://developers.google.com/earth-engine/tutorial_js_02) 部分。
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F01b_Earth_Engine_Objects_(complete))
 
 
-
-```
+```js
 // Let's see how to take a list of numbers and add 1 to each element
 var myList = ee.List.sequence(1, 10);
 
@@ -797,13 +792,12 @@ var futureDate = date.advance(1, 'year')
 print(futureDate)
 ```
 
-
 > 
-> As a general rule, you should always use Earth Engine API methods in your code, there is one exception where you will need to use client-side Javascript method. If you want to get the current time, the server doesn’t know your time. You need to use javascript method and cast it to an Earth Engine object.
-> 
+> 一般来说，你应该始终在代码中使用 Earth Engine API 方法，但有一个例外，就是当你需要使用客户端 Javascript 方法的时候。如果你想获取当前时间，但服务器并不知道你的时间。此时，你需要使用 javascript 方法，并将其转换为 Earth Engine 对象。
 > 
 > 
-> ```
+> 
+> ```js
 > var now = Date.now()
 > print(now)
 > var now = ee.Date(now)
@@ -813,15 +807,13 @@ print(futureDate)
 > 
 
 
-
 ### 练习
 
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F01c_Earth_Engine_Objects_(exercise))
 
 
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var geometry = ee.Geometry.Point([77.60412933051538, 12.952912912328241]);
 
@@ -840,25 +832,17 @@ var filtered = s2.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
 
 
 
-## 02. 计算指标
+## 02. 计算指数
 
-
-Spectral Indices are central to many aspects of remote sensing. Whether you are studying vegetation or tracking fires - you will need to compute a pixel-wise ratio of 2 or more bands. The most commonly used formula for calculating an index is the *Normalized Difference* between 2 bands. Earth Engine provides a helper function `normalizedDifference()` to help calculate normalized indices, such as Normalized Difference Vegetation Index (NDVI). For more complex formulae, you can also use the `expression()` function to describe the calculation.
-
-
+光谱指数是遥感许多方面的核心。无论是研究植被还是追踪火灾，你都需要计算两个或者更多个波段的像素比率。计算指数最常用的公式是两个波段之间的*归一化差值*。Earth Engine 提供了一个辅助函数 `normalizedDifference()` 来帮助计算归一化指数，例如归一化差异植被指数（NDVI）。对于更复杂的公式，还可以使用 `expression()` 函数来描述计算。
 
 ![MNDWI, SAVI 和 NDVI 图像](https://courses.spatialthoughts.com/images/end_to_end_gee/indices.png)
-
-MNDWI, SAVI and NDVI images
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F02b_Calculating_Indices_(complete))
 
 
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var admin2 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level2");
 
@@ -911,9 +895,7 @@ Map.addLayer(ndvi.clip(geometry), ndviVis, 'ndvi')
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F02c_Calculating_Indices_(exercise))
 
-
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var admin2 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level2");
 
@@ -935,27 +917,19 @@ var image = filtered.median();
 ```
 
 
+## 03. 在图像集合上进行计算
 
-
-## 03. Computation on ImageCollections
-
-
-So far we have learnt how to run computation on single images. If you want to apply some computation - such as calculating an index - to many images, you need to use `map()`. You first define a function that takes 1 image and returns the result of the computation on that image. Then you can `map()` that function over the ImageCollection which results in a new ImageCollection with the results of the computation. This is similar to a *for-loop* that you maybe familiar with - but using `map()` allows the computation to run in parallel. Learn more at [Mapping over an ImageCollection](https://developers.google.com/earth-engine/guides/ic_mapping)
-
+目前，我们已经学习了如何在单个图像进行计算。如果想要对多个图像应用某些计算（例如计算指数），则需要使用 `map()`。首先，定义一个函数，该函数将一个图像作为输入并返回该图像的计算结果。然后，你可以 `map()` 那个函数到数据集上，这会产生一个由计算结果组成的新的 ImageCollection。这类似于你可能熟悉的 *for-loop*，但`map()` 允许计算并行运行。想了解更多，请看[在 ImageCollection 上进行映射](https://developers.google.com/earth-engine/guides/ic_mapping)。
 
 
 ![NDVI computation on an ImageCollection](https://courses.spatialthoughts.com/images/end_to_end_gee/imagecollection_computation.png)
-
-NDVI computation on an ImageCollection
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F03b_Computation_on_Image_Collections_(complete))
 
 
 
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var admin1 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level1");
  
@@ -999,9 +973,7 @@ Map.addLayer(ndviComposite, ndviVis, 'ndvi')
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F03c_Computation_on_Image_Collections_(exercise))
 
-
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var admin1 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level1");
  
@@ -1038,33 +1010,21 @@ print(composite)
 ```
 
 
-
-
 ## 04. 云遮蔽（Cloud Masking）
 
+遮蔽图像中的像素会使得这些像素透明，从而将它们排除在分析和可视化之外。要遮蔽图像，我们可以使用 `updateMask()` 函数，其参数是一个只有 0 和 1 值的图像。蒙版图像为 0 的所有像素都会被遮蔽。
 
-Masking pixels in an image makes those pixels transparent and excludes them from analysis and visualization. To mask an image, we can use the `updateMask()` function and pass it an image with 0 and 1 values. All pixels where the mask image is 0 will be masked.
+大部分的遥感数据集都带有一个 QA 或者 Cloud Mask 波段，其中包含像素是否是云的信息。在*代码编辑器*的 *Scripts Tab → Examples → Cloud Masking* 下，包含了一些适用于流行数据集的云遮蔽预定义函数.
 
-
-Most remote sensing datasets come with a QA or Cloud Mask band that contains the information on whether pixels is cloudy or not. Your *Code Editor* contains pre-defined functions for masking clouds for popular datasets under *Scripts Tab → Examples → Cloud Masking*.
-
-
-The script below takes the Sentinel-2 masking function and shows how to apply it on an image.
-
-
+下面的脚本采用了 Sentinel-2 遮蔽函数，并展示了如何将其应用在图像上。
 
 ![Applying pixel-wise QA bitmask](https://courses.spatialthoughts.com/images/end_to_end_gee/cloud_masking.png)
-
-Applying pixel-wise QA bitmask
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F04b_Cloud_Masking_(complete))
 
 
-
-```
+```js
 var image = ee.Image('COPERNICUS/S2/20190703T050701\_20190703T052312\_T43PGP')
 var rgbVis = {
  min: 0.0,
@@ -1098,8 +1058,7 @@ Map.addLayer(maskedImage, rgbVis, 'Masked Image')
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F04c_Cloud_Masking_(exercise))
 
 
-
-```
+```js
 // Get the Level-2A Surface Reflectance image
 var imageSR = ee.Image('COPERNICUS/S2\_SR/20190703T050701\_20190703T052312\_T43PGP')
 var rgbVis = {
@@ -1135,11 +1094,11 @@ function maskCloudAndShadowsSR(image) {
 
 
 > 
-> If you are using Sentinel-2 data, do check out the an alternative cloud masking techninque using the *S2 Cloudless* dataset. [Learn more](https://medium.com/google-earth/more-accurate-and-flexible-cloud-masking-for-sentinel-2-images-766897a9ba5f)
+> 如果使用的是 Sentinel-2 数据，请查看使用 *S2 Cloudless* 数据集的替代云遮蔽技术。[学到更多](https://medium.com/google-earth/more-accurate-and-flexible-cloud-masking-for-sentinel-2-images-766897a9ba5f)
 > 
 > 
 > 
-> ```
+> ```js
 > var imageSR = ee.Image('COPERNICUS/S2_SR/20190703T050701_20190703T052312_T43PGP')
 > var s2Cloudless = ee.Image('COPERNICUS/S2_CLOUD_PROBABILITY/20190703T050701_20190703T052312_T43PGP')
 > var clouds = s2Cloudless.lt(50)
@@ -1150,21 +1109,16 @@ function maskCloudAndShadowsSR(image) {
 > 
 > 
 
+## 05. 规约器（Reducer）
 
-
-
-
-## 05. Reducers
-
-
-When writing parallel computing code, a *Reduce* operation allows you to compute statistics on a large amount of inputs. In Earth Engine, you need to run reduction operation when creating composites, calculating statistics, doing regression analysis etc. The Earth Engine API comes with a large number of built-in reducer functions (such as `ee.Reducer.sum()`, `ee.Reducer.histogram()`, `ee.Reducer.linearFit()` etc.) that can perform a variety of statistical operations on input data. You can run reducers using the `reduce()` function. Earth Engine supports running reducers on all data structures that can hold multiple values, such as Images (reducers run on different bands), ImageCollection, FeatureCollection, List, Dictionary etc. The script below introduces basic concepts related to reducers.
+在写并行计算代码时， *Reduce* 操作允许你计算大量输入数据的统计信息。在 Earth Engine 中，你需要在创建组合、计算统计数据、进行回归分析等操作时运行规约操作。Earth Engine API 带有大量的内置规约函数（例如 `ee.Reducer.sum()`, `ee.Reducer.histogram()`, `ee.Reducer.linearFit()`等），可以对输入数据执行各种统计操作。你可以使用 `reduce()` 函数来运行规约器。Earth Engine 支持在任意可以保存多个值的数据结构上运行规约器，例如 Images（规约器在不同波段上运行）、ImageCollection、FeatureCollection、List、Dictionary 等。下面的脚本介绍了与规约器相关的概念。
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F05b_Reducers_(complete))
 
 
 
-```
+```js
 // Computing stats on a list
 var myList = ee.List.sequence(1, 10);
 print(myList)
@@ -3093,7 +3047,7 @@ This module is focused the concepts related to client vs. server that will help
 
 ## 01. 客户端与服务器
 
-The User Interface elements in your Code Editor - Map View, Drawing Tools etc. are ‘client-side’ elements. They run in YOUR browser. Image Collections, feature collections, calculations on Earth Engine objects etc. are ‘server-side’ elements. They run in Google’s data center. You cannot mix both these objects. To learn more, visit the [Client vs. Server](https://developers.google.com/earth-engine/guides/client_server) section of the Earth Engine User Guide.
+The User Interface elements in your Code Editor - Map View, Drawing Tools etc. are ‘client-side’ elements. They run in YOUR browser. Image Collections, feature collections, calculations on Earth Engine objects etc. are ‘server-side’ elements. They run in Google’s data center. You cannot mix both these objects. 要了解更多信息，visit the [Client vs. Server](https://developers.google.com/earth-engine/guides/client_server) section of the Earth Engine User Guide.
 
 
 * To convert client-side objects to server-side objects, you can use the appropriate API function. Server-side functions start with `ee.`, such `ee.Date()`, `ee.Image()` etc.
