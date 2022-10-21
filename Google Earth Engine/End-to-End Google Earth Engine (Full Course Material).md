@@ -2,340 +2,263 @@
 
 ---
 
-# End-to-End Google Earth Engine (Full Course Material)
+# 端到端 Google Earth Engine (完整课程资料)
 
 
-### A hands-on introduction to applied remote sensing using Google Earth Engine.
-
+### 使用 Google Earth Engine 进行遥感应用的实践介绍。
 
 #### Ujaval Gandhi
 
 
-
-
-- [End-to-End Google Earth Engine (Full Course Material)](#end-to-end-google-earth-engine-full-course-material)
-		- [A hands-on introduction to applied remote sensing using Google Earth Engine.](#a-hands-on-introduction-to-applied-remote-sensing-using-google-earth-engine)
+- [端到端 Google Earth Engine (完整课程资料)](#端到端-google-earth-engine-完整课程资料)
+		- [使用 Google Earth Engine 进行遥感应用的实践介绍。](#使用-google-earth-engine-进行遥感应用的实践介绍)
 			- [Ujaval Gandhi](#ujaval-gandhi)
-- [Introduction](#introduction)
-- [Setting up the Environment](#setting-up-the-environment)
-	- [Sign-up for Google Earth Engine](#sign-up-for-google-earth-engine)
-	- [Complete the Class Pre-Work](#complete-the-class-pre-work)
-		- [Introduction to Remote Sensing](#introduction-to-remote-sensing)
-		- [Introduction to Google Earth Engine](#introduction-to-google-earth-engine)
-		- [Take the Quizes](#take-the-quizes)
-	- [Get the Course Materials](#get-the-course-materials)
-- [Module 1: Earth Engine Basics](#module-1-earth-engine-basics)
+- [简介](#简介)
+- [设置环境](#设置环境)
+	- [注册 Google Earth Engine](#注册-google-earth-engine)
+	- [完成课前作业](#完成课前作业)
+		- [遥感简介](#遥感简介)
+		- [Google Earth Engine 简介](#google-earth-engine-简介)
+		- [小测验](#小测验)
+	- [获取课程资料](#获取课程资料)
+- [模块 1: Earth Engine 基础](#模块-1-earth-engine-基础)
 	- [01. Hello World](#01-hello-world)
-		- [Exercise](#exercise)
-		- [Saving Your Work](#saving-your-work)
-	- [02. Working with Image Collections](#02-working-with-image-collections)
-		- [Exercise](#exercise-1)
-	- [03. Filtering Image Collections](#03-filtering-image-collections)
-		- [Exercise](#exercise-2)
-	- [04. Creating Mosaics and Composites from ImageCollections](#04-creating-mosaics-and-composites-from-imagecollections)
-		- [Exercise](#exercise-3)
-	- [05. Working with Feature Collections](#05-working-with-feature-collections)
-		- [Exercise](#exercise-4)
-	- [06. Importing Data](#06-importing-data)
-		- [Exercise](#exercise-5)
-	- [07. Clipping Images](#07-clipping-images)
-		- [Exercise](#exercise-6)
-	- [08. Exporting Data](#08-exporting-data)
-		- [Exercise](#exercise-7)
-	- [Assignment 1](#assignment-1)
-- [Module 2: Earth Engine Intermediate](#module-2-earth-engine-intermediate)
-	- [01. Earth Engine Objects](#01-earth-engine-objects)
-		- [Exercise](#exercise-8)
-	- [02. Calculating Indices](#02-calculating-indices)
-		- [Exercise](#exercise-9)
+		- [练习](#练习)
+		- [保存你的工作](#保存你的工作)
+	- [02. 使用图像集合](#02-使用图像集合)
+		- [练习](#练习-1)
+	- [03. 过滤图像集合](#03-过滤图像集合)
+		- [练习](#练习-2)
+	- [04. 基于 ImageCollection 创建拼接图像和合成图像](#04-基于-imagecollection-创建拼接图像和合成图像)
+		- [练习](#练习-3)
+	- [05. 使用特征集合](#05-使用特征集合)
+		- [练习](#练习-4)
+	- [06. 导入数据](#06-导入数据)
+		- [练习](#练习-5)
+	- [07. 裁剪图像](#07-裁剪图像)
+		- [练习](#练习-6)
+	- [08. 导出数据](#08-导出数据)
+		- [练习](#练习-7)
+	- [作业 1](#作业-1)
+- [模块 2: Earth Engine 中级](#模块-2-earth-engine-中级)
+	- [01. Earth Engine 对象](#01-earth-engine-对象)
+		- [练习](#练习-8)
+	- [02. 计算指标](#02-计算指标)
+		- [练习](#练习-9)
 	- [03. Computation on ImageCollections](#03-computation-on-imagecollections)
-		- [Exercise](#exercise-10)
-	- [04. Cloud Masking](#04-cloud-masking)
-		- [Exercise](#exercise-11)
+		- [练习](#练习-10)
+	- [04. 云遮蔽（Cloud Masking）](#04-云遮蔽cloud-masking)
+		- [练习](#练习-11)
 	- [05. Reducers](#05-reducers)
-		- [Exercise](#exercise-12)
+		- [练习](#练习-12)
 	- [06. Time-Series Charts](#06-time-series-charts)
-		- [Exercise](#exercise-13)
-	- [Assignment 2](#assignment-2)
-- [Module 3: Supervised Classification](#module-3-supervised-classification)
-	- [Introduction to Machine Learning and Supervised Classification](#introduction-to-machine-learning-and-supervised-classification)
-	- [01. Basic Supervised Classification](#01-basic-supervised-classification)
-		- [Exercise](#exercise-14)
-	- [02. Accuracy Assessment](#02-accuracy-assessment)
-		- [Exercise](#exercise-15)
-	- [03. Improving the Classification](#03-improving-the-classification)
-		- [Exercise](#exercise-16)
-	- [04. Exporting Classification Results](#04-exporting-classification-results)
-		- [Exercise](#exercise-17)
-	- [05. Calculating Area](#05-calculating-area)
-		- [Exercise](#exercise-18)
-- [Module 4: Change Detection](#module-4-change-detection)
-	- [Introduction to Change Detection](#introduction-to-change-detection)
-	- [01. Spectral Index Change](#01-spectral-index-change)
-		- [Exercise](#exercise-19)
-	- [02. Spectral Distance Change](#02-spectral-distance-change)
-		- [Exercise](#exercise-20)
-	- [03. Direct Classification of Change](#03-direct-classification-of-change)
-		- [Exercise](#exercise-21)
-	- [04. Post-classification Comparison](#04-post-classification-comparison)
-		- [Exercise](#exercise-22)
-- [Module 5: Earth Engine Apps](#module-5-earth-engine-apps)
-	- [01. Client vs. Server](#01-client-vsserver)
-		- [Exercise](#exercise-23)
-	- [02. Using UI Elements](#02-using-ui-elements)
-		- [Exercise](#exercise-24)
-	- [03. Building and Publishing an App](#03-building-and-publishing-an-app)
-		- [Exercise](#exercise-25)
-	- [04. Publishing the App](#04-publishing-the-app)
-		- [Exercise](#exercise-26)
-	- [05. Create a Split Panel App](#05-create-a-split-panel-app)
-		- [Exercise](#exercise-27)
-- [Module 6: Google Earth Engine Python API](#module-6-google-earth-engine-python-api)
-	- [Introduction to the Python API](#introduction-to-the-python-api)
+		- [练习](#练习-13)
+	- [作业 2](#作业-2)
+- [模块 3: 有监督分类](#模块-3-有监督分类)
+	- [机器学习和有监督分类简介](#机器学习和有监督分类简介)
+	- [01. 有监督分类基础知识](#01-有监督分类基础知识)
+		- [练习](#练习-14)
+	- [02. 准确度评估](#02-准确度评估)
+		- [练习](#练习-15)
+	- [03. 改进分类](#03-改进分类)
+		- [练习](#练习-16)
+	- [04. 导出分类结果](#04-导出分类结果)
+		- [练习](#练习-17)
+	- [05. 计算面积](#05-计算面积)
+		- [练习](#练习-18)
+- [模块 4: 变化检测](#模块-4-变化检测)
+	- [变化检测简介](#变化检测简介)
+	- [01. 光谱指数变化](#01-光谱指数变化)
+		- [练习](#练习-19)
+	- [02. 光谱距离变化](#02-光谱距离变化)
+		- [练习](#练习-20)
+	- [03. 变化的直接分类](#03-变化的直接分类)
+		- [练习](#练习-21)
+	- [04. 分类后对比](#04-分类后对比)
+		- [练习](#练习-22)
+- [模块 5: Earth Engine 应用](#模块-5-earth-engine-应用)
+	- [01. 客户端与服务器](#01-客户端与服务器)
+		- [练习](#练习-23)
+	- [02. 使用 UI 元素](#02-使用-ui-元素)
+		- [练习](#练习-24)
+	- [03. 构建和发布应用程序](#03-构建和发布应用程序)
+		- [练习](#练习-25)
+	- [04. 发布应用程序](#04-发布应用程序)
+		- [练习](#练习-26)
+	- [05. 创建一个拆分面板应用程序](#05-创建一个拆分面板应用程序)
+		- [练习](#练习-27)
+- [模块 6: Google Earth Engine Python API](#模块-6-google-earth-engine-python-api)
+	- [GEE Python API 简介](#gee-python-api-简介)
 		- [Google Colab](#google-colab)
-		- [Local Development Environment](#local-development-environment)
-	- [01. Python API Syntax](#01-python-api-syntax)
-			- [Initialization](#initialization)
-			- [Variables](#variables)
-			- [Earth Engine Objects](#earth-engine-objects)
+		- [本地开发环境](#本地开发环境)
+	- [01. Python API 语法](#01-python-api-语法)
+			- [初始化](#初始化)
+			- [变量](#变量)
+			- [Earth Engine 对象](#earth-engine-对象)
 			- [Line Continuation](#line-continuation)
-			- [Functions](#functions)
-			- [Function Arguments](#function-arguments)
-			- [Printing Values](#printing-values)
-			- [In-line functions](#in-line-functions)
-		- [Exercise](#exercise-28)
-	- [02. Automatic Conversion of Javascript Code to Python](#02-automatic-conversion-of-javascript-code-to-python)
-		- [Exercise](#exercise-29)
-	- [03. Batch Exports](#03-batch-exports)
-			- [Create a Collection](#create-a-collection)
-			- [Export All Images](#export-all-images)
-			- [Manage Running/Waiting Tasks](#manage-runningwaiting-tasks)
-		- [Exercise](#exercise-30)
-	- [04. Creating Charts in Python](#04-creating-charts-in-python)
-		- [Create an Interactive Chart using geemap](#create-an-interactive-chart-using-geemap)
-		- [Create a chart using Matplotlib](#create-a-chart-using-matplotlib)
-		- [Exercise](#exercise-31)
-	- [05. Automating Downloads](#05-automating-downloads)
-- [Supplement](#supplement)
-	- [Advanced Supervised Classification Techniques](#advanced-supervised-classification-techniques)
-		- [Hyperparameter Tuning](#hyperparameter-tuning)
+			- [函数](#函数)
+			- [函数参数](#函数参数)
+			- [打印值](#打印值)
+			- [内联函数](#内联函数)
+		- [练习](#练习-28)
+	- [02. Javascript 代码到 Python 到自动转换](#02-javascript-代码到-python-到自动转换)
+		- [练习](#练习-29)
+	- [03. 批量导出](#03-批量导出)
+			- [创建一个 Collection](#创建一个-collection)
+			- [导出所有图像](#导出所有图像)
+			- [管理 Running/Waiting 任务](#管理-runningwaiting-任务)
+		- [练习](#练习-30)
+	- [04. 使用 Python 创建图像](#04-使用-python-创建图像)
+		- [使用 geemap 创建交互式图表](#使用-geemap-创建交互式图表)
+		- [使用 Matplotlib 创建图表](#使用-matplotlib-创建图表)
+		- [练习](#练习-31)
+	- [05. 自动下载](#05-自动下载)
+- [补充](#补充)
+	- [高级有监督分类技术](#高级有监督分类技术)
+		- [超参数调优](#超参数调优)
 		- [Post-Processing Classification Results](#post-processing-classification-results)
-		- [Principal Component Analysis (PCA)](#principal-component-analysis-pca)
+		- [主成分分析（PCA）](#主成分分析pca)
 		- [Multi-temporal Composites for Crop Classification](#multi-temporal-composites-for-crop-classification)
-		- [Computing Correlation](#computing-correlation)
+		- [计算相关性](#计算相关性)
 		- [Calculating Area by Class](#calculating-area-by-class)
 		- [Spectral Signature Plots](#spectral-signature-plots)
-		- [Identify Misclassified GCPs](#identify-misclassified-gcps)
-		- [Image Normalization and Standardization](#image-normalization-and-standardization)
-		- [Calculate Feature Importance](#calculate-feature-importance)
-	- [Time-Series Smoothing and Gap-filling](#time-series-smoothing-and-gap-filling)
-		- [Moving Window Smoothing](#moving-window-smoothing)
-		- [Temporal Interpolation](#temporal-interpolation)
-		- [Savitzky-Golay Smoothing](#savitzky-golay-smoothing)
-	- [User Interface Templates](#user-interface-templates)
-		- [Adding a Discrete Legend](#adding-a-discrete-legend)
+		- [识别错误分类的 GCP](#识别错误分类的-gcp)
+		- [图像归一化和标准化](#图像归一化和标准化)
+		- [计算特征重要性](#计算特征重要性)
+	- [时序平滑和间隙填充](#时序平滑和间隙填充)
+		- [移动窗口平滑](#移动窗口平滑)
+		- [时间插值](#时间插值)
+		- [Savitzky-Golay 平滑](#savitzky-golay-平滑)
+	- [用户界面模版](#用户界面模版)
+		- [添加离散图例](#添加离散图例)
 		- [Adding a Continous Legend](#adding-a-continous-legend)
-		- [Change Visualization UI App](#change-visualization-ui-app)
-		- [NDVI Explorer UI App](#ndvi-explorer-ui-app)
-	- [Code Sharing and Script Modules](#code-sharing-and-script-modules)
-		- [Sharing a Single Script](#sharing-a-single-script)
-		- [Sharing Multiple Scripts](#sharing-multiple-scripts)
-		- [Sharing Code between Scripts](#sharing-code-between-scripts)
-		- [Useful Public Repositories](#useful-public-repositories)
-- [Guided Projects](#guided-projects)
-	- [Get the Code](#get-the-code)
-	- [Project 1: Drought Monitoring](#project-1-drought-monitoring)
-	- [Project 2: Flood Mapping](#project-2-flood-mapping)
-	- [Project 3: Extracting Time-Series](#project-3-extracting-time-series)
-	- [Project 4: LandCover Analysis](#project-4-landcover-analysis)
-- [Learning Resources](#learning-resources)
+		- [更改可视化 UI 应用程序](#更改可视化-ui-应用程序)
+		- [NDVI Explorer UI 应用程序](#ndvi-explorer-ui-应用程序)
+	- [代码共享和脚本模块](#代码共享和脚本模块)
+		- [分享单个脚本](#分享单个脚本)
+		- [分享多个脚本](#分享多个脚本)
+		- [在脚本间共享代码](#在脚本间共享代码)
+		- [有用的公共存储库](#有用的公共存储库)
+- [指导项目](#指导项目)
+	- [获取代码](#获取代码)
+	- [项目 1：干旱监测](#项目-1干旱监测)
+	- [项目 2：洪水测绘](#项目-2洪水测绘)
+	- [项目 3：提取时间序列](#项目-3提取时间序列)
+	- [项目 4：土地覆盖分析](#项目-4土地覆盖分析)
+- [学习资源](#学习资源)
 - [Data Credits](#data-credits)
 - [License](#license)
-- [Citing and Referencing](#citing-and-referencing)
-
-
-
-
-
+- [引用和参考](#引用和参考)
 
 ---
 
-
-![](images/spatial_thoughts_logo.png)
-
-
-
+![](https://courses.spatialthoughts.com/images/spatial_thoughts_logo.png)
 
 ---
 
+# 简介
 
+Google Earth Engine 是一个云平台，它允许我们对卫星图像进行大规模处理，以检测地球表面的变化、绘制趋势图并量化差异。本教程涵盖了 Earth Engine 的所有主题，从而为参与者提供掌握该平台以及实现遥感项目的实用技能。
 
+[![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/course_overview.png)](https://docs.google.com/presentation/d/1q8HRDTqgQEp3Hmi8IG0T7djPLTC1wRig3jXrwFTmoVE/edit?usp=sharing)
 
-# Introduction
 
+[查看演示文档 ↗](https://docs.google.com/presentation/d/1q8HRDTqgQEp3Hmi8IG0T7djPLTC1wRig3jXrwFTmoVE/edit?usp=sharing)
 
-Google Earth Engine is a cloud-based platform that enables large-scale processing of satellite imagery to detect changes, map trends, and quantify differences on the Earth’s surface. This course covers the full range of topics in Earth Engine to give the participants practical skills to master the platform and implement their remote sensing projects.
 
+# 设置环境
 
-[![View Presentation](images/end_to_end_gee/course_overview.png)](https://docs.google.com/presentation/d/1q8HRDTqgQEp3Hmi8IG0T7djPLTC1wRig3jXrwFTmoVE/edit?usp=sharing)
+## 注册 Google Earth Engine
 
+如果你已经有了 Google Earth Engine 账号，那你可以跳过这一步。
 
-[View the Presentation ↗](https://docs.google.com/presentation/d/1q8HRDTqgQEp3Hmi8IG0T7djPLTC1wRig3jXrwFTmoVE/edit?usp=sharing)
 
+访问 <https://signup.earthengine.google.com/>，然后使用您的 Google 账户注册。你也可以使用现有的 gmail 账户进行注册。通常需要 1-2 天进行批准。故而请尽快进行这一步。
 
+确保注册过程顺利的提示：
+* 使用 Google Chrome 浏览器。
+* 注册 Earth Engine 时，请退出所有的 Google 账户，并且确保只登录了一个希望与 Earth Engine 关联的账户。
+* 使用你所在的学校或者组织的邮箱进行注册更好。
+* 通过 Google 群组授予对 Google Earth Engine 的访问权限。默认设置即可，但请确保您启用了正确的设置。
+	+ 访问 [groups.google.com](http://groups.google.com/)
+	+ 点击 Settings（齿轮图标）并选择 Global Settings。
+	+ 确保选项“Allow group managers to add me to their groups”已选中。
 
+## 完成课前作业
 
-# Setting up the Environment
+本课程需要大约 2 小时的课前准备。请观看以下视频，以便更好地了解遥感以及 Earth Engine 的工作原理。可在线观看视频，也可以使用下面的视频链接。
 
+### 遥感简介
 
+该视频介绍了遥感感念、术语和技术。
 
-## Sign-up for Google Earth Engine
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/intro_to_remote_sensing.png)](https://www.youtube.com/watch?v=xAyNu9HbK8s)
 
 
-If you already have a Google Earth Engine account, you can skip this step.
+* [观看视频](https://www.youtube.com/watch?v=xAyNu9HbK8s)
+* [查看演示文档 ↗](https://docs.google.com/presentation/d/1opRKXIV8XSMa5h7Gqw10KXY5nW7_khfdiBmyDEcylUE/edit?usp=sharing)
 
 
-Visit <https://signup.earthengine.google.com/> and sign-up with your Google account. You can use your existing gmail account to sign-up. It usually takes 1-2 days for approval. Hence do this step as soon as possible.
+### Google Earth Engine 简介
 
+该视频通过选定的案例学习和应用，对 Google Earth Engine 进行了概述。它还介绍了 Earth Engine 的架构以及 EE 与其他传统的遥感软件的不同之处。
 
-Tips to ensure smooth sign-up process:
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/intro_to_gee.png)](https://www.youtube.com/watch?v=kpfncBHZBto)
 
 
-* Use Google Chrome browser.
-* When signing up for Earth Engine, please log out of all Google accounts and ensure you are logged into only 1 account which you want associated with Earth Engine.
-* Prefer using your university/organization email for signing up.
-* Access to Google Earth Engine is granted via Google Groups. The default settings should be fine, but verify you have the correct setting enabled.
-	+ Visit [groups.google.com](http://groups.google.com/)
-	+ Click on Settings (gear icon) and select Global Settings.
-	+ Make sure the option Allow group managers to add me to their groups is checked.
+* [观看视频](https://www.youtube.com/watch?v=kpfncBHZBto)
+* [查看演示文档 ↗](https://docs.google.com/presentation/d/1RMyufK1bD7_Mj0b0Pub-CADiBsmT8LqyGMXIgem3UW4/edit?usp=sharing)
 
 
+### 小测验
 
+观看视频后，请完成以下两个测验：
 
-## Complete the Class Pre-Work
+1. Quiz-1 [遥感基础](https://forms.gle/BoaYhMgpjwNn3amS8).
+2. Quiz-2 [Google Earth Engine 基础](https://forms.gle/pGVShApd9f6uVYR89).
 
 
-This class needs about 2-hours of pre-work. Please watch the following videos to get a good understanding of remote sensing and how Earth Engine works. Videos are available online and can be streamed using the video links below.
+## 获取课程资料
 
+本课程资料和练习采用 Earth Engine 脚本的形式，通过代码库进行共享。
 
-
-### Introduction to Remote Sensing
-
-
-This video introduces the remote sensing concepts, terminology and techniques.
-
-
-[![Video](images/end_to_end_gee/intro_to_remote_sensing.png)](https://www.youtube.com/watch?v=xAyNu9HbK8s)
-
-
-* [Watch the Video](https://www.youtube.com/watch?v=xAyNu9HbK8s)
-* [View the Presentation ↗](https://docs.google.com/presentation/d/1opRKXIV8XSMa5h7Gqw10KXY5nW7_khfdiBmyDEcylUE/edit?usp=sharing)
-
-
-
-
-### Introduction to Google Earth Engine
-
-
-This video gives a broad overview of Google Earth Engine with selected case studies and application. The video also covers the Earth Engine architecture and how it is different than traditional remote sensing software.
-
-
-[![Video](images/end_to_end_gee/intro_to_gee.png)](https://www.youtube.com/watch?v=kpfncBHZBto)
-
-
-* [Watch the Video](https://www.youtube.com/watch?v=kpfncBHZBto)
-* [View the Presentation ↗](https://docs.google.com/presentation/d/1RMyufK1bD7_Mj0b0Pub-CADiBsmT8LqyGMXIgem3UW4/edit?usp=sharing)
-
-
-
-
-### Take the Quizes
-
-
-After you watch the videos, please complete the following 2 Quizzes
-
-
-1. Quiz-1 [Remote Sensing Fundamentals](https://forms.gle/BoaYhMgpjwNn3amS8).
-2. Quiz-2 [Google Earth Engine Fundamentals](https://forms.gle/pGVShApd9f6uVYR89).
-
-
-
-
-
-## Get the Course Materials
-
-
-The course material and exercises are in the form of Earth Engine scripts shared via a code repository.
-
-
-1. [Click this link](https://code.earthengine.google.co.in/?accept_repo=users/ujavalgandhi/End-to-End-GEE) to open Google Earth Engine code editor and add the repository to your account.
-2. If successful, you will have a new repository named `users/ujavalgandhi/End-to-End-GEE` in the *Scripts* tab in the *Reader* section.
-3. Verify that your code editor looks like below
-
-
-
+1. [点击此链接](https://code.earthengine.google.co.in/?accept_repo=users/ujavalgandhi/End-to-End-GEE)以打开 Google Earth Engine 代码编辑器，并将存储库添加到你的账户。
+2. 如果成功了，那么在 *Reader* 会话的 *Scripts* 选项卡中会有一个名为 `users/ujavalgandhi/End-to-End-GEE` 的新存储库。
+3. 验证你的代码编辑器是否如下所示
 > 
-> If you do not see the repository in the *Reader* section, refresh your browser tab and it will show up.
-> 
-> 
+> 如果你在 *Reader* 会话中没有看到存储库，请刷新你的浏览器页面，之后它会出现。
 > 
 
 
-
-![Code Editor After Adding the Class Repository](images/end_to_end_gee/repository.png)
-
-Code Editor After Adding the Class Repository
+![添加类存储库后的代码编辑器](https://courses.spatialthoughts.com/images/end_to_end_gee/repository.png)
 
 
+# 模块 1: Earth Engine 基础
 
-
-
-
-
-
-# Module 1: Earth Engine Basics
-
-
-Module 1 is designed to give you basic skills to be able to find datasets you need for your project, filter them to your region of interest, apply basic processing and export the results. Mastering this will allow you to start using Earth Engine for your project quickly and save a lot of time pre-processing the data.
-
+模块 1 旨在为您提供一些基本技能，使您能够找到项目所需的数据集、过滤数据以得到感兴趣的区域、应用基本的处理并导出结果。掌握这些技能将使您能够快速地在您的项目中使用 Earth Engine，并节省大量的数据预处理时间。
 
 
 ## 01. Hello World
 
+该脚本介绍了基本的 Javascript 语法，视频涵盖了使用 Earth Engine 时需要学习的编程概念。要了解更多信息，请访问 Earth Engine 用户指南里的[用于 Earth Engine 的 JavaScript 简介](https://developers.google.com/earth-engine/tutorials/tutorial_js_01) 部分。
 
-This script introduces the basic Javascript syntax and the video covers the programming concepts you need to learn when using Earth Engine. To learn more, visit [Introduction to JavaScript for Earth Engine](https://developers.google.com/earth-engine/tutorials/tutorial_js_01) section of the Earth Engine User Guide.
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/intro_to_javascript.png)](https://www.youtube.com/watch?v=RV3Sv5iogHs)
 
-
-[![Video](images/end_to_end_gee/intro_to_javascript.png)](https://www.youtube.com/watch?v=RV3Sv5iogHs)
-
-
-* [Watch the Video](https://www.youtube.com/watch?v=RV3Sv5iogHs)
+* [观看视频](https://www.youtube.com/watch?v=RV3Sv5iogHs)
 
 
-The *Code Editor* is an Integrated Development Environment (IDE) for Earth Engine Javascript API.. It offers an easy way to type, debug, run and manage code. Type the code below and click *Run* to execute it and see the output in the *Console* tab.
-
-
-
+*代码编辑器*是 Earth Engine Javascript API 的集成开发环境（IDE）。它提供了一种简单的方式来输入、调试、运行和管理代码。输入下面的代码并点击 *Run* 来执行这些代码，并在 *Console* 选项卡中查看输出。
 > 
-> Tip: You can use the keyboard shortcut *Ctrl+Enter* to run the code in the Code Editor
-> 
-> 
+> 提示：在代码编辑器中，你可以使用快捷键 *Ctrl+Enter* 来运行代码
 > 
 
+![Hello World](https://courses.spatialthoughts.com/images/end_to_end_gee/hello_world.png)
 
 
-![Hello World](images/end_to_end_gee/hello_world.png)
-
-Hello World
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F01b_Hello_World_(complete))
 
 
-
-
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F01b_Hello_World_(complete))
-
-
-
-```
+```js
 print('Hello World');
 
 // Variables
@@ -368,14 +291,11 @@ print(greet('World'));
 ```
 
 
-### Exercise
+### 练习
 
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F01c_Hello_World_(exercise))
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F01c_Hello_World_(exercise))
-
-
-
-```
+```js
 // These are the 5 largest cities in the world: 
 // Tokyo, Delhi, Shanghai, Mexico City, Sao Paulo
 
@@ -384,50 +304,34 @@ print(greet('World'));
 // Print the list 
 ```
 
+### 保存你的工作
+
+当你修改课程存储库中的任何脚本时，你或许想要保存一份自己的副本。如果你尝试点击 *Save* 按钮，将会看到类似下面的错误信息
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/setup1.png)
+
+这是因为该共享类存储库时一个*只读*存储库。你可以点击 *Yes*，从而在你自己的存储库中保存一个副本。如果这是你第一次使用 Earth Engine，系统将提示你选择 *home folder* 的名称。谨慎选择名称，因为一旦创建将无法更改。
+
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/setup2.png)
 
 
-### Saving Your Work
+## 02. 使用图像集合
+
+Earth Engine 中的大部分数据集都以 `ImageCollection` 的形式提供。ImageCollection 是一个数据集，由在不同时间不同地点拍摄的图像组成 —— 通常来自同一个卫星或者数据提供者。你可以通过在 [Earth Engine 数据目录](https://developers.google.com/earth-engine/datasets)中搜索的 *ImageCollection ID* 来加载集合。搜索 *Sentinel-2 Level 1C* 数据集，你将找到它的 id `COPERNICUS/S2_SR`。访问 [Sentinel-2, Level 1C 页面](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2)并查看*Explore in Earth Engine* 部分以查找加载和可视化该集合的代码片段。该代码片段是你使用此数据集的一个很好的起点。点击 **Copy Code Sample** 按钮，并将代码复制到代码编辑器中。点击 *Run*，然后你将看到地图中加载的图像贴片。
 
 
-When you modify any script for the course repository, you may want to save a copy for yourself. If you try to click the *Save* button, you will get an error message like below
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/image_collection1.png)
+
+在代码片段中，你将看到函数 `Map.setCenter()`，它将视窗设置为特定的位置和缩放级别。该函数的参数分别是 X 坐标（经度）、Y 坐标（纬度）和缩放级别。将 X 和 Y 坐标替换为你所在城市的坐标，然后点击 *Run* 以查看你所在城市的图像。
+
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/image_collection2.png)
 
 
-![](images/end_to_end_gee/setup1.png)
+### 练习
+
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F02c_Image_Collections_(exercise))
 
 
-This is because the shared class repository is a *Read-only* repository. You can click *Yes* to save a copy in your repository. If this is the first time you are using Earth Engine, you will be prompted to choose the name of your *home folder*. Choose the name carefully, as it cannot be changed once created.
-
-
-![](images/end_to_end_gee/setup2.png)
-
-
-
-
-
-## 02. Working with Image Collections
-
-
-Most datasets in Earth Engine come as a `ImageCollection`. An ImageCollection is a dataset that consists of images takes at different time and locations - usually from the same satellite or data provider. You can load a collection by searching the [Earth Engine Data Catalog](https://developers.google.com/earth-engine/datasets) for the *ImageCollection ID*. Search for the *Sentinel-2 Level 1C* dataset and you will find its id `COPERNICUS/S2_SR`. Visit the [Sentinel-2, Level 1C page](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2) and see *Explore in Earth Engine* section to find the code snippet to load and visualize the collection. This snippet is a great starting point for your work with this dataset. Click the **Copy Code Sample** button and paste the code into the code editor. Click *Run* and you will see the image tiles load in the map.
-
-
-![](images/end_to_end_gee/image_collection1.png)
-
-
-In the code snippet, You will see a function `Map.setCenter()` which sets the viewport to a specific location and zoom level. The function takes the X coordinate (longitude), Y coordinate (latitude) and Zoom Level parameters. Replace the X and Y coordinates with the coordinates of your city and click *Run* to see the images of your city.
-
-
-![](images/end_to_end_gee/image_collection2.png)
-
-
-
-### Exercise
-
-
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F02c_Image_Collections_(exercise))
-
-
-
-```
+```js
 // Find the 'Sentinel-2 Level-1C' dataset page
 // https://developers.google.com/earth-engine/datasets
 
@@ -439,31 +343,25 @@ In the code snippet, You will see a function `Map.setCenter()` which sets the vi
 
 
 
-## 03. Filtering Image Collections
+## 03. 过滤图像集合
+
+该图像集合包含了传感器曾收集到的所有图像。一般我们不会使用整个集合。大部分的应用程序都是使用集合中的一部分图像。我们可以使用 **filters** 来选择合适的图像。有许多类型的过滤函数，查看 `ee.Filter...` 模块以了解所有可用的过滤器。选择一个过滤器，然后使用过滤参数以运行 `filter()` 函数。
+
+我们将学习 3 种主要类型的过滤技术。
+
+* **按元数据过滤**: 你可以在图像元数据上应用诸如 `ee.Filter.eq()`、`ee.Filter.lt()` 这样的过滤器。你可以根据路径/行值、轨道编码、云覆盖等进行过滤。
+* **按日期过滤**: 你可以使用像 `ee.Filter.date()` 这样的过滤器来选择特定日期范围内的图像。
+* **按位置过滤**: 你可以使用 `ee.Filter.bounds()` 选择带有边界框、位置或者几何形状的图像子集。你还可以使用绘图工具绘制几何图形进行过滤。
+
+应用过滤器后，你可以使用 `size()` 函数来检查有多少图像与过滤器匹配。
+
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/filters.png)
 
 
-The collection contains all imagery ever collected by the sensor. The entire collections are not very useful. Most applications require a subset of the images. We use **filters** to select the appropriate images. There are many types of filter functions, look at `ee.Filter...` module to see all available filters. Select a filter and then run the `filter()` function with the filter parameters.
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F03b_Filtering_Image_Collection_(complete))
 
 
-We will learn about 3 main types of filtering techniques
-
-
-* **Filter by metadata**: You can apply a filter on the image metadata using filters such as `ee.Filter.eq()`, `ee.Filter.lt()` etc. You can filter by PATH/ROW values, Orbit number, Cloud cover etc.
-* **Filter by date**: You can select images in a particular date range using filters such as `ee.Filter.date()`.
-* **Filter by location**: You can select the subset of images with a bounding box, location or geometry using the `ee.Filter.bounds()`. You can also use the drawing tools to draw a geometry for filtering.
-
-
-After applying the filters, you can use the `size()` function to check how many images match the filters.
-
-
-![](images/end_to_end_gee/filters.png)
-
-
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F03b_Filtering_Image_Collection_(complete))
-
-
-
-```
+```js
 var geometry = ee.Geometry.Point([77.60412933051538, 12.952912912328241])
 Map.centerObject(geometry, 10)
 
@@ -497,15 +395,14 @@ var filtered = s2.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
 print(filtered.size())
 ```
 
-
-### Exercise
-
-
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F03c_Filtering_Image_Collection_(exercise))
+### 练习
 
 
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F03c_Filtering_Image_Collection_(exercise))
 
-```
+
+
+```js
 // Add one more filter in the script below to select images
 // from only one of the satellites - Sentinel-2A - from the
 // Sentinel-2 constellation
@@ -526,39 +423,25 @@ var filtered = s2.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
 print(filtered.size())
 ```
 
+## 04. 基于 ImageCollection 创建拼接图像和合成图像
 
+集合默认按日期排序。因此，当显示集合时，它会隐式创建一个拼接图像，最新的像素在最上面。可以在 ImageCollection 上调用 `.mosaic()`，从而从最上面的像素创建拼接图像。
 
-
-## 04. Creating Mosaics and Composites from ImageCollections
-
-
-The default order of the collection is by date. So when you display the collection, it implicitly creates a mosaic with the latest pixels on top. You can call `.mosaic()` on a ImageCollection to create a mosaic image from the pixels at the top.
-
-
-We can also create a composite image by applying selection criteria to each pixel from all pixels in the stack. Here we use the `median()` function to create a composite where each pixel value is the median of all pixels from the stack.
-
-
+我们还可以通过对堆栈中的所有像素应用选择标准来创建合成图像。这里，使用 `median()` 函数来创建一个合成图像，该合成图像的每个像素值是堆栈中所有像素的中值。
 
 > 
-> Tip: If you need to create a mosaic where the images are in a specific order, you can use the `.sort()` function to sort your collection by a property first.
-> 
+> 提示：如果需要从按特定顺序排列的图像中创建一个拼接图像，可以使用 `.sort()` 函数按照某个属性对集合进行排序。
 > 
 > 
 
 
-
-![Mosaic vs. Composite](images/end_to_end_gee/mosaic_composite.png)
-
-Mosaic vs. Composite
+![Mosaic vs. Composite](https://courses.spatialthoughts.com/images/end_to_end_gee/mosaic_composite.png)
 
 
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F04b_Mosaics_and_Composites_(complete))
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F04b_Mosaics_and_Composites_(complete))
-
-
-
-```
+```js
 var geometry = ee.Geometry.Point([77.60412933051538, 12.952912912328241])
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 
@@ -580,40 +463,30 @@ Map.addLayer(mosaic, rgbVis, 'Mosaic');
 Map.addLayer(medianComposite, rgbVis, 'Median Composite')
 ```
 
-
-### Exercise
-
-
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F04c_Mosaics_and_Composites_(exercise))
+### 练习
 
 
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F04c_Mosaics_and_Composites_(exercise))
 
-```
+```js
 // Create a median composite for the year 2020 and load it to the map
 
 // Compare both the composites to see the changes in your city
 ```
 
 
+## 05. 使用特征集合
+
+特征集合类似于图像集合，但它们包含的是*特征*，而非图像。它们等同于 GIS 中的矢量图层。我们可以使用目前学到的类似技术来加载、过滤和展示特征集合。
+
+搜索 *GAUL Second Level Administrative Boundaries* 并加载集合。这是一个全局集合，它包含所有所有 Admin2 边界。我们可以使用 `ADM1_NAME` 属性，应用过滤器来获取一个州的所有 Admin2 边界（即地区）。
+
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/feature_collection.png)
+
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F05b_Feature_Collections_(complete))
 
 
-## 05. Working with Feature Collections
-
-
-Feature Collections are similar to Image Collections - but they contain *Features*, not images. They are equivalent to Vector Layers in a GIS. We can load, filter and display Feature Collections using similar techniques that we have learned so far.
-
-
-Search for *GAUL Second Level Administrative Boundaries* and load the collection. This is a global collection that contains all Admin2 boundaries. We can apply a filter using the `ADM1_NAME` property to get all Admin2 boundaries (i.e. Districts) from a state.
-
-
-![](images/end_to_end_gee/feature_collection.png)
-
-
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F05b_Feature_Collections_(complete))
-
-
-
-```
+```js
 var admin2 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level2");
 
 var karnataka = admin2.filter(ee.Filter.eq('ADM1\_NAME', 'Karnataka'))
@@ -622,15 +495,12 @@ var visParams = {'color': 'red'}
 Map.addLayer(karnataka, visParams, 'Karnataka Districts')
 ```
 
+### 练习
 
-### Exercise
-
-
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F05c_Feature_Collections_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F05c_Feature_Collections_(exercise))
 
 
-
-```
+```js
 // Apply a filter to select only the 'Bangalore Urban' district
 // Display only the selected district
 
@@ -642,28 +512,17 @@ var karnataka = admin2.filter(ee.Filter.eq('ADM1\_NAME', 'Karnataka'))
 var visParams = {'color': 'red'}
 ```
 
+## 06. 导入数据
+
+你可以将矢量数据或者栅格数据导入到 Earth Engine。现在，我们将为 Natural Earth导入一个 [Urban Areas](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-urban-area/) 的 shapefile。将 `ne_10m_urban_areas.zip` 解压到电脑上的一个文件夹中。在代码编辑器中，转到 *Assets → New → Table Upload → Shape Files*。选择 `.shp`, `.shx`, `.dbf` 和 .`prj` 文件。输入 `ne_10m_urban_areas` 作为 *Asset Name* 并点击 *Upload*。上传并摄取完毕后，在 *Assets* 选项卡中将出现一个新的资产。shapefile 在 Earth Engine 中作为特征集合导入。选择 `ne_10m_urban_areas` 资产并点击 *Import*。然后，你就可以查看导入的数据了。
+
+![导入 Shapefile](https://courses.spatialthoughts.com/images/end_to_end_gee/import.png)
+
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F06b_Import_(complete))
 
 
 
-## 06. Importing Data
-
-
-You can import vector or raster data into Earth Engine. We will now import a shapefile of [Urban Areas](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-urban-area/) for Natural Earth. Unzip the `ne_10m_urban_areas.zip` into a folder on your computer. In the Code Editor, go to *Assets → New → Table Upload → Shape Files*. Select the `.shp`, `.shx`, `.dbf` and .`prj` files. Enter `ne_10m_urban_areas` as the *Asset Name* and click *Upload*. Once the upload and ingest finishes, you will have a new asset in the *Assets* tab. The shapefile is imported as a Feature Collection in Earth Engine. Select the `ne_10m_urban_areas` asset and click *Import*. You can then visualize the imported data.
-
-
-
-![Importing a Shapefile](images/end_to_end_gee/import.png)
-
-Importing a Shapefile
-
-
-
-
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F06b_Import_(complete))
-
-
-
-```
+```js
 // Let's import some data to Earth Engine
 // Upload the ne\_10m\_urban\_areas.shp shapefile
 
@@ -675,14 +534,12 @@ Map.addLayer(urban, {color: 'blue'}, 'Urban Areas')
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F06c_Import_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F06c_Import_(exercise))
 
-
-
-```
+```js
 // Apply a filter to select only large urban areas
 // Use the property 'area\_sqkm' and select all features 
 // with area > 400 sq.km
@@ -690,36 +547,22 @@ Map.addLayer(urban, {color: 'blue'}, 'Urban Areas')
 var urban = ee.FeatureCollection("users/ujavalgandhi/e2e/ne\_10m\_urban\_areas");
 ```
 
+## 07. 裁剪图像
 
-
-
-## 07. Clipping Images
-
-
-It is often desirable to clip the images to your area of interest. You can use the `clip()` function to mask out an image using a geometry.
-
-
+通常，我们需要将图像裁剪到所感兴趣的区域。可以使用 `clip()` 函数，利用几何图形遮盖图像。
 
 > 
-> While in a Desktop software, clipping is desirable to remove unnecessary portion of a large image and save computation time, in Earth Engine clipping can actually increase the computation time. As described in the [Earth Engine Coding Best Practices](https://developers.google.com/earth-engine/guides/best_practices?hl=en#if-you-dont-need-to-clip,-dont-use-clip) guide, avoid clipping the images or do it at the end of your script.
-> 
+> 虽然在桌面软件中，裁剪有助于删除大图像的不必要部分并节省计算时间，但在 Earth Engine 中，裁剪实际上会增加计算时间。正如 [Earth Engine 编码最佳实践](https://developers.google.com/earth-engine/guides/best_practices?hl=en#if-you-dont-need-to-clip,-dont-use-clip) 指南中所述，请避免裁剪图像，或在脚本末尾再进行裁剪。
 > 
 > 
 
+![Original vs. Clipped Image](https://courses.spatialthoughts.com/images/end_to_end_gee/clipping.png)
 
-
-![Original vs. Clipped Image](images/end_to_end_gee/clipping.png)
-
-Original vs. Clipped Image
-
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F07b_Clipping_(complete))
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F07b_Clipping_(complete))
-
-
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2")
 var urban = ee.FeatureCollection("users/ujavalgandhi/e2e/ne\_10m\_urban\_areas")
 
@@ -744,60 +587,42 @@ var clipped = image.clip(geometry)
 Map.addLayer(clipped, rgbVis, 'Clipped')
 ```
 
-
-### Exercise
-
-
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F07c_Clipping_(exercise))
+### 练习
 
 
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F07c_Clipping_(exercise))
 
-```
+```js
 // Add the imported table to the Map
 // Use the Inspector to find the id of your home city or any urban area of your choice
 // Change the filter to use the id of the selected feature
 ```
 
+## 08. 导出数据
 
-
-
-## 08. Exporting Data
-
-
-Earth Engine allows for exporting both vector and raster data to be used in an external program. Vector data can be exported as a `CSV` or a `Shapefile`, while Rasters can be exported as `GeoTIFF` files. We will now export the Sentinel-2 Composite as a GeoTIFF file.
-
-
+Earth Engine 允许我们导出矢量和栅格数据以便外部程序使用。矢量数据可以导出为 `CSV` 活着 `Shapefile`，而栅格数据可以导出为 `GeoTIFF` 文件。我们现在将 Sentinel-2 Composite 导出为 GeoTIFF 文件。
 
 > 
-> Tip: Code Editor supports autocompletion of API functions using the combination *Ctrl+Space*. Type a few characters of a function and press *Ctrl+Space* to see autocomplete suggestions. You can also use the same key combination to fill all parameters of the function automatically.
-> 
-> 
+> 提示：代码编辑器支持使用 *Ctrl+Space* 组合键对 API 函数自动补全。输入函数的几个字符，然后按 *Ctrl+Space* 以查看自动补全建议。你还可以使用相同的组合键来自动填充函数的所有参数。
 > 
 
+运行此脚本后， *Tasks* 选项卡将突出显示。切换到选项卡，你将看到等待中的任务。点击每个任务旁边的 *Run* 以启动处理。
 
-Once you run this script, the *Tasks* tab will be highlighted. Switch to the tab and you will see the tasks waiting. Click *Run* next to each task to start the process.
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/export_task01.png)
 
-
-![](images/end_to_end_gee/export_task01.png)
-
-
-On clicking the *Run* button, you will be prompted for a confirmation dialog. Verify the settings and click *Run* to start the export.
+点击 *Run* 按钮后，系统将提示以便确认。检查设置并单击 *Run* 以开始导出。
 
 
-![](images/end_to_end_gee/export_task02.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/export_task02.png)
+
+一旦结束导出，每个导出任务涉及到的的 GeoTiff 文件将添加到你的 Google Drive 中的指定文件夹中。你可以下载它们并在 GIS 软件中使用。
+
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/exporting_data.png)
 
 
-Once the Export finishes, a GeoTiff file for each export task will be added to your Google Drive in the specified folder. You can download them and use it in a GIS software.
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F08b_Export_(complete))
 
-
-![](images/end_to_end_gee/exporting_data.png)
-
-
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F08b_Export_(complete))
-
-
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2")
 var urban = ee.FeatureCollection("users/ujavalgandhi/e2e/ne\_10m\_urban\_areas")
 
@@ -852,40 +677,27 @@ Export.image.toDrive({
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F08c_Export_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2F08c_Export_(exercise))
 
-
-
-```
+```js
 
 // Write the export function to export the results for your chosen urban area
 ```
 
 
+## 作业 1
+
+加载 2019 年和 2020 年的夜灯数据（Night Lights Data）。比较你所在区域的图像并找出城市变化。
+
+![作业1预期输出](https://courses.spatialthoughts.com/images/end_to_end_gee/assignment1.png)
+
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2FAssignment1)
 
 
-## Assignment 1
-
-
-Load the Night Lights Data for 2019 and 2020. Compare the imagery for your region and find the changes in the city.
-
-
-
-![Assignment1 Expected Output](images/end_to_end_gee/assignment1.png)
-
-Assignment1 Expected Output
-
-
-
-
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A01-Earth-Engine-Basics%2FAssignment1)
-
-
-
-```
+```js
 // Assignment
 // Export the Night Lights images for May,2015 and May,2020
 
@@ -910,30 +722,26 @@ Assignment1 Expected Output
 // var image = ee.Image(filtered.first())
 ```
 
-
-
-
-
-# Module 2: Earth Engine Intermediate
+# 模块 2: Earth Engine 中级
 
 
 Module 2 builds on the basic Earth Engine skills you have gained. This model introduces the parallel programming concepts using Map/Reduce - which is key in effectively using Earth Engine for analyzing large volumes of data. You will learn how to use the Earth Engine API for calculating various spectral indices, do cloud masking and then use map/reduce to do apply these computations to collections of imagery. You will also learn how to take long time-series of data and create charts.
 
 
-[![View Presentation](images/end_to_end_gee/map_reduce.png)](https://docs.google.com/presentation/d/10qOyxhubkwnsAVjniW54ETgwUHq3DXYKo3HGb6Gemi0/edit?usp=sharing)
+[![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/map_reduce.png)](https://docs.google.com/presentation/d/10qOyxhubkwnsAVjniW54ETgwUHq3DXYKo3HGb6Gemi0/edit?usp=sharing)
 
 
-[View the Presentation ↗](https://docs.google.com/presentation/d/10qOyxhubkwnsAVjniW54ETgwUHq3DXYKo3HGb6Gemi0/edit?usp=sharing)
+[查看演示文档 ↗](https://docs.google.com/presentation/d/10qOyxhubkwnsAVjniW54ETgwUHq3DXYKo3HGb6Gemi0/edit?usp=sharing)
 
 
 
-## 01. Earth Engine Objects
+## 01. Earth Engine 对象
 
 
-This script introduces the basics of the Earth Engine API. When programming in Earth Engine, you must use the Earth Engine API so that your computations can use the Google Earth Engine servers. To learn more, visit [Earth Engine Objects and Methods](https://developers.google.com/earth-engine/tutorial_js_02) section of the Earth Engine User Guide.
+This script introduces the basics of the Earth Engine API. When programming in Earth Engine, you must use the Earth Engine API so that your computations can use the Google Earth Engine servers. To learn more, visit [Earth Engine 对象和方法](https://developers.google.com/earth-engine/tutorial_js_02) section of the Earth Engine User Guide.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F01b_Earth_Engine_Objects_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F01b_Earth_Engine_Objects_(complete))
 
 
 
@@ -1006,10 +814,10 @@ print(futureDate)
 
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F01c_Earth_Engine_Objects_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F01c_Earth_Engine_Objects_(exercise))
 
 
 
@@ -1032,21 +840,21 @@ var filtered = s2.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
 
 
 
-## 02. Calculating Indices
+## 02. 计算指标
 
 
 Spectral Indices are central to many aspects of remote sensing. Whether you are studying vegetation or tracking fires - you will need to compute a pixel-wise ratio of 2 or more bands. The most commonly used formula for calculating an index is the *Normalized Difference* between 2 bands. Earth Engine provides a helper function `normalizedDifference()` to help calculate normalized indices, such as Normalized Difference Vegetation Index (NDVI). For more complex formulae, you can also use the `expression()` function to describe the calculation.
 
 
 
-![MNDWI, SAVI and NDVI images](images/end_to_end_gee/indices.png)
+![MNDWI, SAVI 和 NDVI 图像](https://courses.spatialthoughts.com/images/end_to_end_gee/indices.png)
 
 MNDWI, SAVI and NDVI images
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F02b_Calculating_Indices_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F02b_Calculating_Indices_(complete))
 
 
 
@@ -1098,10 +906,10 @@ Map.addLayer(ndvi.clip(geometry), ndviVis, 'ndvi')
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F02c_Calculating_Indices_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F02c_Calculating_Indices_(exercise))
 
 
 
@@ -1136,14 +944,14 @@ So far we have learnt how to run computation on single images. If you want to ap
 
 
 
-![NDVI computation on an ImageCollection](images/end_to_end_gee/imagecollection_computation.png)
+![NDVI computation on an ImageCollection](https://courses.spatialthoughts.com/images/end_to_end_gee/imagecollection_computation.png)
 
 NDVI computation on an ImageCollection
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F03b_Computation_on_Image_Collections_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F03b_Computation_on_Image_Collections_(complete))
 
 
 
@@ -1186,10 +994,10 @@ Map.addLayer(ndviComposite, ndviVis, 'ndvi')
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F03c_Computation_on_Image_Collections_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F03c_Computation_on_Image_Collections_(exercise))
 
 
 
@@ -1232,7 +1040,7 @@ print(composite)
 
 
 
-## 04. Cloud Masking
+## 04. 云遮蔽（Cloud Masking）
 
 
 Masking pixels in an image makes those pixels transparent and excludes them from analysis and visualization. To mask an image, we can use the `updateMask()` function and pass it an image with 0 and 1 values. All pixels where the mask image is 0 will be masked.
@@ -1245,14 +1053,14 @@ The script below takes the Sentinel-2 masking function and shows how to apply it
 
 
 
-![Applying pixel-wise QA bitmask](images/end_to_end_gee/cloud_masking.png)
+![Applying pixel-wise QA bitmask](https://courses.spatialthoughts.com/images/end_to_end_gee/cloud_masking.png)
 
 Applying pixel-wise QA bitmask
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F04b_Cloud_Masking_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F04b_Cloud_Masking_(complete))
 
 
 
@@ -1284,10 +1092,10 @@ Map.addLayer(maskedImage, rgbVis, 'Masked Image')
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F04c_Cloud_Masking_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F04c_Cloud_Masking_(exercise))
 
 
 
@@ -1352,7 +1160,7 @@ function maskCloudAndShadowsSR(image) {
 When writing parallel computing code, a *Reduce* operation allows you to compute statistics on a large amount of inputs. In Earth Engine, you need to run reduction operation when creating composites, calculating statistics, doing regression analysis etc. The Earth Engine API comes with a large number of built-in reducer functions (such as `ee.Reducer.sum()`, `ee.Reducer.histogram()`, `ee.Reducer.linearFit()` etc.) that can perform a variety of statistical operations on input data. You can run reducers using the `reduce()` function. Earth Engine supports running reducers on all data structures that can hold multiple values, such as Images (reducers run on different bands), ImageCollection, FeatureCollection, List, Dictionary etc. The script below introduces basic concepts related to reducers.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F05b_Reducers_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F05b_Reducers_(complete))
 
 
 
@@ -1404,10 +1212,10 @@ print('Average value in B4', stats.get('B4'))
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F05c_Reducers_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F05c_Reducers_(exercise))
 
 
 
@@ -1442,7 +1250,7 @@ Now we can put together all the skills we have learnt so far - filter, map, redu
 
 
 
-![Computing NDVI Time-series for a Farm](images/end_to_end_gee/charts1.png)
+![Computing NDVI Time-series for a Farm](https://courses.spatialthoughts.com/images/end_to_end_gee/charts1.png)
 
 Computing NDVI Time-series for a Farm
 
@@ -1450,14 +1258,14 @@ Computing NDVI Time-series for a Farm
 
 
 
-![NDVI Time-series showing Dual-Cropping Cycle](images/end_to_end_gee/charts2.png)
+![NDVI Time-series showing Dual-Cropping Cycle](https://courses.spatialthoughts.com/images/end_to_end_gee/charts2.png)
 
 NDVI Time-series showing Dual-Cropping Cycle
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F06b_Time_Series_Charts_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F06b_Time_Series_Charts_(complete))
 
 
 
@@ -1518,10 +1326,10 @@ print(chart);
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F06c_Time_Series_Charts_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F06c_Time_Series_Charts_(exercise))
 
 
 
@@ -1535,18 +1343,18 @@ print(chart);
 
 
 
-## Assignment 2
+## 作业 2
 
 
 
-![Assignment2 Expected Output](images/end_to_end_gee/assignment2.png)
+![Assignment2 Expected Output](https://courses.spatialthoughts.com/images/end_to_end_gee/assignment2.png)
 
 Assignment2 Expected Output
 
 
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2FAssignment2)
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2FAssignment2)
 
 
 
@@ -1590,26 +1398,25 @@ print(image.projection().nominalScale())
 
 
 
-# Module 3: Supervised Classification
+# 模块 3: 有监督分类
 
 
 
-## Introduction to Machine Learning and Supervised Classification
+## 机器学习和有监督分类简介
 
 
 Supervised classification is arguably the most important classical machine learning techniques in remote sensing. Applications range from generating Land Use/Land Cover maps to change detection. Google Earth Engine is unique suited to do supervised classification at scale. The interactive nature of Earth Engine development allows for iterative development of supervised classification workflows by combining many different datasets into the model. This module covers basic supervised classification workflow, accuracy assessment, hyperparameter tuning and change detection.
 
 
-[![View Presentation](images/end_to_end_gee/supervised_classification.png)](https://docs.google.com/presentation/d/19L1b5vsxb38xS8GlHNKOjvPZ0IGqDhv93681btMEL5w/edit?usp=sharing)
+[![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/supervised_classification.png)](https://docs.google.com/presentation/d/19L1b5vsxb38xS8GlHNKOjvPZ0IGqDhv93681btMEL5w/edit?usp=sharing)
 
 
-[View the Presentation ↗](https://docs.google.com/presentation/d/19L1b5vsxb38xS8GlHNKOjvPZ0IGqDhv93681btMEL5w/edit?usp=sharing)
+[查看演示文档 ↗](https://docs.google.com/presentation/d/19L1b5vsxb38xS8GlHNKOjvPZ0IGqDhv93681btMEL5w/edit?usp=sharing)
 
 
 
 
-## 01. Basic Supervised Classification
-
+## 01. 有监督分类基础知识
 
 We will learn how to do a basic land cover classification using training samples collected from the Code Editor using the High Resolution basemap imagery provided by Google Maps. This method requires no prior training data and is quite effective to generate high quality classification samples anywhere in the world. The goal is to classify each source pixel into one of the following classes - urban, bare, water or vegetation. Using the drawing tools in the code editor, you create 4 new feature collection with points representing pixels of that class. Each feature collection has a property called `landcover` with values of 0, 1, 2 or 3 indicating whether the feature collection represents urban, bare, water or vegetation respectively. We then train a *Random Forest* classifier using these training set to build a model and apply it to all the pixels of the image to create a 4 class image.
 
@@ -1623,14 +1430,14 @@ We will learn how to do a basic land cover classification using training samples
 
 
 
-![Supervised Classification Output](images/end_to_end_gee/classified.png)
+![有监督分类输出](https://courses.spatialthoughts.com/images/end_to_end_gee/classified.png)
 
 Supervised Classification Output
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F01d_Basic_Supervised_Classification_(noimport))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F01d_Basic_Supervised_Classification_(noimport))
 
 
 
@@ -1702,10 +1509,10 @@ Map.centerObject(gcpsStyled)
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F01c_Basic_Supervised_Classification_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F01c_Basic_Supervised_Classification_(exercise))
 
 
 
@@ -1771,8 +1578,7 @@ Map.addLayer(composite, rgbVis, 'image');
 
 
 
-## 02. Accuracy Assessment
-
+## 02. 准确度评估
 
 It is important to get a quantitative estimate of the accuracy of the classification. To do this, a common strategy is to divide your training samples into 2 random fractions - one used for *training* the model and the other for *validation* of the predictions. Once a classifier is trained, it can be used to classify the entire image. We can then compare the classified values with the ones in the validation fraction. We can use the `ee.Classifier.confusionMatrix()` method to calculate a *Confusion Matrix* representing expected accuracy.
 
@@ -1787,7 +1593,7 @@ Classification results are evaluated based on the following metrics
 
 
 
-![Accuracy Assessment](images/end_to_end_gee/accuracy_assessment.png)
+![准确度评估](https://courses.spatialthoughts.com/images/end_to_end_gee/accuracy_assessment.png)
 
 Accuracy Assessment
 
@@ -1802,7 +1608,7 @@ Accuracy Assessment
 > 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F02b_Accuracy_Assessment_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F02b_Accuracy_Assessment_(complete))
 
 
 
@@ -1897,10 +1703,10 @@ print('Test Accuracy', testConfusionMatrix.accuracy());
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F02c_Accuracy_Assessment_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F02c_Accuracy_Assessment_(exercise))
 
 
 
@@ -1942,13 +1748,12 @@ print('Test Accuracy', testConfusionMatrix.accuracy());
 
 
 
-## 03. Improving the Classification
-
+## 03. 改进分类
 
 The Earth Engine data-model is especially well suited for machine learning tasks because of its ability to easily incorporate data sources of different spatial resolutions, projections and data types together By giving additional information to the classifier, it is able to separate different classes easily. Here we take the same example and augment it with the following techniques
 
 
-* *Apply Cloud Masking*
+* *应用云遮蔽（Cloud Masking）*
 * *Add Spectral Indices*: We add bands for different spectral indices such as - NDVI, NDBI, MNDWI and BSI.
 * *Add Elevation and Slope*: We also add slope and elevation bands from the ALOS DEM.
 * *Normalize the Inputs*: Machine learning models work best when all the inputs have the same scale. We will divide each band with the maximum value. This method ensures that all input values are between 0-1. A more [complete and robust technique](#image-normalization-and-standardization) for image normalization is provided in the course Supplement.
@@ -1958,14 +1763,14 @@ Our training features have more parameters and contain values of the same scale.
 
 
 
-![Improved Classification Accuracy with use of Spectral Indices and Elevation Data](images/end_to_end_gee/improving_classification.png)
+![Improved Classification Accuracy with use of Spectral Indices and Elevation Data](https://courses.spatialthoughts.com/images/end_to_end_gee/improving_classification.png)
 
 Improved Classification Accuracy with use of Spectral Indices and Elevation Data
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F03b_Improving_the_Classification_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F03b_Improving_the_Classification_(complete))
 
 
 
@@ -2121,10 +1926,10 @@ print('Test Accuracy', testConfusionMatrix.accuracy());
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F03c_Improving_the_Classification_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F03c_Improving_the_Classification_(exercise))
 
 
 
@@ -2155,7 +1960,7 @@ var addIndices = function(image) {
 
 
 
-## 04. Exporting Classification Results
+## 04. 导出分类结果
 
 
 When working with complex classifiers over large regions, you may get a *User memory limit exceeded* or *Computation timed out* error in the Code Editor. The reason for this is that there is a fixed time limit and smaller memory allocated for code that is run with the *On-Demand Computation* mode. For larger computations, you can use the *Batch* mode with the `Export` functions. Exports run in the background and can run longer than 5-minutes time allocated to the computation code run from the Code Editor. This allows you to process very large and complex datasets. Here’s an example showing how to export your classification results to Google Drive.
@@ -2170,14 +1975,14 @@ When working with complex classifiers over large regions, you may get a *User me
 
 
 
-![Exported Classification Outputs](images/end_to_end_gee/export_classification.png)
+![导出分类结果](https://courses.spatialthoughts.com/images/end_to_end_gee/export_classification.png)
 
 Exported Classification Outputs
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F04b_Exporting_Classification_Results_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F04b_Exporting_Classification_Results_(complete))
 
 
 
@@ -2353,13 +2158,13 @@ Export.table.toDrive({
 ```
 
 
-### Exercise
+### 练习
 
 
 It is also a good idea to export the classified image as an Asset. This will allows you to import the classified image in another script without running the whole classification workflow. Use the Export.image.toAsset() function to export the classified image as an asset.
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F04c_Exporting_Classification_Results_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F04c_Exporting_Classification_Results_(exercise))
 
 
 
@@ -2511,8 +2316,7 @@ Map.addLayer(classified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'gr
 
 
 
-## 05. Calculating Area
-
+## 05. 计算面积
 
 Now that we have the results of our classification, we will learn how to calculate the area for pixels in each class. Calculating area for features is done using the `area()` function and for images using the `ee.Image.pixelArea()` function. The `ee.Image.pixelArea()` function creates an image where each pixel’s value is the area of the pixel. We multiply this pixel area image with our image and sum up the area using the `reduceRegion()` function.
 
@@ -2526,14 +2330,14 @@ Now that we have the results of our classification, we will learn how to calcula
 
 
 
-![Calculating Green Cover from Classified Image](images/end_to_end_gee/area_calculation.png)
+![Calculating Green Cover from Classified Image](https://courses.spatialthoughts.com/images/end_to_end_gee/area_calculation.png)
 
 Calculating Green Cover from Classified Image
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F05b_Calculating_Area_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F05b_Calculating_Area_(complete))
 
 
 
@@ -2598,10 +2402,10 @@ print(vegetationAreaSqKm)
 
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F05c_Calculating_Area_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F05c_Calculating_Area_(exercise))
 
 
 
@@ -2614,12 +2418,10 @@ print(vegetationAreaSqKm)
 
 
 
-# Module 4: Change Detection
+# 模块 4: 变化检测
 
 
-
-## Introduction to Change Detection
-
+## 变化检测简介
 
 Many earth observation datasets are available at regular intervals over long periods of time. This enables us to detect changes on the Earth’s surface. Change detection technique in remote sensing fall in the following categories
 
@@ -2633,16 +2435,15 @@ Many earth observation datasets are available at regular intervals over long per
 In the following sections, we will apply the supervised classification techniques for change detection using multi-temporal images.
 
 
-[![View Presentation](images/end_to_end_gee/change_detection.png)](https://docs.google.com/presentation/d/1vdFTWJ61yDuVfbfhpnumQ8zuMPGwGcHpHsBTRgo_o5I/edit?usp=sharing)
+[![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/change_detection.png)](https://docs.google.com/presentation/d/1vdFTWJ61yDuVfbfhpnumQ8zuMPGwGcHpHsBTRgo_o5I/edit?usp=sharing)
 
 
-[View the Presentation ↗](https://docs.google.com/presentation/d/1vdFTWJ61yDuVfbfhpnumQ8zuMPGwGcHpHsBTRgo_o5I/edit?usp=sharing)
+[查看演示文档 ↗](https://docs.google.com/presentation/d/1vdFTWJ61yDuVfbfhpnumQ8zuMPGwGcHpHsBTRgo_o5I/edit?usp=sharing)
 
 
 
 
-## 01. Spectral Index Change
-
+## 01. 光谱指数变化
 
 Many types of change can be detected by measuring the change in a spectral index and applying a threshold. This technique is suitable when there is a suitable spectral index is available for the type of change you are interested in detecting.
 
@@ -2651,14 +2452,14 @@ Here we apply this technique to map the extent and severity of a forest fire. Th
 
 
 
-![Spectral Index Change Detection](images/end_to_end_gee/spectral_index_change.png)
+![Spectral Index Change Detection](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_index_change.png)
 
 Spectral Index Change Detection
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01b_Spectral_Index_Change_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01b_Spectral_Index_Change_(complete))
 
 
 
@@ -2750,18 +2551,18 @@ Map.addLayer(burned, {min:0, max:1, palette: ['white', 'red']}, 'Burned', false)
 ```
 
 
-### Exercise
+### 练习
 
 
 
-![Classifying the Change Image](images/end_to_end_gee/spectral_index_change_exercise.png)
+![Classifying the Change Image](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_index_change_exercise.png)
 
 Classifying the Change Image
 
 
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01c_Spectral_Index_Change_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01c_Spectral_Index_Change_(exercise))
 
 
 
@@ -2871,8 +2672,7 @@ var severity = change
 
 
 
-## 02. Spectral Distance Change
-
+## 02. 光谱距离变化
 
 When you want to detect changes from multi-band images, a useful technique is to compute the Spectral Distance and Spectral Angle between the two images. Pixels that exhibit a large change will have a larger distance compared to those that did not change. This technique is particularly useful when there are no suitable index to detect the change. It can be applied to detect change after natural disasters or human conflicts.
 
@@ -2881,14 +2681,14 @@ Here we use this technique to detect landslides using before/after composites. Y
 
 
 
-![Spectral Distance Change Detection](images/end_to_end_gee/spectral_distance.png)
+![Spectral Distance Change Detection](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_distance.png)
 
 Spectral Distance Change Detection
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01b_Spectral_Distance_Change_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01b_Spectral_Distance_Change_(complete))
 
 
 
@@ -2956,10 +2756,10 @@ Map.addLayer(distance, {min: 0, max: 1500, palette: ['white', 'red']}, 'spectral
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01c_Spectral_Distance_Change_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01c_Spectral_Distance_Change_(exercise))
 
 
 
@@ -3025,21 +2825,20 @@ Map.addLayer(distance, {min: 0, max: 1500, palette: ['white', 'red']}, 'spectral
 
 
 
-## 03. Direct Classification of Change
-
+## 03. 变化的直接分类
 
 This technique of change detection is also known as *One-pass Classification* or *Direct Multi-date Classification*. Here we create a single stacked image containing bands from before and after images. We train a classifier with training data sampled from the stacked image and apply the classifier on the stacked image to find all change pixels.
 
 
 
-![All pixels that changed from bare ground to built-up](images/end_to_end_gee/change_classification.png)
+![All pixels that changed from bare ground to built-up](https://courses.spatialthoughts.com/images/end_to_end_gee/change_classification.png)
 
 All pixels that changed from bare ground to built-up
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F03b_Classifying_Change_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F03b_Classifying_Change_(complete))
 
 
 
@@ -3108,10 +2907,10 @@ Map.addLayer(classified, {min: 0, max: 1, palette: ['white', 'red']}, 'change');
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F03c_Classifying_Change_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F03c_Classifying_Change_(exercise))
 
 
 
@@ -3132,13 +2931,12 @@ var addNDBI = function(image) {
 
 
 
-## 04. Post-classification Comparison
-
+## 04. 分类后对比
 
 We dealing with multi-class images, a useful metric for change detection is to know how many pixels from class X changed to class Y. This can be accomplished using the `ee.Reducer.frequencyHistogram()` reducer as shown below.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F04b_Post_Classification_Comparison_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F04b_Post_Classification_Comparison_(complete))
 
 
 
@@ -3260,18 +3058,18 @@ print(classTransitionsAreaDict)
 ```
 
 
-### Exercise
+### 练习
 
 
 
-![Lost water pixels between 2019 and 2020](images/end_to_end_gee/post_classification.png)
+![Lost water pixels between 2019 and 2020](https://courses.spatialthoughts.com/images/end_to_end_gee/post_classification.png)
 
 Lost water pixels between 2019 and 2020
 
 
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F04c_Post_Classification_Comparison_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F04c_Post_Classification_Comparison_(exercise))
 
 
 
@@ -3286,15 +3084,14 @@ Lost water pixels between 2019 and 2020
 
 
 
-# Module 5: Earth Engine Apps
+# 模块 5: Earth Engine 应用
 
 
 This module is focused the concepts related to client vs. server that will help you in creating web apps. We will be building an app using the Earth Engine User Interface API and publishing it to Google Cloud.
 
 
 
-## 01. Client vs. Server
-
+## 01. 客户端与服务器
 
 The User Interface elements in your Code Editor - Map View, Drawing Tools etc. are ‘client-side’ elements. They run in YOUR browser. Image Collections, feature collections, calculations on Earth Engine objects etc. are ‘server-side’ elements. They run in Google’s data center. You cannot mix both these objects. To learn more, visit the [Client vs. Server](https://developers.google.com/earth-engine/guides/client_server) section of the Earth Engine User Guide.
 
@@ -3311,7 +3108,7 @@ The User Interface elements in your Code Editor - Map View, Drawing Tools etc. a
 > 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F01b_Client_vs_Server_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F01b_Client_vs_Server_(complete))
 
 
 
@@ -3350,10 +3147,10 @@ var numImages = filtered.size().evaluate(myCallback)
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F01c_Client_vs_Server_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F01c_Client_vs_Server_(exercise))
 
 
 
@@ -3384,7 +3181,7 @@ print(message)
 
 
 
-## 02. Using UI Elements
+## 02. 使用 UI 元素
 
 
 Earth Engine comes with a User Interface API that allows you to build an interactive web application powered by Earth Engine.
@@ -3396,7 +3193,7 @@ The Earth Engine API provides a library of User Interface (UI) widgets - such as
 This section shows how to build a drop-down selector using the `ui.Select()` widget.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F02b_Using_UI_Elements_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F02b_Using_UI_Elements_(complete))
 
 
 
@@ -3433,10 +3230,10 @@ Map.add(button);
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F02c_Using_UI_Elements_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F02c_Using_UI_Elements_(exercise))
 
 
 
@@ -3471,8 +3268,7 @@ yearStrings.evaluate(function(yearList) {
 
 
 
-## 03. Building and Publishing an App
-
+## 03. 构建和发布应用程序
 
 Building a web mapping application typically requires the skills of a full stack developer and are out of reach for most analysts and scientists. But the Earth Engine User Interface API makes this process much more accessible by providing ready-to-use widgets and free cloud hosting to allow anyone to publish an app with just a few lines of code. The main container object is the `ui.Panel()` which can contain different types of widgets.
 
@@ -3480,13 +3276,13 @@ Building a web mapping application typically requires the skills of a full stack
 The code below shows how to build an app called [Night Lights Explorer](https://santhosh-m.users.earthengine.app/view/night-lights-explorer) that allows anyone to pick a year/month and load the *VIIRS Nighttime Day/Night Band Composite* for the selected month. Copy/paste the code below to your Code Editor and click *Run*.
 
 
-![](images/end_to_end_gee/app1.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app1.png)
 
 
 You will see a panel on the right-hand side with 2 drop-down boxes and a button. These are User Interface (UI) widgets provided by the Earth Engine API that allows the user to interactively select the values. You can select the values for *year* and *month* and click *Load* button to see the image for the selected month.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F03b_Building_an_App_with_UI_Widgets_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F03b_Building_an_App_with_UI_Widgets_(complete))
 
 
 
@@ -3570,10 +3366,10 @@ ui.root.add(mainPanel);
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F03c_Building_an_App_with_UI_Widgets_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F03c_Building_an_App_with_UI_Widgets_(exercise))
 
 
 
@@ -3588,14 +3384,13 @@ ui.root.add(mainPanel);
 
 
 
-## 04. Publishing the App
-
+## 04. 发布应用程序
 
 We will now publish this app. Click on the *Apps* button.
 
 
 
-![App with UI Elements](images/end_to_end_gee/app2.png)
+![App with UI Elements](https://courses.spatialthoughts.com/images/end_to_end_gee/app2.png)
 
 App with UI Elements
 
@@ -3605,37 +3400,37 @@ App with UI Elements
 In the *Manage Apps* window, click *New App*.
 
 
-![](images/end_to_end_gee/app3.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app3.png)
 
 
 Enter the name of your app. The app will be hosted on Google Cloud, so you will need to create and link a Google Cloud project with the app. If you don’t have a Google Cloud account, you can click the *Not Yet* button to create a new project.
 
 
-![](images/end_to_end_gee/app4.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app4.png)
 
 
 When prompted to *Choose a Cloud Project for your apps*, you can select *Create a new Cloud Project* and enter an unique id and click *Select*.
 
 
-![](images/end_to_end_gee/app5.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app5.png)
 
 
 You may get an error asking you to accept the terms of service. Click the *Cloud Terms of Service* link and follow the instructions. Once done, click *OK*.
 
 
-![](images/end_to_end_gee/app6.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app6.png)
 
 
 Back in the *Publish New App* dialog, leave all other settings to default and click *Publish*.
 
 
-![](images/end_to_end_gee/app7.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app7.png)
 
 
 The app will be hosted on Google Cloud and you can access it by clicking on the *App Name* of your app in the *Manage Apps* dialog.
 
 
-![](images/end_to_end_gee/app8.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app8.png)
 
 
 You will see your Earth Engine powered app running in the browser. Anyone can access and interact with the app by just visiting the App URL.
@@ -3652,14 +3447,14 @@ You will see your Earth Engine powered app running in the browser. Anyone can ac
 [Explore The App ↗](https://ujavalgandhi.users.earthengine.app/view/night-lights-explorer)
 
 
-![](images/end_to_end_gee/app9.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/app9.png)
 
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F04c_Publishing_the_App_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F04c_Publishing_the_App_(exercise))
 
 
 
@@ -3752,8 +3547,7 @@ ui.root.add(mainPanel);
 
 
 
-## 05. Create a Split Panel App
-
+## 05. 创建一个拆分面板应用程序
 
 Another useful widget that can be used in Apps is `ui.SplitPanel()`. This allows you to create an app that can display 2 different images of the same region that can be explored interactively by swiping. Here we create an app to explore the [ESA WorldCover 10m](https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v100) global classification dataset.
 
@@ -3761,7 +3555,7 @@ Another useful widget that can be used in Apps is `ui.SplitPanel()`. This allows
 On the left-hand panel, we will load a Sentinel-2 composite for the year 2020. On the right-hand panel, we will load the 11-class landcover classification of the same region.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F05b_Split_Panel_App_(complete))
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F05b_Split_Panel_App_(complete))
 
 
 
@@ -3845,10 +3639,10 @@ rightMap.addLayer(classification.clip(geometry), {}, 'WorldCover Classification'
 ```
 
 
-### Exercise
+### 练习
 
 
-[Try in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F05c_Split_Panel_App_(exercise))
+[在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A05-Earth-Engine-Apps%2F05c_Split_Panel_App_(exercise))
 
 
 
@@ -4009,20 +3803,20 @@ print(legend);
 
 
 
-# Module 6: Google Earth Engine Python API
+# 模块 6: Google Earth Engine Python API
 
 
 
-## Introduction to the Python API
+## GEE Python API 简介
 
 
 Till this point in the course, we have used the Earth Engine Javascript API for all our analysis. Earth Engine also provides a Python API. If you are a Python programmer, you may prefer to use the Python API to integrate Earth Engine in your spatial analysis workflow. There are many options for running Python code that uses the Google Earth Engine API. We will use the following two methods in this course.
 
 
-[![View Presentation](images/end_to_end_gee/python_api.png)](https://docs.google.com/presentation/d/1hPVRnxp2Vp1VHXBtu36SH_UtEOjPz70KcDV-zGIin3U/edit?usp=sharing)
+[![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/python_api.png)](https://docs.google.com/presentation/d/1hPVRnxp2Vp1VHXBtu36SH_UtEOjPz70KcDV-zGIin3U/edit?usp=sharing)
 
 
-[View the Presentation ↗](https://docs.google.com/presentation/d/1hPVRnxp2Vp1VHXBtu36SH_UtEOjPz70KcDV-zGIin3U/edit?usp=sharing)
+[查看演示文档 ↗](https://docs.google.com/presentation/d/1hPVRnxp2Vp1VHXBtu36SH_UtEOjPz70KcDV-zGIin3U/edit?usp=sharing)
 
 
 
@@ -4034,8 +3828,7 @@ An easy way to start using the Google Earth Engine Python API is via [Google Col
 
 
 
-### Local Development Environment
-
+### 本地开发环境
 
 An advantage of Python API is that you can use it in your own development environment - so you get a lot more flexibility to automate as well as combine other analysis and visualization libraries with Earth Engine. This requires installing Python and the Earth Engine Python API on your machine or server. You also need to do a one-time authentication and save the token on the machine. The preferred method for installing the Earth Engine Python API is via Anaconda. Please follow our [Google Earth Engine Python API Installation Guide](install-gee-python-api.html) for step-by-step instructions.
 
@@ -4043,10 +3836,10 @@ An advantage of Python API is that you can use it in your own development enviro
 
 
 
-## 01. Python API Syntax
+## 01. Python API 语法
 
 
-[Open in Google Colab ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/01_python_api_syntax.ipynb)
+[在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/01_python_api_syntax.ipynb)
 
 
 Coming from the programming in Earth Engine through the Code Editor, you will need to slightly adapt your scripts to be able to run in Python. For the bulk of your code, you will be using Earth Engine API’s server-side objects and functions - which will be exactly the same in Python. You only need to make a few syntactical changes.
@@ -4056,7 +3849,7 @@ Coming from the programming in Earth Engine through the Code Editor, you will ne
 
 
 
-#### Initialization
+#### 初始化
 
 
 First of all, you need to run the following cells to initialize the API and authorize your account. You will be prompted to sign-in to the account and allow access to *View and Manage your Earth Engine data*. Once you approve, you will get an a verification code that needs to be entered at the prompt. This step needs to be done just once per session.
@@ -4079,13 +3872,12 @@ ee.Initialize()
 
 
 
-#### Variables
+#### 变量
 
 
-Python code doesn’t use the ‘var’ keyword
+Python 代码并不使用 ‘var’ 关键词
 
-
-javascript code:
+javascript 代码：
 
 
 
@@ -4110,11 +3902,9 @@ print(population)
 
 
 
-#### Earth Engine Objects
+#### Earth Engine 对象
 
-
-You can create Earth Engine objects using the `ee` functions the same way.
-
+你可以通过相同的方式，使用 `ee` 函数创建 Earth Engine 对象。
 
 
 ```
@@ -4135,7 +3925,7 @@ geometry = ee.Geometry.Polygon([[
 Python doesn’t use a semi-colon for line ending. To indicate line-continuation you need to use the \ character
 
 
-javascript code:
+javascript 代码：
 
 
 
@@ -4156,7 +3946,7 @@ filtered = s2 \
 
 
 
-#### Functions
+#### 函数
 
 
 Instead of the `function` keyword, Python uses the `def` keyword. Also the in-line functions are defined using `lambda` anonymous functions.
@@ -4165,7 +3955,7 @@ Instead of the `function` keyword, Python uses the `def` keyword. Also the in-li
 In the example below, also now the `and` operator - which is capitalized as `And` in Python version to avoid conflict with the built-in `and` operator. The same applies to `Or` and `Not` operators. `true`, `false`, `null` in Python are also spelled as `True`, `False` and `None`.
 
 
-javascript code:
+javascript 代码：
 
 
 
@@ -4210,13 +4000,12 @@ withNdvi = filtered \
 
 
 
-#### Function Arguments
-
+#### 函数参数
 
 Named arguments to Earth Engine functions need to be in quotes. Also when passing the named arguments as a dictionary, it needs to be passed using the `**` keyword.
 
 
-javascript code:
+javascript 代码：
 
 
 
@@ -4247,13 +4036,12 @@ stats = ndvi.reduceRegion(\*\*{
 
 
 
-#### Printing Values
-
+#### 打印值
 
 The `print()` function syntax is the same. But you must remember that in the Code Editor when you cann `print`, the value of the server object is fetched and then printed. You must do that explicitely by calling `getInfo()` on any server-side object.
 
 
-javascript code:
+javascript 代码：
 
 
 
@@ -4268,13 +4056,12 @@ print(stats.get('ndvi').getInfo())
 
 
 
-#### In-line functions
-
+#### 内联函数
 
 The syntax for defining in-line functions is also slightly different. You need to use the `lambda` keyword.
 
 
-javascript code:
+javascript 代码：
 
 
 
@@ -4294,7 +4081,7 @@ print(newList.getInfo())
 
 
 
-### Exercise
+### 练习
 
 
 Take the Javascript code snippet below and write the equiavalent Python code in the cell below.
@@ -4340,14 +4127,14 @@ ee.Initialize()
 
 
 
-## 02. Automatic Conversion of Javascript Code to Python
+## 02. Javascript 代码到 Python 到自动转换
 
 
-[Open in Google Colab ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/02_automatic_conversion_of_scripts.ipynb)
+[在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/02_automatic_conversion_of_scripts.ipynb)
 
 
 
-![Interactive leaflet map created by geemap](images/end_to_end_gee/automatic_conversion.png)
+![Interactive leaflet map created by geemap](https://courses.spatialthoughts.com/images/end_to_end_gee/automatic_conversion.png)
 
 Interactive leaflet map created by geemap
 
@@ -4491,7 +4278,7 @@ Map
 ```
 
 
-### Exercise
+### 练习
 
 
 Take the Javascript code snippet below and use `geemap` to automatically convert it to Python.
@@ -4521,10 +4308,9 @@ Map.addLayer(karnataka, visParams, 'Karnataka Districts')
 
 
 
-## 03. Batch Exports
+## 03. 批量导出
 
-
-[Open in Google Colab ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/03_export_a_collection.ipynb)
+[在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/03_export_a_collection.ipynb)
 
 
 One of the most commonly asked questions by Earth Engine users is - *How do I download all images in a collection*? The Earth Engine Python API comes with a `ee.batch` module that allows you to launch batch exports and manage tasks. The recommended way to do batch exports like this is to use the Python API’s `ee.batch.Export` functions and use a Python for-loop to iterate and export each image. The `ee.batch` module also gives you ability to control *Tasks* - allowing you to automate exports.
@@ -4546,7 +4332,7 @@ ee.Initialize()
 ```
 
 
-#### Create a Collection
+#### 创建一个 Collection
 
 
 
@@ -4586,8 +4372,7 @@ withNdvi = filtered.map(addNDVI)
 
 
 
-#### Export All Images
-
+#### 导出所有图像
 
 Exports are done via the `ee.batch` module. A key difference between javascript and Python version is that the `region` parameter needs to be supplied with actual geometry coordinates.
 
@@ -4618,7 +4403,7 @@ for i, image\_id in enumerate(image\_ids):
 
 
 
-#### Manage Running/Waiting Tasks
+#### 管理 Running/Waiting 任务
 
 
 You can manage tasks as well. Get a list of tasks and get state information on them
@@ -4633,8 +4418,7 @@ for task in tasks:
  print(task\_id, task\_state)
 ```
 
-You can cancel tasks as well
-
+你也可以取消任务
 
 
 ```
@@ -4651,7 +4435,7 @@ for task in tasks:
 
 
 
-### Exercise
+### 练习
 
 
 The code below uses the TerraClimate data and creates an ImageCollection with 12 monthly images of maximum temperature. It also extract the geometry for Australia from the LSIB collection. Add the code to start an export task for each image in the collection for australia.
@@ -4702,7 +4486,7 @@ for i, image\_id in enumerate(image\_ids):
 ```
 
 
-![Launching multiple tasks using the  Python API](images/end_to_end_gee/exporting_a_collection.png)
+![Launching multiple tasks using the  Python API](https://courses.spatialthoughts.com/images/end_to_end_gee/exporting_a_collection.png)
 
 Launching multiple tasks using the Python API
 
@@ -4712,10 +4496,10 @@ Launching multiple tasks using the Python API
 
 
 
-## 04. Creating Charts in Python
+## 04. 使用 Python 创建图像
 
 
-[Open in Google Colab ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/04_creating_charts.ipynb)
+[在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/04_creating_charts.ipynb)
 
 
 The Google Earth Engine Python API does not come with a charting module. But you can use third-party modules to create interactive charts. You may also convert the Earth Engine objects to a Pandas dataframe and plot it using Python libraries like Matplotlib
@@ -4723,9 +4507,7 @@ The Google Earth Engine Python API does not come with a charting module. But you
 
 This notebook shows how to use the `geemap` package to create a Time-Series Chart from a ImageCollection.
 
-
-References:
-
+参考：
 
 * geemap [Chart module](https://geemap.org/chart/)
 * geemap [Example notebook](https://geemap.org/notebooks/63_charts/)
@@ -4823,7 +4605,7 @@ print(data.first().getInfo())
 ```
 
 
-### Create an Interactive Chart using geemap
+### 使用 geemap 创建交互式图表
 
 
 
@@ -4850,7 +4632,7 @@ chart.feature\_byFeature(data, 'month', ['tmmx'], \*\*options)
 
 
 
-### Create a chart using Matplotlib
+### 使用 Matplotlib 创建图表
 
 
 We can convert a FeatureCollection to a DataFrame using `geemap` helper function `ee_to_pandas`.
@@ -4892,7 +4674,7 @@ plt.tight\_layout()
 
 
 
-### Exercise
+### 练习
 
 
 Customize the above chart by plotting it as a Line Chart in red color.
@@ -4904,8 +4686,7 @@ Customize the above chart by plotting it as a Line Chart in red color.
 
 
 
-## 05. Automating Downloads
-
+## 05. 自动下载
 
 Another common use of the GEE Python API is to automate data processing and export. You can create a Python script that can be called from a server or launched on a schedule using tools such as [Windows Scheduler](https://medium.com/@roddyjaques/how-to-run-anaconda-programs-with-a-bat-file-5f6dd7675508) or [crontab](https://donny-son.github.io/posts/cronjob-with-conda/).
 
@@ -4998,45 +4779,43 @@ with open(output\_path, 'w') as csvfile:
 python download_data.py
 ```
 
-![](images/end_to_end_gee/download2.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/download2.png)
 
 
 3. The script will download the data from GEE and save a file to your current directory.
 
 
-![](images/end_to_end_gee/download3.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/download3.png)
 
 
 
 
 
 
-# Supplement
+# 补充
 
 
 This section contains useful scripts and code snippets that can be adapted for your projects.
 
 
 
-## Advanced Supervised Classification Techniques
+## 高级有监督分类技术
 
 
-
-### Hyperparameter Tuning
-
+### 超参数调优
 
 A recommended best practice for improving the accuracy of your machine learning model is to tune different parameters. For example, when using the `ee.Classifier.smileRandomForest()` classifier, we must specify the *Number of Trees*. We know that higher number of trees result in more computation requirement, but it doesn’t necessarily result in better results. Instead of guessing, we programmatically try a range of values and choose the smallest value possible that results in the highest accuracy.
 
 
 
-![Supervised Classification Output](images/end_to_end_gee/hyperparameter_tuning.png)
+![Supervised Classification Output](https://courses.spatialthoughts.com/images/end_to_end_gee/hyperparameter_tuning.png)
 
 Supervised Classification Output
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FHyperparameter_Tuning)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FHyperparameter_Tuning)
 
 
 
@@ -5305,10 +5084,10 @@ Supervised classification results often contain salt-and-pepper noise caused by 
 > 
 
 
-![](images/end_to_end_gee/post_processing.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/post_processing.png)
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FPost_Processing_Classification_Results)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FPost_Processing_Classification_Results)
 
 
 
@@ -5373,16 +5152,15 @@ Map.addLayer(connectedClassified, {min: 0, max: 3, palette: ['gray', 'brown', 'b
 
 
 
-### Principal Component Analysis (PCA)
-
+### 主成分分析（PCA）
 
 PCA is a very useful technique in improving your supervised classification results. This is a statistical technique that compresses data from a large number of bands into fewer uncorrelated bands. You can run PCA on your image and add the first few (typically 3) principal component bands to the original composite before sampling training points. In the example below, you will notice that 97% of the variance from the 13-band original image is captured in the 3-band PCA image. This sends a stronger signal to the classifier and improves accuracy by allowing it to distinguish different classes better.
 
 
-![](images/end_to_end_gee/pca.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/pca.png)
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FPrincipal_Components_Analysis)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FPrincipal_Components_Analysis)
 
 
 
@@ -5530,14 +5308,14 @@ Crop classification is a difficult problem. A useful technique that aids in clea
 
 
 
-![Capturing Crop Phenology through Seasonal Composites](images/end_to_end_gee/seasonal_composite.png)
+![Capturing Crop Phenology through Seasonal Composites](https://courses.spatialthoughts.com/images/end_to_end_gee/seasonal_composite.png)
 
 Capturing Crop Phenology through Seasonal Composites
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FSeasonal_Composites_for_Crop_Classification)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FSeasonal_Composites_for_Crop_Classification)
 
 
 
@@ -5608,13 +5386,12 @@ print(composite)
 
 
 
-### Computing Correlation
-
+### 计算相关性
 
 A useful technique to aid crop classification is to model the correlation between precipitation and changes in vegetation. This allows the model to capture differentiated responses to rainfall (i.e. raid-fed crops vs permanent forests). We first prepare an image collection where each image consists of 2 bands - cumulative rainfall for each month and average NDVI for the next month. This will create 11 images per year which show precipitation and 1-month lagged NDVI at each pixels. The collection is then reduced using the `ee.Reducer.pearsonsCorrelation()` which outputs a `correlation` band. Positive values will show regions where precipitation caused an increase in NDVI. Adding this band to your input image for classification will greatly aid the classifier in separating different types of vegetations.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FRainfall_NDVI_Correlation)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FRainfall_NDVI_Correlation)
 
 
 
@@ -5719,10 +5496,10 @@ Map.addLayer(positive.selfMask(),
 This code snippet shows how to use a [Grouped Reducer](https://developers.google.com/earth-engine/guides/reducers_grouping) to calculate area covered by each class in a classified image. It also shows how to use the `ui.Chart.image.byClass()` function to create a chart showing the area for each class.
 
 
-![](images/end_to_end_gee/area_by_class.png)
+![](https://courses.spatialthoughts.com/images/end_to_end_gee/area_by_class.png)
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FCalculating_Area_by_Class)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FCalculating_Area_by_Class)
 
 
 
@@ -5788,7 +5565,7 @@ These charts provide a qualitative and visual methods for checking separability 
 
 
 
-![Mean Signatures for All Classes](images/end_to_end_gee/mean_signatures.png)
+![Mean Signatures for All Classes](https://courses.spatialthoughts.com/images/end_to_end_gee/mean_signatures.png)
 
 Mean Signatures for All Classes
 
@@ -5796,14 +5573,14 @@ Mean Signatures for All Classes
 
 
 
-![Spectral Signatures for All Training Points by Class](images/end_to_end_gee/spectral_signatures.png)
+![Spectral Signatures for All Training Points by Class](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_signatures.png)
 
 Spectral Signatures for All Training Points by Class
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FSpectral_Signatures)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FSpectral_Signatures)
 
 
 
@@ -5937,13 +5714,12 @@ classChart(3, 'Vegetation')
 
 
 
-### Identify Misclassified GCPs
-
+### 识别错误分类的 GCP
 
 While doing accuracy assessment, you will see the validation features that were not classified correctly. It is useful to visually see the points that were misclassified. We can use `ee.Filter.eq()` and `ee.Filter.neq()` filters to filter the features where the actual and predicted classes were different. The code below shows how to implement this and also use the `style()` function visualize them effectively.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FIdentify_Misclassified_Data)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FIdentify_Misclassified_Data)
 
 
 
@@ -6048,13 +5824,12 @@ Map.addLayer(misclassStyled.style({styleProperty:"style"}), {}, 'Misclassified P
 
 
 
-### Image Normalization and Standardization
-
+### 图像归一化和标准化
 
 For machine learning, it is a recommended practice to either normalize or standardize your features. The code below shows how to implement these feature scaling techniques.
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FImage_Normalization_and_Standardization)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FImage_Normalization_and_Standardization)
 
 
 
@@ -6197,21 +5972,20 @@ print('Standadized Image Mean/StdDev', afterDict)
 
 
 
-### Calculate Feature Importance
-
+### 计算特征重要性
 
 Many classifiers in GEE have a `explain()` method that calculates feature importances. The classifier will assign a score to each input variable on how useful they were at predicting the correct value. The script below shows how to extract the feature importance and create a chart to visualize it.
 
 
 
-![Relative Feature Importance](images/end_to_end_gee/feature_importance.png)
+![Relative Feature Importance](https://courses.spatialthoughts.com/images/end_to_end_gee/feature_importance.png)
 
 Relative Feature Importance
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FFeature_Importance)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FFeature_Importance)
 
 
 
@@ -6312,25 +6086,23 @@ print(chart)
 
 
 
-## Time-Series Smoothing and Gap-filling
+## 时序平滑和间隙填充
 
 
-
-### Moving Window Smoothing
-
+### 移动窗口平滑
 
 A technique applied to a time series for removal of the fine-grained variation between time steps is known as Smoothing. This example shows how a moving-window smoothing algorithm can be applied in Earth Engine. Using a [Save-all Join](https://developers.google.com/earth-engine/guides/joins_save_all), the collection is joined with itself and all images that fall within the temporal-window are added as a property of each image. Next, a *mean* reducer is applied on all the images, resulting in the average value of the pixel within the time-frame. The resulting time-series reduces the sharp peaks and valleys - and is more robust against outliers (such as cloudy pixels)
 
 
 
-![Moving Window Average Smoothing](images/end_to_end_gee/Moving_Window_Smoothing.png)
+![Moving Window Average Smoothing](https://courses.spatialthoughts.com/images/end_to_end_gee/Moving_Window_Smoothing.png)
 
 Moving Window Average Smoothing
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FMoving_Window_Smoothing)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FMoving_Window_Smoothing)
 
 
 
@@ -6435,13 +6207,12 @@ print(chart);
 
 
 
-### Temporal Interpolation
-
+### 时间插值
 
 The code below shows how to do temporal gap-filling of time-series data. A detailed explanation of the code and other examples are described in our blog post [Temporal Gap-Filling with Linear Interpolation in GEE](https://spatialthoughts.com/2021/11/08/temporal-interpolation-gee/).
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FTemporal_Interpolation)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FTemporal_Interpolation)
 
 
 
@@ -6668,21 +6439,20 @@ print('Gap Filled NDVI Images', visCollectionInterpolated.getVideoThumbURL(video
 
 
 
-### Savitzky-Golay Smoothing
-
+### Savitzky-Golay 平滑
 
 The Savitzky–Golay filter fits a polynomial to a set of data points in a time-series. The [Open Earth Engine Library (OEEL)](https://www.open-geocomputing.org/OpenEarthEngineLibrary/) provides an efficient implementation of this filter that can be applied on an ImageCollection. However, the time-series must be pre-processed so there are images at a regular interval. We use the [interpolation technique](#temporal-interpolation) described in the previous section and prepare a continous time-series without any masked pixels. The result is a new ImageCollection containing images at a regular interval (5-day) and with pixel values smoothed using the Savitzky–Golay filter.
 
 
 
-![Savitzky-Golay Smoothing](images/end_to_end_gee/Savitzky_Golay_Smoothing.png)
+![Savitzky-Golay Smoothing](https://courses.spatialthoughts.com/images/end_to_end_gee/Savitzky_Golay_Smoothing.png)
 
 Savitzky-Golay Smoothing
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FSavitzky_Golay_Smoothing)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FSavitzky_Golay_Smoothing)
 
 
 
@@ -6981,25 +6751,23 @@ print('SG Filtered NDVI Images', visCollectionInterpolated.getVideoThumbURL(vide
 
 
 
-## User Interface Templates
+## 用户界面模版
 
 
-
-### Adding a Discrete Legend
-
+### 添加离散图例
 
 You may want to add a legend for a classified image to your map visualization in your App. Here’s a code snippet that shows how you can build it using the UI Widgets.
 
 
 
-![Creating a Discrete Map Legend](images/end_to_end_gee/map_legend.png)
+![Creating a Discrete Map Legend](https://courses.spatialthoughts.com/images/end_to_end_gee/map_legend.png)
 
 Creating a Discrete Map Legend
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FMap_Legend)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FMap_Legend)
 
 
 
@@ -7054,14 +6822,14 @@ If you are displaying a raster layer in your app with a color palette, you can u
 
 
 
-![Creating a Continuous Raster Legend](images/end_to_end_gee/colorbar.png)
+![Creating a Continuous Raster Legend](https://courses.spatialthoughts.com/images/end_to_end_gee/colorbar.png)
 
 Creating a Continuous Raster Legend
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FColorbar_Legend)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FColorbar_Legend)
 
 
 
@@ -7129,21 +6897,20 @@ Map.add(colorBar)
 
 
 
-### Change Visualization UI App
-
+### 更改可视化 UI 应用程序
 
 A common use-case for Earth Engine Apps is to display 2 images in a split panel app. Below script contains a simple template that you can use to create an interactive split panel app. Here we have 2 map objects - `leftMap` and `rightMap`. You can add different images to each of the maps and users will be able to explore them side-by-side. [[View Animated GIF ↗](https://courses.spatialthoughts.com/images/end_to_end_gee/dust_storm_app.gif)]
 
 
 
-![A Split Panel App that displays Pre- and Post-Storm Images](images/end_to_end_gee/dust_storm_app.png)
+![A Split Panel App that displays Pre- and Post-Storm Images](https://courses.spatialthoughts.com/images/end_to_end_gee/dust_storm_app.png)
 
 A Split Panel App that displays Pre- and Post-Storm Images
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FChange_Visualization_UI_App)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FChange_Visualization_UI_App)
 
 
 
@@ -7194,21 +6961,21 @@ rightMap.addLayer(postStorm, rgb\_vis);
 
 
 
-### NDVI Explorer UI App
+### NDVI Explorer UI 应用程序
 
 
 Earth Engine Apps allow you to display interactive charts in response to user action. This app shows the common design pattern to build an app that allows the user to click anywhere on the map and obtain a chart using the clicked-location.
 
 
 
-![Global NDVI Explorer App](images/end_to_end_gee/global_ndvi_explorer.png)
+![Global NDVI Explorer App](https://courses.spatialthoughts.com/images/end_to_end_gee/global_ndvi_explorer.png)
 
 Global NDVI Explorer App
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FNDVI%20Explorer%20UI%20App)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FNDVI%20Explorer%20UI%20App)
 
 
 
@@ -7369,15 +7136,13 @@ resetEverything();
 
 
 
-## Code Sharing and Script Modules
-
+## 代码共享和脚本模块
 
 As your Earth Engine project grows, you need a way to organize and share your code to collaborate with others. We will learn some best practices on how best to set-up your project in Earth Engine.
 
 
 
-### Sharing a Single Script
-
+### 分享单个脚本
 
 To share your code from a single script, you need to use the **Get Link** button in the code editor. As you click the button, the contents of your code editor is captured and encoded into a URL. When you share this URL with someone, they will be able see same content as your code editor. This is a great way to send a snapshot of your code so others can reproduce your output. Remember that the script links are just snapshots, if you change your code after sending the link to someone, they will not see the updates.
 
@@ -7391,7 +7156,7 @@ To share your code from a single script, you need to use the **Get Link** button
 
 
 
-![Code Sharing using Get Link button](images/end_to_end_gee/get_link.png)
+![Code Sharing using Get Link button](https://courses.spatialthoughts.com/images/end_to_end_gee/get_link.png)
 
 Code Sharing using Get Link button
 
@@ -7402,7 +7167,7 @@ While sharing the script using *Get Link*, you should also share any private **A
 
 
 
-![Sharing Uploaded Assets](images/end_to_end_gee/sharing_assets.png)
+![Sharing Uploaded Assets](https://courses.spatialthoughts.com/images/end_to_end_gee/sharing_assets.png)
 
 Sharing Uploaded Assets
 
@@ -7414,14 +7179,13 @@ Learn more in the [Script links](https://developers.google.com/earth-engine/guid
 
 
 
-### Sharing Multiple Scripts
-
+### 分享多个脚本
 
 If you want to share a collection of scripts with other users or your collaborators, the best way is to create a new **Repository**.
 
 
 
-![Creating New Repository](images/end_to_end_gee/new_repository.png)
+![Creating New Repository](https://courses.spatialthoughts.com/images/end_to_end_gee/new_repository.png)
 
 Creating New Repository
 
@@ -7432,7 +7196,7 @@ You can put multiple scripts within the repository and share the repository with
 
 
 
-![Creating New Repository](images/end_to_end_gee/sharing_repository.png)
+![Creating New Repository](https://courses.spatialthoughts.com/images/end_to_end_gee/sharing_repository.png)
 
 Creating New Repository
 
@@ -7444,8 +7208,7 @@ Learn more in the [Script Manager](https://developers.google.com/earth-engine/gu
 
 
 
-### Sharing Code between Scripts
-
+### 在脚本间共享代码
 
 For a large project, it is preferable to share commonly used functions between scripts. That way, each script doesn’t have to re-implement the same code. Earth Engine enables this using **Script Modules**. Using a special object called `exports`, you can expose a function to other scripts. Learn more in the [Script modules](https://developers.google.com/earth-engine/guides/playground#script-modules) section of the Google Earth Engine User Guide.
 
@@ -7454,14 +7217,14 @@ There are many Earth Engine users who have shared their repositories publicly an
 
 
 
-![Using a function from a script module](images/end_to_end_gee/script_modules.png)
+![Using a function from a script module](https://courses.spatialthoughts.com/images/end_to_end_gee/script_modules.png)
 
 Using a function from a script module
 
 
 
 
-[Open in Code Editor ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FMiscellaneous%2FCode_Sharing_and_Script_Modules)
+[在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FMiscellaneous%2FCode_Sharing_and_Script_Modules)
 
 
 
@@ -7492,8 +7255,7 @@ Map.addLayer(gridVector, {color: 'blue'}, 'Grids')
 
 
 
-### Useful Public Repositories
-
+### 有用的公共存储库
 
 Please visit [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE) to see a curated list of Google Earth Engine resources.
 
@@ -7523,15 +7285,13 @@ We also have a few recommendations of a few selected packages, which have very u
 
 
 
-# Guided Projects
-
+# 指导项目
 
 Below are step-by-step video-based walkthrough of implementing real-world projects using Earth Engine. You can continue their learning journey by implementing these projects for their region of interest after the class.
 
 
 
-## Get the Code
-
+## 获取代码
 
 1. [Click this link](https://code.earthengine.google.co.in/?accept_repo=users/ujavalgandhi/End-to-End-%20Projects) to open Google Earth Engine code editor and add the repository to your account.
 2. If successful, you will have a new repository named `users/ujavalgandhi/End-to-End-Projects` in the *Scripts* tab in the *Reader* section.
@@ -7546,7 +7306,7 @@ Below are step-by-step video-based walkthrough of implementing real-world projec
 
 
 
-![Code Editor After Adding the Projects Repository](images/end_to_end_gee/projects.png)
+![Code Editor After Adding the Projects Repository](https://courses.spatialthoughts.com/images/end_to_end_gee/projects.png)
 
 Code Editor After Adding the Projects Repository
 
@@ -7555,13 +7315,13 @@ Code Editor After Adding the Projects Repository
 
 
 
-## Project 1: Drought Monitoring
+## 项目 1：干旱监测
 
 
 Calculating Rainfall Deviation from the 30-year mean using CHIRPS Gridded Rainfall Data
 
 
-[![Video](images/end_to_end_gee/project_drought.png)](https://www.youtube.com/watch?v=zHUCM3XLc6k&list=PLppGmFLhQ1HJ5VhW6BZfhPX6spUcTY7SR)
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_drought.png)](https://www.youtube.com/watch?v=zHUCM3XLc6k&list=PLppGmFLhQ1HJ5VhW6BZfhPX6spUcTY7SR)
 
 
 [Start Guided Project](https://www.youtube.com/watch?v=zHUCM3XLc6k&list=PLppGmFLhQ1HJ5VhW6BZfhPX6spUcTY7SR)
@@ -7569,13 +7329,12 @@ Calculating Rainfall Deviation from the 30-year mean using CHIRPS Gridded Rainfa
 
 
 
-## Project 2: Flood Mapping
-
+## 项目 2：洪水测绘
 
 Rapid mapping of a flood using Sentinel-1 SAR Data.
 
 
-[![Video](images/end_to_end_gee/project_flood.png)](https://www.youtube.com/watch?v=jYsK9Y4ICrY&list=PLppGmFLhQ1HJzzKVS_4v8nBiXLYxAu100)
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_flood.png)](https://www.youtube.com/watch?v=jYsK9Y4ICrY&list=PLppGmFLhQ1HJzzKVS_4v8nBiXLYxAu100)
 
 
 [Start Guided Project](https://www.youtube.com/watch?v=jYsK9Y4ICrY&list=PLppGmFLhQ1HJzzKVS_4v8nBiXLYxAu100)
@@ -7583,13 +7342,12 @@ Rapid mapping of a flood using Sentinel-1 SAR Data.
 
 
 
-## Project 3: Extracting Time-Series
-
+## 项目 3：提取时间序列
 
 Extracting a 10-year NDVI time-series over multiple polygons using MODIS data.
 
 
-[![Video](images/end_to_end_gee/project_ndvi.png)](https://www.youtube.com/watch?v=LqSClCXrMl4&list=PLppGmFLhQ1HJV1CctqanQvXQI1JmqGDDD)
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_ndvi.png)](https://www.youtube.com/watch?v=LqSClCXrMl4&list=PLppGmFLhQ1HJV1CctqanQvXQI1JmqGDDD)
 
 
 [Start Guided Project](https://www.youtube.com/watch?v=LqSClCXrMl4&list=PLppGmFLhQ1HJV1CctqanQvXQI1JmqGDDD)
@@ -7597,13 +7355,12 @@ Extracting a 10-year NDVI time-series over multiple polygons using MODIS data.
 
 
 
-## Project 4: LandCover Analysis
-
+## 项目 4：土地覆盖分析
 
 Use existing land cover products to extract specific classes and compute statistics across many regions.
 
 
-[![Video](images/end_to_end_gee/project_landcover.png)](https://youtube.com/playlist?list=PLppGmFLhQ1HLl0St2wiOPePr58sKu0Vh1)
+[![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_landcover.png)](https://youtube.com/playlist?list=PLppGmFLhQ1HLl0St2wiOPePr58sKu0Vh1)
 
 
 [Start Guided Project](https://youtube.com/playlist?list=PLppGmFLhQ1HLl0St2wiOPePr58sKu0Vh1)
@@ -7613,8 +7370,7 @@ Use existing land cover products to extract specific classes and compute statist
 
 
 
-# Learning Resources
-
+# 学习资源
 
 * [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE): A curated list of Google Earth Engine resources.
 
@@ -7652,18 +7408,11 @@ Copyright © 2021 Ujaval Gandhi [www.spatialthoughts.com](https://spatialthought
 
 
 
-# Citing and Referencing
+# 引用和参考
 
-
-You can cite the course materials as follows
-
-
+你可以这样应用该课程资料
 * Gandhi, Ujaval, 2021. *End-to-End Google Earth Engine* Course. Spatial Thoughts. <https://courses.spatialthoughts.com/end-to-end-gee.html>
 
-
-
-
 ---
-
 
 **This course is offered as an instructor-led online class. Visit [Spatial Thoughts](https://spatialthoughts.com/events/) to know details of upcoming sessions.**
