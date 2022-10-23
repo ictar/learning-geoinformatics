@@ -51,7 +51,7 @@
 		- [练习](#练习-11)
 	- [05. 规约器（Reducer）](#05-规约器reducer)
 		- [练习](#练习-12)
-	- [06. Time-Series Charts](#06-time-series-charts)
+	- [06. 时间序列图](#06-时间序列图)
 		- [练习](#练习-13)
 	- [作业 2](#作业-2)
 - [模块 3: 有监督分类](#模块-3-有监督分类)
@@ -1173,7 +1173,7 @@ print('Average value in B4', stats.get('B4'))
 
 
 
-```
+```js
 var geometry = ee.Geometry.Polygon([[
  [82.60642647743225, 27.16350437805251],
  [82.60984897613525, 27.1618529901377],
@@ -1194,36 +1194,21 @@ var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
 // Hint: Use the reduceRegion() function
 ```
 
+## 06. 时间序列图
 
-
-
-## 06. Time-Series Charts
-
-
-Now we can put together all the skills we have learnt so far - filter, map, reduce, and cloud-masking to create a chart of average NDVI values for a given farm over 1 year. Earth Engine API comes with support for charting functions based on the Google Chart API. Here we use the `ui.Chart.image.series()` function to create a time-series chart.
-
-
+现在，我们可以将迄今为止所学的所有技能（过滤、映射、规约和云遮蔽）组合在一起，来创建给定农场一年内的平均 NDVI 值图表。Earth Engine API 支持基于 Google Chart API 的图表功能。这里，我们使用 `ui.Chart.image.series()` 函数来创建时间序列图。
 
 ![Computing NDVI Time-series for a Farm](https://courses.spatialthoughts.com/images/end_to_end_gee/charts1.png)
 
-Computing NDVI Time-series for a Farm
-
-
-
-
 
 ![NDVI Time-series showing Dual-Cropping Cycle](https://courses.spatialthoughts.com/images/end_to_end_gee/charts2.png)
-
-NDVI Time-series showing Dual-Cropping Cycle
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2F06b_Time_Series_Charts_(complete))
 
 
 
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var geometry = ee.Geometry.Polygon([[
  [82.60642647743225, 27.16350437805251],
@@ -1287,14 +1272,12 @@ print(chart);
 
 
 
-```
+```js
 // Delete the farm boundary from the previous script 
 // and add another farm at a location of your choice
 
 // Print the chart.
 ```
-
-
 
 
 ## 作业 2
@@ -1303,16 +1286,12 @@ print(chart);
 
 ![Assignment2 Expected Output](https://courses.spatialthoughts.com/images/end_to_end_gee/assignment2.png)
 
-Assignment2 Expected Output
-
-
-
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A02-Earth-Engine-Intermediate%2FAssignment2)
 
 
 
-```
+```js
 var terraclimate = ee.ImageCollection("IDAHO\_EPSCOR/TERRACLIMATE");
 var geometry = ee.Geometry.Point([77.54849920033682, 12.91215102400037]);
  
@@ -1349,18 +1328,12 @@ print(image.projection().nominalScale())
 ```
 
 
-
-
-
 # 模块 3: 有监督分类
-
-
 
 ## 机器学习和有监督分类简介
 
 
-Supervised classification is arguably the most important classical machine learning techniques in remote sensing. Applications range from generating Land Use/Land Cover maps to change detection. Google Earth Engine is unique suited to do supervised classification at scale. The interactive nature of Earth Engine development allows for iterative development of supervised classification workflows by combining many different datasets into the model. This module covers basic supervised classification workflow, accuracy assessment, hyperparameter tuning and change detection.
-
+有监督分类可以说是遥感中最重要的经典机器学习技术。其应用从生成土地利用/土地覆盖地图到变化检测。Google Earth Engine 非常适合进行大规模的有监督分类。Earth Engine 开发的交互特性允许我们通过将许多不同的数据集组合到模型中，从而进行有监督分类工作流的迭代开发。该模块涵盖了基本的监督分类工作流、准确度评估、超参数调优和变化检测。
 
 [![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/supervised_classification.png)](https://docs.google.com/presentation/d/19L1b5vsxb38xS8GlHNKOjvPZ0IGqDhv93681btMEL5w/edit?usp=sharing)
 
@@ -1368,34 +1341,21 @@ Supervised classification is arguably the most important classical machine learn
 [查看演示文档 ↗](https://docs.google.com/presentation/d/19L1b5vsxb38xS8GlHNKOjvPZ0IGqDhv93681btMEL5w/edit?usp=sharing)
 
 
-
-
 ## 01. 有监督分类基础知识
 
-We will learn how to do a basic land cover classification using training samples collected from the Code Editor using the High Resolution basemap imagery provided by Google Maps. This method requires no prior training data and is quite effective to generate high quality classification samples anywhere in the world. The goal is to classify each source pixel into one of the following classes - urban, bare, water or vegetation. Using the drawing tools in the code editor, you create 4 new feature collection with points representing pixels of that class. Each feature collection has a property called `landcover` with values of 0, 1, 2 or 3 indicating whether the feature collection represents urban, bare, water or vegetation respectively. We then train a *Random Forest* classifier using these training set to build a model and apply it to all the pixels of the image to create a 4 class image.
-
-
+我们将学习如何使用从代码编辑器收集的训练样本（使用谷歌地图提供的高分辨率底图）来进行基本的土地覆盖分类。这种方法不要求先前的训练数据，因此能非常有效地生成世界上任何地方的高质量分类样本。我们的目标是将每个源像素分类为以下类别之一：城市、裸露、水或者植被。使用代码编辑器提供的绘图工具，你可以创建 4 个新的特征集合，每个集合中的像素代表一个类。每个特征集合都有一个名为 `landcover` 的属性，值 0, 1, 2 或者 3 分别代表城市、裸露、水或者植被。然后，我们使用这些训练集来训练一个*随机森林（Random Forest）*分类器，得到一个模型，并将此模型应用于图像中的所有像素以创建一个包含 4 个类的图像。
 
 > 
-> Fun fact: The classifiers in Earth Engine API have names starting with **smile** - such as `ee.Classifier.smileRandomForest()`. The *smile* part refers to the [Statistical Machine Intelligence and Learning Engine (SMILE)](https://haifengl.github.io/index.html) JAVA library which is used by Google Earth Engine to implement these algorithms.
+> 有趣的事实：Earth Engine API 中的分类器的名称以 **smile** 开头，例如 `ee.Classifier.smileRandomForest()`。*smile* 这部分指的是 Google Earth Engine 用来实现这些算法的 [Statistical Machine Intelligence and Learning Engine (SMILE)](https://haifengl.github.io/index.html) JAVA 库。
 > 
-> 
-> 
-
-
 
 ![有监督分类输出](https://courses.spatialthoughts.com/images/end_to_end_gee/classified.png)
-
-Supervised Classification Output
-
-
-
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F01d_Basic_Supervised_Classification_(noimport))
 
 
 
-```
+```js
 var bangalore = ee.FeatureCollection("users/ujavalgandhi/public/bangalore\_boundary")
 var s2 = ee.ImageCollection("COPERNICUS/S2\_SR")
 // The following collections were created using the 
@@ -1465,12 +1425,9 @@ Map.centerObject(gcpsStyled)
 
 ### 练习
 
-
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F01c_Basic_Supervised_Classification_(exercise))
 
-
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2\_SR")
 var urbanAreas = ee.FeatureCollection("users/ujavalgandhi/e2e/ne\_10m\_urban\_areas")
 
@@ -1534,39 +1491,28 @@ Map.addLayer(composite, rgbVis, 'image');
 
 ## 02. 准确度评估
 
-It is important to get a quantitative estimate of the accuracy of the classification. To do this, a common strategy is to divide your training samples into 2 random fractions - one used for *training* the model and the other for *validation* of the predictions. Once a classifier is trained, it can be used to classify the entire image. We can then compare the classified values with the ones in the validation fraction. We can use the `ee.Classifier.confusionMatrix()` method to calculate a *Confusion Matrix* representing expected accuracy.
+对分类的准确性进行定量评估是很重要的。为此，常见的策略是将你的训练样本随机分为两个部分：一个用于*训练*模型，而另一个用于*验证*预测。一旦训练出了分类器，就可以将其用于分类整个图像。然后，我们可以将分类值与验证集进行比较。我们可以使用 `ee.Classifier.confusionMatrix()` 方法来计算表示预期准确度的*混淆矩阵（Confusion Matrix）*。
 
+根据以下指标对分类结果进行评估
 
-Classification results are evaluated based on the following metrics
-
-
-* **Overall Accuracy**: How many samples were classified correctly.
-* **Producer’s Accuracy**: How well did the classification predict each class.
-* **Consumer’s Accuracy (Reliability)**: How reliable is the prediction in each class.
-* **Kappa Coefficient**: How well the classification performed as compared to random assignment.
-
+* **总体准确度（Overall Accuracy）**：有多少样本被正确分类。
+* **生产者精度（Producer’s Accuracy）**：分类器对每个类别的预测效果如何。
+* **Consumer’s Accuracy (Reliability)**：每个类别的预测有多可靠。
+* **Kappa 系数**：与随机分配相比，分类性能如何。
 
 
 ![准确度评估](https://courses.spatialthoughts.com/images/end_to_end_gee/accuracy_assessment.png)
 
-Accuracy Assessment
-
-
-
-
-
 > 
-> Don’t get carried away tweaking your model to give you the highest validation accuracy. You must use both qualitative measures (such as visual inspection of results) along with quantitative measures to assess the results.
+> 不要一味为了追求最高验证准确度而肆意调整模型。你必须同时使用定性衡量（例如结果的可视检查）以及定量衡量来评估结果。
 > 
 > 
-> 
-
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F02b_Accuracy_Assessment_(complete))
 
 
 
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
 var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7");
 var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_gcps");
@@ -1664,7 +1610,7 @@ print('Test Accuracy', testConfusionMatrix.accuracy());
 
 
 
-```
+```js
 var classified = ee.Image('users/ujavalgandhi/e2e/arkavathy\_base\_classification');
 var gcp = ee.FeatureCollection('users/ujavalgandhi/e2e/arkavathy\_gcps');
 var gcp = gcp.randomColumn()
@@ -1699,36 +1645,24 @@ print('Test Accuracy', testConfusionMatrix.accuracy());
 // Hint: Look at the ee.ConfusionMatrix module for appropriate methods
 ```
 
-
-
-
 ## 03. 改进分类
 
-The Earth Engine data-model is especially well suited for machine learning tasks because of its ability to easily incorporate data sources of different spatial resolutions, projections and data types together By giving additional information to the classifier, it is able to separate different classes easily. Here we take the same example and augment it with the following techniques
-
+Earth Engine 数据模型特别适合机器学习任务，因为它能够轻松地将具有不同空间分辨率、投影和数据类型的数据源合并在一起。通过向分类器提供额外的信息，它能够轻松地分开不同的类别。这里，我们采用相同的例子，但使用以下技术对其进行改进。
 
 * *应用云遮蔽（Cloud Masking）*
-* *Add Spectral Indices*: We add bands for different spectral indices such as - NDVI, NDBI, MNDWI and BSI.
-* *Add Elevation and Slope*: We also add slope and elevation bands from the ALOS DEM.
-* *Normalize the Inputs*: Machine learning models work best when all the inputs have the same scale. We will divide each band with the maximum value. This method ensures that all input values are between 0-1. A more [complete and robust technique](#image-normalization-and-standardization) for image normalization is provided in the course Supplement.
+* *添加光谱指数*：添加不同光谱指数（例如 NDVI、NDBI、MNDWI 和 BSI）作为波段信息。
+* *添加高程和坡度*：我们还添加来自 ALOS DEM 的高程和坡度波段.
+* *归一化输入数据*：当所有的输入具有相同的规模的时候，机器学习模型效果最好。我们将把所有的波段都除以相应的最大值。这样就保证了所有的输入值都处于 0-1 之间。课程的补充部分提供了一个更[完整和健壮的图像归一化技术](#image-normalization-and-standardization)。
 
 
-Our training features have more parameters and contain values of the same scale. The result is a much improved classification.
-
-
+我们的训练特征拥有更多的参数并包含具有相同规模的值。结果大大改进了分类。
 
 ![Improved Classification Accuracy with use of Spectral Indices and Elevation Data](https://courses.spatialthoughts.com/images/end_to_end_gee/improving_classification.png)
-
-Improved Classification Accuracy with use of Spectral Indices and Elevation Data
-
-
-
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F03b_Improving_the_Classification_(complete))
 
 
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
 var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7");
 var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_gcps");
@@ -1887,7 +1821,7 @@ print('Test Accuracy', testConfusionMatrix.accuracy());
 
 
 
-```
+```js
 // Exercise
 
 // Improve your classification from Exercise 01c 
@@ -1911,36 +1845,23 @@ var addIndices = function(image) {
  
 ```
 
-
-
-
 ## 04. 导出分类结果
 
-
-When working with complex classifiers over large regions, you may get a *User memory limit exceeded* or *Computation timed out* error in the Code Editor. The reason for this is that there is a fixed time limit and smaller memory allocated for code that is run with the *On-Demand Computation* mode. For larger computations, you can use the *Batch* mode with the `Export` functions. Exports run in the background and can run longer than 5-minutes time allocated to the computation code run from the Code Editor. This allows you to process very large and complex datasets. Here’s an example showing how to export your classification results to Google Drive.
-
-
+当在大区域上使用复杂分类器的时候，代码编辑器可能会给你一个 *User memory limit exceeded* 或者 *Computation timed out* 错误。其原因在于，使用 *On-Demand Computation* 模式运行的代码被分配了固定的（运行）时间和较小的内存。对于更大的计算，你可以使用 *Batch* 模式和 `Export` 函数导出在后台进行，并且可以运行超过 5 分钟（这是分配给代码编辑器运行代码的时间）。这允许你处理非常大且复杂的数据集。下面的示例显示了如何将分类结果导出到 Google Drive。
 
 > 
-> We can only export Images or FeatureCollections. What if you wanted to export a number that is the result of a long computation? A useful *hack* is to create a FeatureCollection with just 1 feature containing `null` geometry and a property containing the number you want to export.
+> 我们只能导出 Image 或者 FeatureCollection。那要是你想导出一个长时间计算的结果，而这个结果是一个数值，该怎么办呢？一个有用的*技巧*就是创建一个 FeatureCollection，它包含一个含有 `null` 几何的特征以及一个包含要导出数值的属性。
 > 
-> 
-> 
-
 
 
 ![导出分类结果](https://courses.spatialthoughts.com/images/end_to_end_gee/export_classification.png)
-
-Exported Classification Outputs
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F04b_Exporting_Classification_Results_(complete))
 
 
 
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
 var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7");
 var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_gcps");
@@ -2114,15 +2035,12 @@ Export.table.toDrive({
 
 ### 练习
 
-
-It is also a good idea to export the classified image as an Asset. This will allows you to import the classified image in another script without running the whole classification workflow. Use the Export.image.toAsset() function to export the classified image as an asset.
-
+将已分类的图像作为资产导出也是个好主意。这将允许你在另一个脚本中导入该已分类图像，而无需运行整个分类工作流程。使用 Export.image.toAsset() 函数将已分类图像作为资产导出。
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F04c_Exporting_Classification_Results_(exercise))
 
 
-
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
 var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7");
 var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_gcps");
@@ -2268,34 +2186,22 @@ Map.addLayer(classified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'gr
 ```
 
 
-
-
 ## 05. 计算面积
 
-Now that we have the results of our classification, we will learn how to calculate the area for pixels in each class. Calculating area for features is done using the `area()` function and for images using the `ee.Image.pixelArea()` function. The `ee.Image.pixelArea()` function creates an image where each pixel’s value is the area of the pixel. We multiply this pixel area image with our image and sum up the area using the `reduceRegion()` function.
-
+现在，我们有了分类结果，我们将学习如何计算每个类的像素面积。对于特征，使用 `area()` 函数来计算面积，而对于图像，则使用 `ee.Image.pixelArea()` 函数。`ee.Image.pixelArea()` 函数创建一个图像，该图像的每个像素值是这个图像的面积。我们将该像素面积图像与我们的图像相乘，然后使用 `reduceRegion()` 函数对结果求和。
 
 
 > 
-> The `ee.Image.pixelArea()` function uses a custom equal-area projection for area calculation. The result is area in square meters regardless of the projection of the input image. [Learn more](https://groups.google.com/g/google-earth-engine-developers/c/Ccaorx-obVw/m/_ZQdP2wVAgAJ)
+> `ee.Image.pixelArea()` 函数使用自定义的等面积投影进行面积计算。无论输入图像的投影是什么，结果都是以平方米为单位的面积。[学习更多](https://groups.google.com/g/google-earth-engine-developers/c/Ccaorx-obVw/m/_ZQdP2wVAgAJ)
 > 
-> 
-> 
-
 
 
 ![Calculating Green Cover from Classified Image](https://courses.spatialthoughts.com/images/end_to_end_gee/area_calculation.png)
 
-Calculating Green Cover from Classified Image
-
-
-
-
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F05b_Calculating_Area_(complete))
 
 
-
-```
+```js
 var classified = ee.Image("users/ujavalgandhi/e2e/bangalore\_classified");
 var bangalore = ee.FeatureCollection("users/ujavalgandhi/public/bangalore\_boundary");
 
@@ -2349,21 +2255,17 @@ print(vegetationAreaSqKm)
 
 
 > 
-> If you want to compute area covered by each class, you can use a [Grouped Reducer](https://developers.google.com/earth-engine/reducers_grouping). See the [Supplement](#calculating-area-by-class) to see a code snippet.
+> 如果想要计算每个类别覆盖的面积，可以使用 [Grouped Reducer](https://developers.google.com/earth-engine/reducers_grouping)。请参阅[补充](#calculating-area-by-class)以查看代码片段。
 > 
-> 
-> 
-
 
 
 ### 练习
-
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A03-Supervised-Classification%2F05c_Calculating_Area_(exercise))
 
 
 
-```
+```js
 // Exercise
 // Compute and print the percentage green cover of the city
 ```
@@ -2377,17 +2279,14 @@ print(vegetationAreaSqKm)
 
 ## 变化检测简介
 
-Many earth observation datasets are available at regular intervals over long periods of time. This enables us to detect changes on the Earth’s surface. Change detection technique in remote sensing fall in the following categories
+许多地球观测数据集是会在很长一段时间内定期提供的。这让我们可以检测到地球表面的变化。遥感中的的变化检测技术分为以下几类
 
+* **单波段变化**：通过阈值，测量单波段图像或者光谱指数的变化
+* **多波段变化**：测量两个多波段图像之间的光谱距离和光谱角度
+* **变化分类**：使用包含事件前后波段的堆叠图像进行单次分类
+* **分类后比较**：比较两个已分类图像并计算类转换
 
-* **Single Band Change**: Measuring change in a single band image or a spectral index using a threshold
-* **Multi Band Change**: Measuring spectral distance and spectral angle between two multiband images
-* **Classification of Change**: One-pass classification using stacked image containing bands from before and after an event
-* **Post Classification Comparison**: Comparing two classified images and computing class transitions
-
-
-In the following sections, we will apply the supervised classification techniques for change detection using multi-temporal images.
-
+在以下部分中，我们将应用有监督分类技术，使用多时相图像进行变化检测。
 
 [![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/change_detection.png)](https://docs.google.com/presentation/d/1vdFTWJ61yDuVfbfhpnumQ8zuMPGwGcHpHsBTRgo_o5I/edit?usp=sharing)
 
@@ -2396,28 +2295,20 @@ In the following sections, we will apply the supervised classification technique
 
 
 
-
 ## 01. 光谱指数变化
 
-Many types of change can be detected by measuring the change in a spectral index and applying a threshold. This technique is suitable when there is a suitable spectral index is available for the type of change you are interested in detecting.
+许多类型的变化都可以通过测量光谱指数的变化并应用阈值来检测。当对于你有兴趣检测的变化类型，存在合适的光谱指数的时候，就可以应用这项技术。
 
-
-Here we apply this technique to map the extent and severity of a forest fire. The **Normalized Burn Ratio (NBR)** is an index that is designed to highlight burnt vegetation areas. We compute the NBR for before and after images. Then we apply a suitable threshold to find burnt areas.
-
-
+这里，我们使用这项技术来绘制森林火灾的范围和严重程度。**Normalized Burn Ratio (NBR)** 是一种指数，旨在突出显示被毁植被区域。我们可以计算前后图像的 NBR 值。然后应用一个合适的阈值来找到烧焦的区域。
 
 ![Spectral Index Change Detection](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_index_change.png)
-
-Spectral Index Change Detection
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01b_Spectral_Index_Change_(complete))
 
 
 
-```
+```js
 // On 21st February 2019, massive forest fires broke out in
 // numerous places across the Bandipur National Park of
 // the Karnataka state in India.
@@ -2507,20 +2398,13 @@ Map.addLayer(burned, {min:0, max:1, palette: ['white', 'red']}, 'Burned', false)
 
 ### 练习
 
-
-
 ![Classifying the Change Image](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_index_change_exercise.png)
-
-Classifying the Change Image
-
-
 
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01c_Spectral_Index_Change_(exercise))
 
 
-
-```
+```js
 // Define the area of interest
 var geometry = ee.Geometry.Polygon([[
  [76.37639666685044, 11.766523239445169],
@@ -2628,25 +2512,18 @@ var severity = change
 
 ## 02. 光谱距离变化
 
-When you want to detect changes from multi-band images, a useful technique is to compute the Spectral Distance and Spectral Angle between the two images. Pixels that exhibit a large change will have a larger distance compared to those that did not change. This technique is particularly useful when there are no suitable index to detect the change. It can be applied to detect change after natural disasters or human conflicts.
+当你想要检测多波段图像的变化的时候，一项有用的技术是计算两个图像之间的光谱距离和光谱角度。与那些未发生变化的像素相比，发生较大变化的像素具有更大的距离。当没有合适的指数来检测变化的时候，这项技术特别有用。它可用于检测自然灾害或者人为冲突造成的变化。
 
-
-Here we use this technique to detect landslides using before/after composites. You may learn more about this technique at [Craig D’Souza’s Change Detection](https://goo.gl/xotYhk) presentation.
-
-
+这里，我们使用这项技术在前后复合图像上检测滑坡。在 [Craig D’Souza 的变化检测](https://goo.gl/xotYhk)演示文稿中，你可以了解有关这项技术的更多信息。
 
 ![Spectral Distance Change Detection](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_distance.png)
-
-Spectral Distance Change Detection
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F01b_Spectral_Distance_Change_(complete))
 
 
 
-```
+```js
 var geometry = ee.Geometry.Polygon([[
  [75.70357667713435, 12.49723970868507],
  [75.70357667713435, 12.470171844429931],
@@ -2717,7 +2594,7 @@ Map.addLayer(distance, {min: 0, max: 1500, palette: ['white', 'red']}, 'spectral
 
 
 
-```
+```js
 var geometry = ee.Geometry.Polygon([[
  [75.70357667713435, 12.49723970868507],
  [75.70357667713435, 12.470171844429931],
@@ -2777,26 +2654,19 @@ Map.addLayer(distance, {min: 0, max: 1500, palette: ['white', 'red']}, 'spectral
 ```
 
 
-
-
 ## 03. 变化的直接分类
 
-This technique of change detection is also known as *One-pass Classification* or *Direct Multi-date Classification*. Here we create a single stacked image containing bands from before and after images. We train a classifier with training data sampled from the stacked image and apply the classifier on the stacked image to find all change pixels.
-
+这种变化检测技术也称为 *One-pass Classification* 或者 *Direct Multi-date Classification*。这里，我们创建一个包含前后图像波段的堆叠图像。我们使用从堆叠图像采样得到的训练数据来训练分类器，并将其应用在该堆叠图像上，以查找所有变化像素。
 
 
 ![All pixels that changed from bare ground to built-up](https://courses.spatialthoughts.com/images/end_to_end_gee/change_classification.png)
-
-All pixels that changed from bare ground to built-up
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F03b_Classifying_Change_(complete))
 
 
 
-```
+```js
 var bangalore = ee.FeatureCollection('users/ujavalgandhi/public/bangalore\_boundary');
 var change = ee.FeatureCollection('users/ujavalgandhi/e2e/bangalore\_change\_gcps');
 var nochange = ee.FeatureCollection('users/ujavalgandhi/e2e/bangalore\_nochange\_gcps')
@@ -2866,9 +2736,7 @@ Map.addLayer(classified, {min: 0, max: 1, palette: ['white', 'red']}, 'change');
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F03c_Classifying_Change_(exercise))
 
-
-
-```
+```js
 // Add an NDBI band to improve the detection of changes.
 
 var addNDBI = function(image) {
@@ -2887,14 +2755,11 @@ var addNDBI = function(image) {
 
 ## 04. 分类后对比
 
-We dealing with multi-class images, a useful metric for change detection is to know how many pixels from class X changed to class Y. This can be accomplished using the `ee.Reducer.frequencyHistogram()` reducer as shown below.
-
+在处理多类图像的过程中，一个用于变化检测的有用的指数是指导有多少像素从类 X 变成类 Y。这可以使用 `ee.Reducer.frequencyHistogram()` reducer 来实现，如下所示。
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F04b_Post_Classification_Comparison_(complete))
 
-
-
-```
+```js
 var bangalore = ee.FeatureCollection("users/ujavalgandhi/public/bangalore\_boundary")
 var urban = ee.FeatureCollection("users/ujavalgandhi/e2e/urban\_gcps")
 var bare = ee.FeatureCollection("users/ujavalgandhi/e2e/bare\_gcps")
@@ -3014,20 +2879,13 @@ print(classTransitionsAreaDict)
 
 ### 练习
 
-
-
 ![Lost water pixels between 2019 and 2020](https://courses.spatialthoughts.com/images/end_to_end_gee/post_classification.png)
-
-Lost water pixels between 2019 and 2020
-
-
 
 
 [在代码编辑器中试一试 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3A04-Change-Detection%2F04c_Post_Classification_Comparison_(exercise))
 
 
-
-```
+```js
 // Exercise
 // Show all areas where water became other classes and display the result
 // Hint1: Select class 3 pixels from before image and NOT class 3 pixels from after image
@@ -3035,11 +2893,7 @@ Lost water pixels between 2019 and 2020
 ```
 
 
-
-
-
 # 模块 5: Earth Engine 应用
-
 
 This module is focused the concepts related to client vs. server that will help you in creating web apps. We will be building an app using the Earth Engine User Interface API and publishing it to Google Cloud.
 
@@ -5023,7 +4877,7 @@ Export.table.toDrive({
 ### Post-Processing Classification Results
 
 
-Supervised classification results often contain salt-and-pepper noise caused by mis-classified pixels. It is usually preferable to apply some post-processing techniques to remove such noise. The following script contains the code for two popular techniques for post-processing classification results.
+有监督分类 results often contain salt-and-pepper noise caused by mis-classified pixels. It is usually preferable to apply some post-processing techniques to remove such noise. The following script contains the code for two popular techniques for post-processing classification results.
 
 
 * Using un-supervised clustering to replacing classified value by majority value in each cluster.
