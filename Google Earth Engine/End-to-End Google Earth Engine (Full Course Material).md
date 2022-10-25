@@ -95,7 +95,7 @@
 			- [初始化](#初始化)
 			- [变量](#变量)
 			- [Earth Engine 对象](#earth-engine-对象)
-			- [Line Continuation](#line-continuation)
+			- [续行](#续行)
 			- [函数](#函数)
 			- [函数参数](#函数参数)
 			- [打印值](#打印值)
@@ -108,7 +108,7 @@
 			- [导出所有图像](#导出所有图像)
 			- [管理 Running/Waiting 任务](#管理-runningwaiting-任务)
 		- [练习](#练习-30)
-	- [04. 使用 Python 创建图像](#04-使用-python-创建图像)
+	- [04. 使用 Python 创建图表](#04-使用-python-创建图表)
 		- [使用 geemap 创建交互式图表](#使用-geemap-创建交互式图表)
 		- [使用 Matplotlib 创建图表](#使用-matplotlib-创建图表)
 		- [练习](#练习-31)
@@ -116,12 +116,12 @@
 - [补充](#补充)
 	- [高级有监督分类技术](#高级有监督分类技术)
 		- [超参数调优](#超参数调优)
-		- [Post-Processing Classification Results](#post-processing-classification-results)
+		- [后处理分类结果](#后处理分类结果)
 		- [主成分分析（PCA）](#主成分分析pca)
-		- [Multi-temporal Composites for Crop Classification](#multi-temporal-composites-for-crop-classification)
+		- [作物分类的多时复合](#作物分类的多时复合)
 		- [计算相关性](#计算相关性)
-		- [Calculating Area by Class](#calculating-area-by-class)
-		- [Spectral Signature Plots](#spectral-signature-plots)
+		- [计算每个类别的面积](#计算每个类别的面积)
+		- [光谱特征图](#光谱特征图)
 		- [识别错误分类的 GCP](#识别错误分类的-gcp)
 		- [图像归一化和标准化](#图像归一化和标准化)
 		- [计算特征重要性](#计算特征重要性)
@@ -131,7 +131,7 @@
 		- [Savitzky-Golay 平滑](#savitzky-golay-平滑)
 	- [用户界面模版](#用户界面模版)
 		- [添加离散图例](#添加离散图例)
-		- [Adding a Continous Legend](#adding-a-continous-legend)
+		- [添加连续图例](#添加连续图例)
 		- [更改可视化 UI 应用程序](#更改可视化-ui-应用程序)
 		- [NDVI Explorer UI 应用程序](#ndvi-explorer-ui-应用程序)
 	- [代码共享和脚本模块](#代码共享和脚本模块)
@@ -3454,7 +3454,7 @@ rightMap.addLayer(classification.clip(geometry), {}, 'WorldCover Classification'
 
 
 
-```
+```js
 var admin2 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level2");
 var selected = admin2
  .filter(ee.Filter.eq('ADM1\_NAME', 'Karnataka'))
@@ -3617,9 +3617,7 @@ print(legend);
 
 ## GEE Python API 简介
 
-
-Till this point in the course, we have used the Earth Engine Javascript API for all our analysis. Earth Engine also provides a Python API. If you are a Python programmer, you may prefer to use the Python API to integrate Earth Engine in your spatial analysis workflow. There are many options for running Python code that uses the Google Earth Engine API. We will use the following two methods in this course.
-
+目前为止，我们已经将 Earth Engine Javascript API 用于所有的分析中。Earth Engine 还提供了 Python API。如果你是 Python 开发者，那么你可能更喜欢使用 Python API 来将 Earth Engine 整合到你的空间分析工作流中。运行使用 Google Earth Engine API 的  Python 代码有多种方法。在本课程中，我们将使用以下两种方法。
 
 [![View Presentation](https://courses.spatialthoughts.com/images/end_to_end_gee/python_api.png)](https://docs.google.com/presentation/d/1hPVRnxp2Vp1VHXBtu36SH_UtEOjPz70KcDV-zGIin3U/edit?usp=sharing)
 
@@ -3630,51 +3628,38 @@ Till this point in the course, we have used the Earth Engine Javascript API for 
 
 ### Google Colab
 
-
-An easy way to start using the Google Earth Engine Python API is via [Google Colab](https://colab.research.google.com/). Google Colaboratory provides a hosted environment to run Python notebooks without having to install Python locally. It also comes pre-installed with many useful packages - including the Google Earth Engine Python API. You can simply visit <https://colab.research.google.com/> and start a new notebook.
-
-
+开始使用 Google Earth Engine Python API 的一种简单方法是通过 [Google Colab](https://colab.research.google.com/)。Google Colaboratory 提供了一个托管环境来运行 Python 笔记本，无需在本地安装 Python。它还预安装了许多有用的包，包括 Google Earth Engine Python API。你可以简单访问 <https://colab.research.google.com/>，然后开始一个新的笔记本。
 
 
 ### 本地开发环境
 
-An advantage of Python API is that you can use it in your own development environment - so you get a lot more flexibility to automate as well as combine other analysis and visualization libraries with Earth Engine. This requires installing Python and the Earth Engine Python API on your machine or server. You also need to do a one-time authentication and save the token on the machine. The preferred method for installing the Earth Engine Python API is via Anaconda. Please follow our [Google Earth Engine Python API Installation Guide](install-gee-python-api.html) for step-by-step instructions.
-
-
-
-
+Python API 的一个优点是你可以在自己的开发环境中使用它，因此，你可以更灵活地实现自动化，还可以将其他分析和可视化库与 Earth Engine 结合在一起。这就要求你在自己的机器或者服务器上安装 Python 和 Earth Engine Python API 了。你还需要进行一次身份验证，然后将令牌保存在自己的机器上。安装 Earth Engine Python API 的首选方式是通过 Anaconda。请跟着我们的 [Google Earth Engine Python API 安装指南](install-gee-python-api.html)一步一步进行操作。
 
 ## 01. Python API 语法
 
 
 [在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/01_python_api_syntax.ipynb)
 
+通过代码编辑器在 Earth Engine 中进行编程后，你需要稍微调整脚本才能在 Python 中运行。对于大部分代码，你将使用 Earth Engine API 的服务端对象和函数，这在 Python 中完全相同。你只需要进行一些语法更改。
 
-Coming from the programming in Earth Engine through the Code Editor, you will need to slightly adapt your scripts to be able to run in Python. For the bulk of your code, you will be using Earth Engine API’s server-side objects and functions - which will be exactly the same in Python. You only need to make a few syntactical changes.
-
-
-[Here’s the full list](https://developers.google.com/earth-engine/python_install#syntax) of differences.
+[这是完整的差异列表](https://developers.google.com/earth-engine/python_install#syntax)。
 
 
 
 #### 初始化
 
+首先，你需要运行以下单元来初始化 API 并授权账户。系统将提示你登录账户，并且允许访问 *View and Manage your Earth Engine data*。一旦接受后，你将获得一个验证码，并且需要在提示下输入此验证码。每个会话只需要执行此步骤一次。
 
-First of all, you need to run the following cells to initialize the API and authorize your account. You will be prompted to sign-in to the account and allow access to *View and Manage your Earth Engine data*. Once you approve, you will get an a verification code that needs to be entered at the prompt. This step needs to be done just once per session.
-
-
-
-```
+```py
 import ee
 ```
 
-
-```
+```py
 ee.Authenticate()
 ```
 
 
-```
+```py
 ee.Initialize()
 ```
 
@@ -3688,8 +3673,7 @@ Python 代码并不使用 ‘var’ 关键词
 javascript 代码：
 
 
-
-```
+```js
 var city = 'San Fransico'
 var state = 'California'
 print(city, state)
@@ -3699,7 +3683,7 @@ print(population)
 ```
 
 
-```
+```py
 city = 'San Fransico'
 state = 'California'
 print(city, state)
@@ -3715,7 +3699,7 @@ print(population)
 你可以通过相同的方式，使用 `ee` 函数创建 Earth Engine 对象。
 
 
-```
+```py
 s2 = ee.ImageCollection('COPERNICUS/S2')
 geometry = ee.Geometry.Polygon([[
  [82.60642647743225, 27.16350437805251],
@@ -3727,17 +3711,13 @@ geometry = ee.Geometry.Polygon([[
 
 
 
-#### Line Continuation
+#### 续行
 
-
-Python doesn’t use a semi-colon for line ending. To indicate line-continuation you need to use the \ character
-
+Python 不使用分号作为结尾。要表示行继续，你需要使用 \ 字符。
 
 javascript 代码：
 
-
-
-```
+```js
 var s2 = ee.ImageCollection('COPERNICUS/S2');
 var filtered = s2.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
   .filter(ee.Filter.date('2019-02-01', '2019-03-01'))
@@ -3745,7 +3725,7 @@ var filtered = s2.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
 ```
 
 
-```
+```py
 filtered = s2 \
  .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30)) \
  .filter(ee.Filter.date('2019-02-01', '2019-03-01')) \
@@ -3756,18 +3736,14 @@ filtered = s2 \
 
 #### 函数
 
+Python 使用 `def` 关键字而不是 `function` 关键字。此外，内联函数是使用 `lambda` 匿名函数来定义的。
 
-Instead of the `function` keyword, Python uses the `def` keyword. Also the in-line functions are defined using `lambda` anonymous functions.
-
-
-In the example below, also now the `and` operator - which is capitalized as `And` in Python version to avoid conflict with the built-in `and` operator. The same applies to `Or` and `Not` operators. `true`, `false`, `null` in Python are also spelled as `True`, `False` and `None`.
+在下面的例子中，现在 `and` 操作符（Python 版本是首字母大写的 `And`）也被更改以避免与内建的 `and` 操作符冲突。`Or` 和 `Not` 操作符同理。Python 中的 `true`, `false`, `null` 分别对应 `True`, `False` 和 `None`。
 
 
 javascript 代码：
 
-
-
-```
+```js
 function maskS2clouds(image) {
   var qa = image.select('QA60')
   var cloudBitMask = 1 << 10;
@@ -3786,7 +3762,7 @@ function addNDVI(image) {
 ```
 
 
-```
+```py
 def maskS2clouds(image):
  qa = image.select('QA60')
  cloudBitMask = 1 << 10
@@ -3810,14 +3786,11 @@ withNdvi = filtered \
 
 #### 函数参数
 
-Named arguments to Earth Engine functions need to be in quotes. Also when passing the named arguments as a dictionary, it needs to be passed using the `**` keyword.
-
+Earth Engine 函数的命名参数需要使用引号将其包起来。此外，当命名参数作为字典传递时，还需要 `**` 关键字。
 
 javascript 代码：
 
-
-
-```
+```js
 var composite = withNdvi.median();
 var ndvi = composite.select('ndvi');
 
@@ -3830,11 +3803,11 @@ var stats = ndvi.reduceRegion({
 ```
 
 
-```
+```py
 composite = withNdvi.median()
 ndvi = composite.select('ndvi')
 
-stats = ndvi.reduceRegion(\*\*{
+stats = ndvi.reduceRegion(**{
  'reducer': ee.Reducer.mean(),
  'geometry': geometry,
  'scale': 10,
@@ -3846,19 +3819,17 @@ stats = ndvi.reduceRegion(\*\*{
 
 #### 打印值
 
-The `print()` function syntax is the same. But you must remember that in the Code Editor when you cann `print`, the value of the server object is fetched and then printed. You must do that explicitely by calling `getInfo()` on any server-side object.
+`print()` 函数的语法相同。但必须记住，在代码编辑器中，当你使用 `print` 的时候，服务器对象的值会先被提取再被打印。因此，你必须通过对任何服务端对象调用 `getInfo()` 方法来明确做到这一点。
 
 
 javascript 代码：
 
-
-
-```
+```js
 print(stats.get('ndvi')
 ```
 
 
-```
+```py
 print(stats.get('ndvi').getInfo())
 ```
 
@@ -3866,14 +3837,12 @@ print(stats.get('ndvi').getInfo())
 
 #### 内联函数
 
-The syntax for defining in-line functions is also slightly different. You need to use the `lambda` keyword.
+定义内联函数的语法也略有不同。需要使用 `lambda` 关键字。
 
 
 javascript 代码：
 
-
-
-```
+```js
 var myList = ee.List.sequence(1, 10);
 var newList = myList.map(function(number) {
     return ee.Number(number).pow(2);
@@ -3881,7 +3850,7 @@ print(newList);
 ```
 
 
-```
+```py
 myList = ee.List.sequence(1, 10)
 newList = myList.map(lambda number: ee.Number(number).pow(2))
 print(newList.getInfo())
@@ -3891,15 +3860,13 @@ print(newList.getInfo())
 
 ### 练习
 
-
-Take the Javascript code snippet below and write the equiavalent Python code in the cell below.
-
-
-* **Hint1**: Chaining of filters require the use of line continuation character `\`
-* **Hint2**: Printing of server-side objects requires calling `.getInfo()` on the object
+获取下面的 Javascript 代码片段，然后在下面的单元中写出等效的 Python 代码。
 
 
-The correct code should print the value **30**.
+* **提示1**：链接过滤器需要使用换行符 `\`
+* **提示2**：打印服务端对象需要在对象上调用 `.getInfo()`
+
+正确的代码应该打印值 **30**。
 
 
 
@@ -3908,7 +3875,7 @@ The correct code should print the value **30**.
 
 
 
-```
+```js
 var geometry = ee.Geometry.Point([77.60412933051538, 12.952912912328241]);
 
 var s2 = ee.ImageCollection('COPERNICUS/S2');
@@ -3926,7 +3893,7 @@ print(filtered.size());
 
 
 
-```
+```py
 import ee
 ee.Authenticate()
 ee.Initialize()
@@ -3944,22 +3911,14 @@ ee.Initialize()
 
 ![Interactive leaflet map created by geemap](https://courses.spatialthoughts.com/images/end_to_end_gee/automatic_conversion.png)
 
-Interactive leaflet map created by geemap
+[geemap](https://github.com/giswqs/geemap) 是一个开业 Python 包，它有许多有用的功能，能帮你在 Python 中有效使用 Earth Engine。
+
+它有一个函数，可以帮你将javascript earth engine 代码自动转换为 Python。
+
+Google Colab 没有预安装这个包，所以我们需要通过 pip 进行安装。
 
 
-
-
-[geemap](https://github.com/giswqs/geemap) is an open-source Python package that comes with many helpful features that help you use Earth Engine effectively in Python.
-
-
-It comes with a function that can help you translate your javascript earth engine code to Python automatically.
-
-
-Google Colab doesn’t come pre-installed with the package, so we install it via pip.
-
-
-
-```
+```py
 try:
  import geemap
 except ModuleNotFoundError:
@@ -3971,11 +3930,10 @@ except ModuleNotFoundError:
  print('geemap not found, please install via conda in your environment')
 ```
 
-The automatic conversion of code is done by calling the `geemap.js_snippet_to_py()` function. We first create a string with the javascript code.
+代码的自动转换时通过调用 `geemap.js_snippet_to_py()` 函数来完成的。首先，我们使用javascript 代码创建一个字符串。
 
 
-
-```
+```js
 javascript\_code = """
 var geometry = ee.Geometry.Point([107.61303468448624, 12.130969369851766]);
 Map.centerObject(geometry, 12)
@@ -4025,19 +3983,18 @@ Map.addLayer(withNdvi.select('ndvi'), ndviVis, 'NDVI Composite')
 ```
 
 
-```
-lines = geemap.js\_snippet\_to\_py(
- javascript\_code, add\_new\_cell=False,
- import\_ee=True, import\_geemap=True, show\_map=True)
+```py
+lines = geemap.js_snippet_to_py(
+    javascript_code, add_new_cell=False,
+    import_ee=True, import_geemap=True, show_map=True)
 for line in lines:
- print(line.rstrip())
+    print(line.rstrip())
 ```
 
-The automatic conversion works great. Review it and paste it to the cell below.
+自动转换的效果很好。查看并将其粘贴到下面的单元格中。
 
 
-
-```
+```py
 import ee
 import geemap
 Map = geemap.Map()
@@ -4046,39 +4003,39 @@ geometry = ee.Geometry.Point([107.61303468448624, 12.130969369851766])
 Map.centerObject(geometry, 12)
 s2 = ee.ImageCollection("COPERNICUS/S2")
 rgbVis = {
- 'min': 0.0,
- 'max': 3000,
- 'bands': ['B4', 'B3', 'B2'],
+  'min': 0.0,
+  'max': 3000,
+  'bands': ['B4', 'B3', 'B2'],
 }
 
 # Write a function for Cloud masking
 def maskS2clouds(image):
- qa = image.select('QA60')
- cloudBitMask = 1 << 10
- cirrusBitMask = 1 << 11
- mask = qa.bitwiseAnd(cloudBitMask).eq(0).And(
- qa.bitwiseAnd(cirrusBitMask).eq(0))
- return image.updateMask(mask) \
- .select("B.\*") \
- .copyProperties(image, ["system:time\_start"])
+  qa = image.select('QA60')
+  cloudBitMask = 1 << 10
+  cirrusBitMask = 1 << 11
+  mask = qa.bitwiseAnd(cloudBitMask).eq(0).And(
+             qa.bitwiseAnd(cirrusBitMask).eq(0))
+  return image.updateMask(mask) \
+      .select("B.*") \
+      .copyProperties(image, ["system:time_start"])
 
 filtered = s2 \
- .filter(ee.Filter.date('2019-01-01', '2019-12-31')) \
- .filter(ee.Filter.bounds(geometry)) \
- .map(maskS2clouds)
+  .filter(ee.Filter.date('2019-01-01', '2019-12-31')) \
+  .filter(ee.Filter.bounds(geometry)) \
+  .map(maskS2clouds)
 
 # Write a function that computes NDVI for an image and adds it as a band
 def addNDVI(image):
- ndvi = image.normalizedDifference(['B5', 'B4']).rename('ndvi')
- return image.addBands(ndvi)
+  ndvi = image.normalizedDifference(['B5', 'B4']).rename('ndvi')
+  return image.addBands(ndvi)
 
 withNdvi = filtered.map(addNDVI)
 
 composite = withNdvi.median()
 palette = [
- 'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718',
- '74A901', '66A000', '529400', '3E8601', '207401', '056201',
- '004C00', '023B01', '012E01', '011D01', '011301']
+  'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718',
+  '74A901', '66A000', '529400', '3E8601', '207401', '056201',
+  '004C00', '023B01', '012E01', '011D01', '011301']
 
 ndviVis = {'min':0, 'max':0.5, 'palette': palette }
 Map.addLayer(withNdvi.select('ndvi'), ndviVis, 'NDVI Composite')
@@ -4088,17 +4045,14 @@ Map
 
 ### 练习
 
-
-Take the Javascript code snippet below and use `geemap` to automatically convert it to Python.
-
-
+获取下面的 Javascript 代码片段并使用 `geemap` 来自动将其转换成 Python 代码。
 
 
 ---
 
 
 
-```
+```js
 var admin2 = ee.FeatureCollection("FAO/GAUL_SIMPLIFIED_500m/2015/level2");
 
 var karnataka = admin2.filter(ee.Filter.eq('ADM1_NAME', 'Karnataka'))
@@ -4120,22 +4074,21 @@ Map.addLayer(karnataka, visParams, 'Karnataka Districts')
 
 [在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/03_export_a_collection.ipynb)
 
-
-One of the most commonly asked questions by Earth Engine users is - *How do I download all images in a collection*? The Earth Engine Python API comes with a `ee.batch` module that allows you to launch batch exports and manage tasks. The recommended way to do batch exports like this is to use the Python API’s `ee.batch.Export` functions and use a Python for-loop to iterate and export each image. The `ee.batch` module also gives you ability to control *Tasks* - allowing you to automate exports.
-
+Earth Engine 用户最常问的问题之一是 *如何下载集合中的所有图像*？Earth Engine Python API 有一个 `ee.batch` 模块，它允许我们启动批量导出和管理任务。像这样进行批量导出的推荐方式是使用 Python API 的 `ee.batch.Export` 函数，并使用 Python 的 for 循环来迭代导出每个图像。`ee.batch` 模块还让你可以控制*任务*，允许你自动导出。
 
 
-```
+
+```py
 import ee
 ```
 
 
-```
+```py
 ee.Authenticate()
 ```
 
 
-```
+```py
 ee.Initialize()
 ```
 
@@ -4144,194 +4097,180 @@ ee.Initialize()
 
 
 
-```
+```py
 geometry = ee.Geometry.Point([107.61303468448624, 12.130969369851766])
 s2 = ee.ImageCollection("COPERNICUS/S2")
 rgbVis = {
- 'min': 0.0,
- 'max': 3000,
- 'bands': ['B4', 'B3', 'B2'],
+  'min': 0.0,
+  'max': 3000,
+  'bands': ['B4', 'B3', 'B2'],
 }
 
 # Write a function for Cloud masking
 def maskS2clouds(image):
- qa = image.select('QA60')
- cloudBitMask = 1 << 10
- cirrusBitMask = 1 << 11
- mask = qa.bitwiseAnd(cloudBitMask).eq(0).And(
- qa.bitwiseAnd(cirrusBitMask).eq(0))
- return image.updateMask(mask) \
- .select("B.\*") \
- .copyProperties(image, ["system:time\_start"])
+  qa = image.select('QA60')
+  cloudBitMask = 1 << 10
+  cirrusBitMask = 1 << 11
+  mask = qa.bitwiseAnd(cloudBitMask).eq(0).And(
+             qa.bitwiseAnd(cirrusBitMask).eq(0))
+  return image.updateMask(mask) \
+      .select("B.*") \
+      .copyProperties(image, ["system:time_start"])
 
 filtered = s2 \
- .filter(ee.Filter.date('2019-01-01', '2020-01-01')) \
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30)) \
- .filter(ee.Filter.bounds(geometry)) \
- .map(maskS2clouds)
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01')) \
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30)) \
+  .filter(ee.Filter.bounds(geometry)) \
+  .map(maskS2clouds)
 
 # Write a function that computes NDVI for an image and adds it as a band
 def addNDVI(image):
- ndvi = image.normalizedDifference(['B5', 'B4']).rename('ndvi')
- return image.addBands(ndvi)
+  ndvi = image.normalizedDifference(['B5', 'B4']).rename('ndvi')
+  return image.addBands(ndvi)
 
 withNdvi = filtered.map(addNDVI)
+
 ```
 
 
 
 #### 导出所有图像
 
-Exports are done via the `ee.batch` module. A key difference between javascript and Python version is that the `region` parameter needs to be supplied with actual geometry coordinates.
+导出是通过 `ee.batch` 模块来完成的。javascript 和 Python 版本之间的一个关键区别是 `region` 参数需要提供实际的几何坐标。
 
 
 
+```py
+image_ids = withNdvi.aggregate_array('system:index').getInfo()
+print('Total images: ', len(image_ids))
 ```
-image\_ids = withNdvi.aggregate\_array('system:index').getInfo()
-print('Total images: ', len(image\_ids))
-```
 
 
-```
+```py
 # Export with 100m resolution for this demo
-for i, image\_id in enumerate(image\_ids):
- image = ee.Image(withNdvi.filter(ee.Filter.eq('system:index', image\_id)).first())
- task = ee.batch.Export.image.toDrive(\*\*{
- 'image': image.select('ndvi'),
- 'description': 'Image Export {}'.format(i+1),
- 'fileNamePrefix': image.id().getInfo(),
- 'folder':'earthengine',
- 'scale': 100,
- 'region': image.geometry().bounds().getInfo()['coordinates'],
- 'maxPixels': 1e10
- })
- task.start()
- print('Started Task: ', i+1)
+for i, image_id in enumerate(image_ids):
+  image = ee.Image(withNdvi.filter(ee.Filter.eq('system:index', image_id)).first())
+  task = ee.batch.Export.image.toDrive(**{
+    'image': image.select('ndvi'),
+    'description': 'Image Export {}'.format(i+1),
+    'fileNamePrefix': image.id().getInfo(),
+    'folder':'earthengine',
+    'scale': 100,
+    'region': image.geometry().bounds().getInfo()['coordinates'],
+    'maxPixels': 1e10
+  })
+  task.start()
+  print('Started Task: ', i+1)
+
 ```
 
 
 
 #### 管理 Running/Waiting 任务
 
-
-You can manage tasks as well. Get a list of tasks and get state information on them
-
+你也可以管理任务。获取任务列表并获取这些任务的状态信息。
 
 
-```
+```py
 tasks = ee.batch.Task.list()
 for task in tasks:
- task\_id = task.status()['id']
- task\_state = task.status()['state']
- print(task\_id, task\_state)
+ task_id = task.status()['id']
+ task_state = task.status()['state']
+ print(task_id, task_state)
 ```
 
 你也可以取消任务
 
 
-```
+```py
 tasks = ee.batch.Task.list()
 for task in tasks:
- task\_id = task.status()['id']
- task\_state = task.status()['state']
- if task\_state == 'RUNNING' or task\_state == 'READY':
- task.cancel()
- print('Task {} canceled'.format(task\_id))
- else:
- print('Task {} state is {}'.format(task\_id, task\_state))
+    task_id = task.status()['id']
+    task_state = task.status()['state']
+    if task_state == 'RUNNING' or task_state == 'READY':
+        task.cancel()
+        print('Task {} canceled'.format(task_id))
+    else:
+        print('Task {} state is {}'.format(task_id, task_state))
 ```
 
 
 
 ### 练习
 
+下面的代码使用 TerraClimate 数据并创建一个包含 12 个月最高温度的图像的 ImageCollection。它还从 LSIB 集合中抽取澳大利亚的几何图形。添加代码以启动导出任务，导出澳大利亚集合中的每个图像。
 
-The code below uses the TerraClimate data and creates an ImageCollection with 12 monthly images of maximum temperature. It also extract the geometry for Australia from the LSIB collection. Add the code to start an export task for each image in the collection for australia.
+* **提示1**：TerraClimate 图像的比例尺为 4638.3m
+* **提示2**：你需要导出 clippedImage 变量中包含的图像。
 
-
-* **Hint1**: TerraClimate images have a scale of 4638.3m
-* **Hint2**: You need to export the image contained in the clippedImage variable
-
-
-
-```
+```py
 import ee
 
-lsib = ee.FeatureCollection('USDOS/LSIB\_SIMPLE/2017')
-australia = lsib.filter(ee.Filter.eq('country\_na', 'Australia'))
+lsib = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017')
+australia = lsib.filter(ee.Filter.eq('country_na', 'Australia'))
 geometry = australia.geometry()
 
-terraclimate = ee.ImageCollection('IDAHO\_EPSCOR/TERRACLIMATE')
+terraclimate = ee.ImageCollection('IDAHO_EPSCOR/TERRACLIMATE')
 tmax = terraclimate.select('tmmx')
 
 def scale(image):
- return image.multiply(0.1) \
- .copyProperties(image,['system:time\_start'])
+  return image.multiply(0.1) \
+    .copyProperties(image,['system:time_start'])
 
 tmaxScaled = tmax.map(scale)
 
 filtered = tmaxScaled \
- .filter(ee.Filter.date('2020-01-01', '2021-01-01')) \
- .filter(ee.Filter.bounds(geometry))
+  .filter(ee.Filter.date('2020-01-01', '2021-01-01')) \
+  .filter(ee.Filter.bounds(geometry))
 
-image\_ids = filtered.aggregate\_array('system:index').getInfo()
-print('Total images: ', len(image\_ids))
+image_ids = filtered.aggregate_array('system:index').getInfo()
+print('Total images: ', len(image_ids))
 ```
 
-Replace the comments with your code.
+将注释替换成你的代码。
 
-
-
-```
-for i, image\_id in enumerate(image\_ids):
- exportImage = ee.Image(filtered.filter(ee.Filter.eq('system:index', image\_id)).first())
- # Clip the image to the region geometry
- clippedImage = exportImage.clip(geometry)
- 
- ## Create the export task using ee.batch.Export.image.toDrive()
- 
- ## Start the task
+```py
+for i, image_id in enumerate(image_ids):
+    exportImage = ee.Image(filtered.filter(ee.Filter.eq('system:index', image_id)).first())
+    # Clip the image to the region geometry
+    clippedImage = exportImage.clip(geometry)
+    
+    ## Create the export task using ee.batch.Export.image.toDrive()
+    
+    ## Start the task
 ```
 
 
 ![Launching multiple tasks using the  Python API](https://courses.spatialthoughts.com/images/end_to_end_gee/exporting_a_collection.png)
 
-Launching multiple tasks using the Python API
 
-
-
-
-
-
-
-## 04. 使用 Python 创建图像
+## 04. 使用 Python 创建图表
 
 
 [在 Google Colab 中打开 ↗](https://colab.research.google.com/github/spatialthoughts/courses/blob/master/code/end_to_end_gee/04_creating_charts.ipynb)
 
 
-The Google Earth Engine Python API does not come with a charting module. But you can use third-party modules to create interactive charts. You may also convert the Earth Engine objects to a Pandas dataframe and plot it using Python libraries like Matplotlib
+Google Earth Engine Python API 不包含图表模块。但你可以使用第三方模块来创建交互式图表。你还可以将 Earth Engine 对象转换成 Pandas dataframe，然后使用像 Matplotlib 这样的 Python 库对其进行绘制
 
-
-This notebook shows how to use the `geemap` package to create a Time-Series Chart from a ImageCollection.
+本笔记本展示了如何使用 `geemap` 包，从 ImageCollection 创建时间序列图表。
 
 参考：
 
-* geemap [Chart module](https://geemap.org/chart/)
-* geemap [Example notebook](https://geemap.org/notebooks/63_charts/)
+* geemap [Chart 模块](https://geemap.org/chart/)
+* geemap [示例笔记本](https://geemap.org/notebooks/63_charts/)
 
 
 
-```
+```py
 import ee
 ```
 
 
-```
+```py
 try:
  import geemap
 except ModuleNotFoundError:
- if 'google.colab' in str(get\_ipython()):
+ if 'google.colab' in str(get_ipython()):
  print('geemap not found, installing via pip in Google Colab...')
  !pip install geemap --quiet
  import geemap
@@ -4340,75 +4279,70 @@ except ModuleNotFoundError:
 ```
 
 
-```
+```py
 ee.Authenticate()
 ```
 
 
-```
+```py
 ee.Initialize()
 ```
 
-Load the TerraClimate collection and select the ‘tmmx’ band.
+加载 TerraClimate 集合并选择 ‘tmmx’ 波段。
 
-
-
-```
-terraclimate = ee.ImageCollection("IDAHO\_EPSCOR/TERRACLIMATE")
+```py
+terraclimate = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
 tmax = terraclimate.select('tmmx')
 ```
 
-Define a point location for the chart.
+定义图表的点位置。
 
 
-
-```
+```py
 geometry = ee.Geometry.Point([77.57738128916243, 12.964758918835752])
 ```
 
-Scale the band values so they are in Degree Celcius.
+缩放波段值，使其以摄氏度为单位。
 
 
-
-```
-def scale\_image(image):
+```py
+def scale_image(image):
  return ee.Image(image).multiply(0.1)\
- .copyProperties(image, ['system:time\_start'])
+ .copyProperties(image, ['system:time_start'])
 
-tmaxScaled = tmax.map(scale\_image)
+tmaxScaled = tmax.map(scale_image)
 ```
 
-Filter the collection.
+过滤集合。
 
 
-
-```
+```py
 filtered = tmaxScaled.filter(ee.Filter.date('2019-01-01', '2020-01-01')) \
  .filter(ee.Filter.bounds(geometry))
 ```
 
-To chart an image series in Python, we must first extract the values from each image and create a FeatureCollection.
+要在 Python 中绘制图像序列，首先我们必须从每个图像中提取值，然后创建 FeatureCollection。
 
 
 
+```py
+def extract_data(image):
+    stats = image.reduceRegion(**{ 
+        'reducer':ee.Reducer.mean(),
+        'geometry':geometry,
+        'scale':5000
+    })
+    properties = {
+        'month': image.get('system:index'),
+        'tmmx': stats.get('tmmx')
+    }
+    return ee.Feature(None, properties)
+
+data = ee.FeatureCollection(filtered.map(extract_data))
 ```
-def extract\_data(image):
- stats = image.reduceRegion(\*\*{ 
- 'reducer':ee.Reducer.mean(),
- 'geometry':geometry,
- 'scale':5000
- })
- properties = {
- 'month': image.get('system:index'),
- 'tmmx': stats.get('tmmx')
- }
- return ee.Feature(None, properties)
-
-data = ee.FeatureCollection(filtered.map(extract\_data))
-```
 
 
-```
+```py
 print(data.first().getInfo())
 ```
 
@@ -4417,15 +4351,15 @@ print(data.first().getInfo())
 
 
 
-```
+```py
 from geemap import chart
 ```
 
 
-```
+```py
 options = {
  'title': 'Max Monthly Temperature at Bangalore', 
- 'legend\_location': 'top-right',
+ 'legend_location': 'top-right',
  'height': '500px',
  'ylabel': 'Temperature (C)',
  'xlabel': 'Date',
@@ -4434,8 +4368,8 @@ options = {
 ```
 
 
-```
-chart.feature\_byFeature(data, 'month', ['tmmx'], \*\*options)
+```py
+chart.feature_byFeature(data, 'month', ['tmmx'], **options)
 ```
 
 
@@ -4443,33 +4377,32 @@ chart.feature\_byFeature(data, 'month', ['tmmx'], \*\*options)
 ### 使用 Matplotlib 创建图表
 
 
-We can convert a FeatureCollection to a DataFrame using `geemap` helper function `ee_to_pandas`.
+使用 `geemap` 提供的辅助函数 `ee_to_pandas`，我们可以将 FeatureCollection 转换为 DataFrame。
 
 
 
-```
+```py
 import geemap
-df = geemap.ee\_to\_pandas(data)
+df = geemap.ee_to_pandas(data)
 ```
 
 
-```
+```py
 df
 ```
 
-Now we have a regular Pandas dataframe that can be plotted with `matplotlib`.
+现在，我们有了一个常规的 Pandas dataframe，就可以使用 `matplotlib` 来绘制了。
 
 
-
-```
+```py
 %matplotlib inline
 import matplotlib.pyplot as plt
 ```
 
 
-```
+```py
 fig, ax = plt.subplots()
-fig.set\_size\_inches(20,10)
+fig.set_size_inches(20,10)
 
 
 df.plot(ax=ax,
@@ -4477,47 +4410,35 @@ df.plot(ax=ax,
  x='month',
  ylabel='Temperature (C)',
  kind='line')
-plt.tight\_layout()
+plt.tight_layout()
 ```
 
 
 
 ### 练习
 
+将上面的图表绘制为红色的折线图。
 
-Customize the above chart by plotting it as a Line Chart in red color.
-
-
-* **Hint1**: Use `kind='line'` along with a `color` option.
-
-
+* **提示1**：使用 `kind='line'` 和 `color` 选项。
 
 
 
 ## 05. 自动下载
 
-Another common use of the GEE Python API is to automate data processing and export. You can create a Python script that can be called from a server or launched on a schedule using tools such as [Windows Scheduler](https://medium.com/@roddyjaques/how-to-run-anaconda-programs-with-a-bat-file-5f6dd7675508) or [crontab](https://donny-son.github.io/posts/cronjob-with-conda/).
+GEE Python API 的另一个常见用途是自动化数据处理和导出。你可以创建一个 Python 脚本，然后通过服务器调用，或者使用像 [Windows Scheduler](https://medium.com/@roddyjaques/how-to-run-anaconda-programs-with-a-bat-file-5f6dd7675508) 或者 [crontab](https://donny-son.github.io/posts/cronjob-with-conda/) 这样的工具来调度。
 
-
-This script below provides a complete example of automating a download using Google Earth Engine API. It uses the Google Earth Engine API to compute the average soil moisture for the past 2 weeks over all districts in a state. The result is then downloaded as a JSON file and saved locally.
-
-
+下面的脚本提供了一个使用 Google Earth Engine API 进行自动下载的完整示例。它使用 Google Earth Engine API 计算过去 2 周内一个州所有地区的平均土壤湿度。然后将结果以 JSON 文件的形式下载并保存在本地。
 
 > 
-> Make sure you have completed the [one-time authentication flow](install-gee-python-api.html#authentication) before running the script.
-> 
+> 在运行脚本之前，请确保你已经完成了[一次身份验证流程](install-gee-python-api.html#authentication)。
 > 
 > 
 
+按照以下步骤创建脚本来从 GEE 下载数据。
 
-Follow the steps below to create a script to download data from GEE.
+1. 新建一个名为 `download_data.py` 的文件，其内容如下所示。
 
-
-1. Create a new file named `download_data.py` with the content shown below.
-
-
-
-```
+```py
 import datetime
 import ee
 import csv
@@ -4526,85 +4447,78 @@ import os
 ee.Initialize()
 
 # Get current date and convert to milliseconds 
-end\_date = ee.Date(datetime.datetime.now().timestamp()\*1000)
-start\_date = end\_date.advance(-2, 'week')
+end_date = ee.Date(datetime.datetime.now().timestamp()*1000)
+start_date = end_date.advance(-2, 'week')
 
-date\_string = end\_date.format('YYYY\_MM\_dd')
-filename = 'ssm\_{}.csv'.format(date\_string.getInfo())
+date_string = end_date.format('YYYY_MM_dd')
+filename = 'ssm_{}.csv'.format(date_string.getInfo())
 
 # Saving to current directory. You can change the path to appropriate location
-output\_path = os.path.join(filename)
+output_path = os.path.join(filename)
 
 # Datasets
-soilmoisture = ee.ImageCollection("NASA\_USDA/HSL/SMAP10KM\_soil\_moisture")
-admin2 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level2")
+soilmoisture = ee.ImageCollection("NASA_USDA/HSL/SMAP10KM_soil_moisture")
+admin2 = ee.FeatureCollection("FAO/GAUL_SIMPLIFIED_500m/2015/level2")
 
 # Filter to a state
-karnataka = admin2.filter(ee.Filter.eq('ADM1\_NAME', 'Karnataka'))
+karnataka = admin2.filter(ee.Filter.eq('ADM1_NAME', 'Karnataka'))
 
 # Select the ssm band
-ssm = soilmoisture.select('ssm')
+ssm  = soilmoisture.select('ssm')
 
-filtered = ssm .filter(ee.Filter.date(start\_date, end\_date))
+filtered = ssm .filter(ee.Filter.date(start_date, end_date))
 
 mean = filtered.mean()
 
-stats = mean.reduceRegions(\*\*{
- 'collection': karnataka,
- 'reducer': ee.Reducer.mean().setOutputs(['meanssm']),
- 'scale': 10000,
- 'crs': 'EPSG:32643'
- })
+stats = mean.reduceRegions(**{
+  'collection': karnataka,
+  'reducer': ee.Reducer.mean().setOutputs(['meanssm']),
+  'scale': 10000,
+  'crs': 'EPSG:32643'
+  })
 
 # Select columns to keep and remove geometry to make the result lightweight
 # Change column names to match your uploaded shapefile
-columns = ['ADM2\_NAME', 'meanssm']
-exportCollection = stats.select(\*\*{
- 'propertySelectors': columns,
- 'retainGeometry': False})
+columns = ['ADM2_NAME', 'meanssm']
+exportCollection = stats.select(**{
+    'propertySelectors': columns,
+    'retainGeometry': False})
 
 features = exportCollection.getInfo()['features']
 
 data = []
 
 for f in features:
- data.append(f['properties'])
+    data.append(f['properties'])
 
-field\_names = ['ADM2\_NAME', 'meanssm']
+field_names = ['ADM2_NAME', 'meanssm']
 
-with open(output\_path, 'w') as csvfile:
- writer = csv.DictWriter(csvfile, fieldnames = field\_names)
- writer.writeheader()
- writer.writerows(data)
- print('Success: File written at', output\_path)
+with open(output_path, 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames = field_names)
+    writer.writeheader()
+    writer.writerows(data)
+    print('Success: File written at', output_path)
 ```
 
-2. From the terminal, navigate to the directory where you have created the file and type the command below to run the script.
+1. 在终端，导航到该文件所在目录，然后输入以下命令运行脚本。
 
-
-
-```
+```sh
 python download_data.py
 ```
 
 ![](https://courses.spatialthoughts.com/images/end_to_end_gee/download2.png)
 
 
-3. The script will download the data from GEE and save a file to your current directory.
-
+3. 该脚本将从 GEE 下载数据并将文件保存在当前目录。
 
 ![](https://courses.spatialthoughts.com/images/end_to_end_gee/download3.png)
 
 
 
 
-
-
 # 补充
 
-
-This section contains useful scripts and code snippets that can be adapted for your projects.
-
+本部分包含可用于你的项目都有用脚本和代码片段。
 
 
 ## 高级有监督分类技术
@@ -4612,56 +4526,50 @@ This section contains useful scripts and code snippets that can be adapted for y
 
 ### 超参数调优
 
-A recommended best practice for improving the accuracy of your machine learning model is to tune different parameters. For example, when using the `ee.Classifier.smileRandomForest()` classifier, we must specify the *Number of Trees*. We know that higher number of trees result in more computation requirement, but it doesn’t necessarily result in better results. Instead of guessing, we programmatically try a range of values and choose the smallest value possible that results in the highest accuracy.
-
-
+提高机器学习准确性推荐的最佳实践是调整不同的参数。例如，当使用 `ee.Classifier.smileRandomForest()` 分类器时，必须指定  *Number of Trees*。我们知道，树越多，计算需求也越多，但这却不一定会有更好的效果。除了猜测，我们可以以编程的方式尝试一系列值，然后选择具有最高准确度的最小的值。
 
 ![Supervised Classification Output](https://courses.spatialthoughts.com/images/end_to_end_gee/hyperparameter_tuning.png)
-
-Supervised Classification Output
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FHyperparameter_Tuning)
 
 
 
-```
-var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
-var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7");
-var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_gcps");
-var alos = ee.Image("JAXA/ALOS/AW3D30/V2\_2");
+```js
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR");
+var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas_7");
+var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy_gcps");
+var alos = ee.Image("JAXA/ALOS/AW3D30/V2_2");
 
 
-var arkavathy = basin.filter(ee.Filter.eq('HYBAS\_ID', 4071139640))
+var arkavathy = basin.filter(ee.Filter.eq('HYBAS_ID', 4071139640))
 var boundary = arkavathy.geometry()
 var rgbVis = {
- min: 0.0,
- max: 3000,
- bands: ['B4', 'B3', 'B2'],
+  min: 0.0,
+  max: 3000,
+  bands: ['B4', 'B3', 'B2'],
 };
 // Function to remove cloud and snow pixels from Sentinel-2 SR image
 
 function maskCloudAndShadowsSR(image) {
- var cloudProb = image.select('MSK\_CLDPRB');
- var snowProb = image.select('MSK\_SNWPRB');
- var cloud = cloudProb.lt(10);
- var scl = image.select('SCL'); 
- var shadow = scl.eq(3); // 3 = cloud shadow
- var cirrus = scl.eq(10); // 10 = cirrus
- // Cloud probability less than 10% or cloud shadow classification
- var mask = cloud.and(cirrus.neq(1)).and(shadow.neq(1));
- return image.updateMask(mask);
+  var cloudProb = image.select('MSK_CLDPRB');
+  var snowProb = image.select('MSK_SNWPRB');
+  var cloud = cloudProb.lt(10);
+  var scl = image.select('SCL'); 
+  var shadow = scl.eq(3); // 3 = cloud shadow
+  var cirrus = scl.eq(10); // 10 = cirrus
+  // Cloud probability less than 10% or cloud shadow classification
+  var mask = cloud.and(cirrus.neq(1)).and(shadow.neq(1));
+  return image.updateMask(mask);
 }
 
 
 var filtered = s2
-.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
- .filter(ee.Filter.bounds(boundary))
- .map(maskCloudAndShadowsSR)
- .select('B.\*')
+.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
+  .filter(ee.Filter.bounds(boundary))
+  .map(maskCloudAndShadowsSR)
+  .select('B.*')
 
 var composite = filtered.median().clip(boundary) 
 
@@ -4670,25 +4578,25 @@ Map.centerObject(boundary)
 Map.addLayer(composite, visParams, 'RGB');
 
 var addIndices = function(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).rename(['ndvi']);
- var ndbi = image.normalizedDifference(['B11', 'B8']).rename(['ndbi']);
- var mndwi = image.normalizedDifference(['B3', 'B11']).rename(['mndwi']); 
- var bsi = image.expression(
- '(( X + Y ) - (A + B)) /(( X + Y ) + (A + B)) ', {
- 'X': image.select('B11'), //swir1
- 'Y': image.select('B4'), //red
- 'A': image.select('B8'), // nir
- 'B': image.select('B2'), // blue
- }).rename('bsi');
- return image.addBands(ndvi).addBands(ndbi).addBands(mndwi).addBands(bsi)
+  var ndvi = image.normalizedDifference(['B8', 'B4']).rename(['ndvi']);
+  var ndbi = image.normalizedDifference(['B11', 'B8']).rename(['ndbi']);
+  var mndwi = image.normalizedDifference(['B3', 'B11']).rename(['mndwi']); 
+  var bsi = image.expression(
+      '(( X + Y ) - (A + B)) /(( X + Y ) + (A + B)) ', {
+        'X': image.select('B11'), //swir1
+        'Y': image.select('B4'),  //red
+        'A': image.select('B8'), // nir
+        'B': image.select('B2'), // blue
+  }).rename('bsi');
+  return image.addBands(ndvi).addBands(ndbi).addBands(mndwi).addBands(bsi)
 }
 
 var composite = addIndices(composite);
 
 
 // Calculate Slope and Elevation
-var elev = alos.select('AVE\_DSM').rename('elev');
-var slope = ee.Terrain.slope(alos.select('AVE\_DSM')).rename('slope');
+var elev = alos.select('AVE_DSM').rename('elev');
+var slope = ee.Terrain.slope(alos.select('AVE_DSM')).rename('slope');
 
 var composite = composite.addBands(elev).addBands(slope);
 
@@ -4702,31 +4610,31 @@ var composite = composite.addBands(elev).addBands(slope);
 // Function to Normalize Image
 // Pixel Values should be between 0 and 1
 // Formula is (x - xmin) / (xmax - xmin)
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 function normalize(image){
- var bandNames = image.bandNames();
- // Compute min and max of the image
- var minDict = image.reduceRegion({
- reducer: ee.Reducer.min(),
- geometry: boundary,
- scale: 20,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
- });
- var maxDict = image.reduceRegion({
- reducer: ee.Reducer.max(),
- geometry: boundary,
- scale: 20,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
- });
- var mins = ee.Image.constant(minDict.values(bandNames));
- var maxs = ee.Image.constant(maxDict.values(bandNames));
+  var bandNames = image.bandNames();
+  // Compute min and max of the image
+  var minDict = image.reduceRegion({
+    reducer: ee.Reducer.min(),
+    geometry: boundary,
+    scale: 20,
+    maxPixels: 1e9,
+    bestEffort: true,
+    tileScale: 16
+  });
+  var maxDict = image.reduceRegion({
+    reducer: ee.Reducer.max(),
+    geometry: boundary,
+    scale: 20,
+    maxPixels: 1e9,
+    bestEffort: true,
+    tileScale: 16
+  });
+  var mins = ee.Image.constant(minDict.values(bandNames));
+  var maxs = ee.Image.constant(maxDict.values(bandNames));
 
- var normalized = image.subtract(mins).divide(maxs.subtract(mins))
- return normalized
+  var normalized = image.subtract(mins).divide(maxs.subtract(mins))
+  return normalized
 }
 
 var composite = normalize(composite);
@@ -4741,23 +4649,23 @@ var validationGcp = gcp.filter(ee.Filter.gte('random', 0.6));
 Map.addLayer(validationGcp)
 // Overlay the point on the image to get training data.
 var training = composite.sampleRegions({
- collection: trainingGcp,
- properties: ['landcover'],
- scale: 10,
- tileScale: 16
+  collection: trainingGcp,
+  properties: ['landcover'],
+  scale: 10,
+  tileScale: 16
 });
 print(training)
 // Train a classifier.
 var classifier = ee.Classifier.smileRandomForest(50)
 .train({
- features: training, 
- classProperty: 'landcover',
- inputProperties: composite.bandNames()
+  features: training,  
+  classProperty: 'landcover',
+  inputProperties: composite.bandNames()
 });
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Feature Importance
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 
 // Run .explain() to see what the classifer looks like
 print(classifier.explain())
@@ -4769,33 +4677,33 @@ var importance = ee.Dictionary(classifier.explain().get('importance'))
 var sum = importance.values().reduce(ee.Reducer.sum())
 
 var relativeImportance = importance.map(function(key, val) {
- return (ee.Number(val).multiply(100)).divide(sum)
- })
+   return (ee.Number(val).multiply(100)).divide(sum)
+  })
 print(relativeImportance)
 
 // Create a FeatureCollection so we can chart it
 var importanceFc = ee.FeatureCollection([
- ee.Feature(null, relativeImportance)
+  ee.Feature(null, relativeImportance)
 ])
 
 var chart = ui.Chart.feature.byProperty({
- features: importanceFc
+  features: importanceFc
 }).setOptions({
- title: 'Feature Importance',
- vAxis: {title: 'Importance'},
- hAxis: {title: 'Feature'}
- })
+      title: 'Feature Importance',
+      vAxis: {title: 'Importance'},
+      hAxis: {title: 'Feature'}
+  })
 print(chart)
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Hyperparameter Tuning
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 
 var test = composite.sampleRegions({
- collection: validationGcp,
- properties: ['landcover'],
- scale: 10,
- tileScale: 16
+  collection: validationGcp,
+  properties: ['landcover'],
+  scale: 10,
+  tileScale: 16
 });
 
 
@@ -4803,30 +4711,30 @@ var test = composite.sampleRegions({
 var numTreesList = ee.List.sequence(10, 150, 10);
 
 var accuracies = numTreesList.map(function(numTrees) {
- var classifier = ee.Classifier.smileRandomForest(numTrees)
- .train({
- features: training,
- classProperty: 'landcover',
- inputProperties: composite.bandNames()
- });
+  var classifier = ee.Classifier.smileRandomForest(numTrees)
+      .train({
+        features: training,
+        classProperty: 'landcover',
+        inputProperties: composite.bandNames()
+      });
 
- // Here we are classifying a table instead of an image
- // Classifiers work on both images and tables
- return test
- .classify(classifier)
- .errorMatrix('landcover', 'classification')
- .accuracy();
+  // Here we are classifying a table instead of an image
+  // Classifiers work on both images and tables
+  return test
+    .classify(classifier)
+    .errorMatrix('landcover', 'classification')
+    .accuracy();
 });
 
 var chart = ui.Chart.array.values({
- array: ee.Array(accuracies),
- axis: 0,
- xLabels: numTreesList
- }).setOptions({
- title: 'Hyperparameter Tuning for the numberOfTrees Parameters',
- vAxis: {title: 'Validation Accuracy'},
- hAxis: {title: 'Number of Tress', gridlines: {count: 15}}
- });
+  array: ee.Array(accuracies),
+  axis: 0,
+  xLabels: numTreesList
+  }).setOptions({
+      title: 'Hyperparameter Tuning for the numberOfTrees Parameters',
+      vAxis: {title: 'Validation Accuracy'},
+      hAxis: {title: 'Number of Tress', gridlines: {count: 15}}
+  });
 print(chart)
 
 // Tuning Multiple Parameters
@@ -4838,57 +4746,52 @@ var numTreesList = ee.List.sequence(10, 150, 10);
 var bagFractionList = ee.List.sequence(0.1, 0.9, 0.1);
 
 var accuracies = numTreesList.map(function(numTrees) {
- return bagFractionList.map(function(bagFraction) {
- var classifier = ee.Classifier.smileRandomForest({
- numberOfTrees: numTrees,
- bagFraction: bagFraction
- })
- .train({
- features: training,
- classProperty: 'landcover',
- inputProperties: composite.bandNames()
- });
+  return bagFractionList.map(function(bagFraction) {
+     var classifier = ee.Classifier.smileRandomForest({
+       numberOfTrees: numTrees,
+       bagFraction: bagFraction
+     })
+      .train({
+        features: training,
+        classProperty: 'landcover',
+        inputProperties: composite.bandNames()
+      });
 
- // Here we are classifying a table instead of an image
- // Classifiers work on both images and tables
- var accuracy = test
- .classify(classifier)
- .errorMatrix('landcover', 'classification')
- .accuracy();
- return ee.Feature(null, {'accuracy': accuracy,
- 'numberOfTrees': numTrees,
- 'bagFraction': bagFraction})
- })
+    // Here we are classifying a table instead of an image
+    // Classifiers work on both images and tables
+    var accuracy = test
+      .classify(classifier)
+      .errorMatrix('landcover', 'classification')
+      .accuracy();
+    return ee.Feature(null, {'accuracy': accuracy,
+      'numberOfTrees': numTrees,
+      'bagFraction': bagFraction})
+  })
 }).flatten()
 var resultFc = ee.FeatureCollection(accuracies)
 
 // Export the result as CSV
 Export.table.toDrive({
- collection: resultFc,
- description: 'Multiple\_Parameter\_Tuning\_Results',
- folder: 'earthengine',
- fileNamePrefix: 'numtrees\_bagfraction',
- fileFormat: 'CSV'}) 
+  collection: resultFc,
+  description: 'Multiple_Parameter_Tuning_Results',
+  folder: 'earthengine',
+  fileNamePrefix: 'numtrees_bagfraction',
+  fileFormat: 'CSV'}) 
+
  
 ```
 
 
 
-### Post-Processing Classification Results
+### 后处理分类结果
 
+有监督分类结果通常包含由错误分类的像素引起的椒盐噪声。通常最好应用一些后处理技术来消除这种噪声。下面的脚本包含了用于后处理分类结果的两种流行技术。
 
-有监督分类 results often contain salt-and-pepper noise caused by mis-classified pixels. It is usually preferable to apply some post-processing techniques to remove such noise. The following script contains the code for two popular techniques for post-processing classification results.
-
-
-* Using un-supervised clustering to replacing classified value by majority value in each cluster.
-* Replacing isolated pixels with surrounding value with a majority filter.
-
-
+* 使用无监督聚类将分类值替换为每个聚类中的多数值。
+* 使用众数滤波，将孤立像素的值替换为周围像素的值。
 
 > 
-> Remember that the neighborhood methods are scale-dependent so the results will change as you zoom in/out. Export the results at the desired scale to see the effect of post-processing.
-> 
-> 
+> 请记住，领域方法是和比例相关的，因此，结果会随着你放大或缩小而改变。以所需比例导出结果，看看后处理的效果。
 > 
 
 
@@ -4899,31 +4802,31 @@ Export.table.toDrive({
 
 
 
-```
+```js
 // Sentinel-2 Median Composite
-var composite = ee.Image("users/ujavalgandhi/e2e/arkavathy\_2019\_composite");
-Map.addLayer(composite, {min: 0, max: 0.3, bands: ['B4', 'B3', 'B2']}, 'RGB Composite');
+var composite = ee.Image("users/ujavalgandhi/e2e/arkavathy_2019_composite");
+Map.addLayer(composite, {min: 0, max: 0.3,   bands: ['B4', 'B3', 'B2']}, 'RGB Composite');
 
 // Raw Supervised Classification Results
-var classified = ee.Image("users/ujavalgandhi/e2e/arkavathy\_final\_classification");
+var classified = ee.Image("users/ujavalgandhi/e2e/arkavathy_final_classification");
 Map.addLayer(classified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']}, 'Original');
 Map.centerObject(classified, 10)
 
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Post process by clustering
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 
 // Cluster using Unsupervised Clustering methods
 var seeds = ee.Algorithms.Image.Segmentation.seedGrid(5);
 
 var snic = ee.Algorithms.Image.Segmentation.SNIC({
- image: composite.select('B.\*'), 
- compactness: 0,
- connectivity: 4,
- neighborhoodSize: 10,
- size: 2,
- seeds: seeds
+  image: composite.select('B.*'), 
+  compactness: 0,
+  connectivity: 4,
+  neighborhoodSize: 10,
+  size: 2,
+  seeds: seeds
 })
 var clusters = snic.select('clusters')
 
@@ -4931,39 +4834,39 @@ var clusters = snic.select('clusters')
 var smoothed = classified.addBands(clusters);
 
 var clusterMajority = smoothed.reduceConnectedComponents({
- reducer: ee.Reducer.mode(),
- labelBand: 'clusters'
+  reducer: ee.Reducer.mode(),
+  labelBand: 'clusters'
 });
 Map.addLayer(clusterMajority, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']},
- 'Processed using Clusters');
+  'Processed using Clusters');
 
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Post process by replacing isolated pixels with surrounding value
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 
 // count patch sizes
 var patchsize = classified.connectedPixelCount(40, false);
 
 // run a majority filter
-var filtered = classified.focal\_mode({
- radius: 10,
- kernelType: 'square',
- units: 'meters',
+var filtered = classified.focal_mode({
+    radius: 10,
+    kernelType: 'square',
+    units: 'meters',
 }); 
- 
+  
 // updated image with majority filter where patch size is small
-var connectedClassified = classified.where(patchsize.lt(25),filtered);
+var connectedClassified =  classified.where(patchsize.lt(25),filtered);
 Map.addLayer(connectedClassified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']},
- 'Processed using Connected Pixels');
+  'Processed using Connected Pixels');
+
 ```
 
 
 
 ### 主成分分析（PCA）
 
-PCA is a very useful technique in improving your supervised classification results. This is a statistical technique that compresses data from a large number of bands into fewer uncorrelated bands. You can run PCA on your image and add the first few (typically 3) principal component bands to the original composite before sampling training points. In the example below, you will notice that 97% of the variance from the 13-band original image is captured in the 3-band PCA image. This sends a stronger signal to the classifier and improves accuracy by allowing it to distinguish different classes better.
-
+PCA 是一种非常有用的技术，可以用来改善你的有监督分类结果。它是一种统计技术，可以将大量波段中的数据压缩成较少的不相关波段。你可以在你的图像上运行 PCA，然后在进行训练点采样之前将前几个（通常是 3 个）主成分波段添加到原始的合成图像中。在下面的例子中，你会注意到具有 13 个波段的原始图像的 97% 的方差是从具有 3 个波段的 PCA 图像中捕获的。这会向分类器发送更强的信号，并通过更好地区分不同的类别来提高准确度。
 
 ![](https://courses.spatialthoughts.com/images/end_to_end_gee/pca.png)
 
@@ -4972,10 +4875,10 @@ PCA is a very useful technique in improving your supervised classification resul
 
 
 
-```
+```js
 // Script showing how to do Principal Component Analysis on images
-var composite = ee.Image("users/ujavalgandhi/e2e/arkavathy\_2019\_composite");
-var boundary = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_boundary");
+var composite = ee.Image("users/ujavalgandhi/e2e/arkavathy_2019_composite");
+var boundary = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy_boundary");
 
 Map.centerObject(composite)
 Map.addLayer(composite, {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3, gamma: 1.2}, 'RGB');
@@ -4999,175 +4902,170 @@ var pca = PCA(composite).select(['pc1', 'pc2', 'pc3'])
 // PCA computation is expensive and can time out when displaying on the map
 // Export the results and import them back
 Export.image.toAsset({
- image: pca,
- description: 'Principal\_Components\_Image',
- assetId: 'users/ujavalgandhi/e2e/arkavathy\_pca',
- region: geometry,
- scale: scale,
- maxPixels: 1e10})
+  image: pca,
+  description: 'Principal_Components_Image',
+  assetId: 'users/ujavalgandhi/e2e/arkavathy_pca',
+  region: geometry,
+  scale: scale,
+  maxPixels: 1e10})
 // Once the export finishes, import the asset and display
-var pcaImported = ee.Image('users/ujavalgandhi/e2e/arkavathy\_pca')
+var pcaImported = ee.Image('users/ujavalgandhi/e2e/arkavathy_pca')
 var pcaVisParams = {bands: ['pc1', 'pc2', 'pc3'], min: -2, max: 2};
 
 Map.addLayer(pcaImported, pcaVisParams, 'Principal Components');
 
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Function to calculate Principal Components
-// Code adapted from https://developers.google.com/earth-engine/guides/arrays\_eigen\_analysis
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+// Code adapted from https://developers.google.com/earth-engine/guides/arrays_eigen_analysis
+//************************************************************************** 
 function PCA(maskedImage){
- var image = maskedImage.unmask()
- var scale = scale;
- var region = geometry;
- var bandNames = image.bandNames();
- // Mean center the data to enable a faster covariance reducer
- // and an SD stretch of the principal components.
- var meanDict = image.reduceRegion({
- reducer: ee.Reducer.mean(),
- geometry: region,
- scale: scale,
- maxPixels: 1e13,
- tileScale: 16
- });
- var means = ee.Image.constant(meanDict.values(bandNames));
- var centered = image.subtract(means);
- // This helper function returns a list of new band names.
- var getNewBandNames = function(prefix) {
- var seq = ee.List.sequence(1, bandNames.length());
- return seq.map(function(b) {
- return ee.String(prefix).cat(ee.Number(b).int());
- });
- };
- // This function accepts mean centered imagery, a scale and
- // a region in which to perform the analysis. It returns the
- // Principal Components (PC) in the region as a new image.
- var getPrincipalComponents = function(centered, scale, region) {
- // Collapse the bands of the image into a 1D array per pixel.
- var arrays = centered.toArray();
- 
- // Compute the covariance of the bands within the region.
- var covar = arrays.reduceRegion({
- reducer: ee.Reducer.centeredCovariance(),
- geometry: region,
- scale: scale,
- maxPixels: 1e13,
- tileScale: 16
- });
+  var image = maskedImage.unmask()
+  var scale = scale;
+  var region = geometry;
+  var bandNames = image.bandNames();
+  // Mean center the data to enable a faster covariance reducer
+  // and an SD stretch of the principal components.
+  var meanDict = image.reduceRegion({
+    reducer: ee.Reducer.mean(),
+    geometry: region,
+    scale: scale,
+    maxPixels: 1e13,
+    tileScale: 16
+  });
+  var means = ee.Image.constant(meanDict.values(bandNames));
+  var centered = image.subtract(means);
+  // This helper function returns a list of new band names.
+  var getNewBandNames = function(prefix) {
+    var seq = ee.List.sequence(1, bandNames.length());
+    return seq.map(function(b) {
+      return ee.String(prefix).cat(ee.Number(b).int());
+    });
+  };
+  // This function accepts mean centered imagery, a scale and
+  // a region in which to perform the analysis.  It returns the
+  // Principal Components (PC) in the region as a new image.
+  var getPrincipalComponents = function(centered, scale, region) {
+    // Collapse the bands of the image into a 1D array per pixel.
+    var arrays = centered.toArray();
+    
+    // Compute the covariance of the bands within the region.
+    var covar = arrays.reduceRegion({
+      reducer: ee.Reducer.centeredCovariance(),
+      geometry: region,
+      scale: scale,
+      maxPixels: 1e13,
+      tileScale: 16
+    });
 
- // Get the 'array' covariance result and cast to an array.
- // This represents the band-to-band covariance within the region.
- var covarArray = ee.Array(covar.get('array'));
+    // Get the 'array' covariance result and cast to an array.
+    // This represents the band-to-band covariance within the region.
+    var covarArray = ee.Array(covar.get('array'));
 
- // Perform an eigen analysis and slice apart the values and vectors.
- var eigens = covarArray.eigen();
+    // Perform an eigen analysis and slice apart the values and vectors.
+    var eigens = covarArray.eigen();
 
- // This is a P-length vector of Eigenvalues.
- var eigenValues = eigens.slice(1, 0, 1);
- 
- // Compute Percentage Variance of each component
- // This will allow us to decide how many components capture
- // most of the variance in the input
- var eigenValuesList = eigenValues.toList().flatten()
- var total = eigenValuesList.reduce(ee.Reducer.sum())
+    // This is a P-length vector of Eigenvalues.
+    var eigenValues = eigens.slice(1, 0, 1);
+    
+    // Compute Percentage Variance of each component
+    // This will allow us to decide how many components capture
+    // most of the variance in the input
+    var eigenValuesList = eigenValues.toList().flatten()
+    var total = eigenValuesList.reduce(ee.Reducer.sum())
 
- var percentageVariance = eigenValuesList.map(function(item) {
- var component = eigenValuesList.indexOf(item).add(1).format('%02d')
- var variance = ee.Number(item).divide(total).multiply(100).format('%.2f')
- return ee.List([component, variance])
- })
- // Create a dictionary that will be used to set properties on final image
- var varianceDict = ee.Dictionary(percentageVariance.flatten())
- // This is a PxP matrix with eigenvectors in rows.
- var eigenVectors = eigens.slice(1, 1);
- // Convert the array image to 2D arrays for matrix computations.
- var arrayImage = arrays.toArray(1);
+    var percentageVariance = eigenValuesList.map(function(item) {
+      var component = eigenValuesList.indexOf(item).add(1).format('%02d')
+      var variance = ee.Number(item).divide(total).multiply(100).format('%.2f')
+      return ee.List([component, variance])
+    })
+    // Create a dictionary that will be used to set properties on final image
+    var varianceDict = ee.Dictionary(percentageVariance.flatten())
+    // This is a PxP matrix with eigenvectors in rows.
+    var eigenVectors = eigens.slice(1, 1);
+    // Convert the array image to 2D arrays for matrix computations.
+    var arrayImage = arrays.toArray(1);
 
- // Left multiply the image array by the matrix of eigenvectors.
- var principalComponents = ee.Image(eigenVectors).matrixMultiply(arrayImage);
+    // Left multiply the image array by the matrix of eigenvectors.
+    var principalComponents = ee.Image(eigenVectors).matrixMultiply(arrayImage);
 
- // Turn the square roots of the Eigenvalues into a P-band image.
- // Call abs() to turn negative eigenvalues to positive before
- // taking the square root
- var sdImage = ee.Image(eigenValues.abs().sqrt())
- .arrayProject([0]).arrayFlatten([getNewBandNames('sd')]);
+    // Turn the square roots of the Eigenvalues into a P-band image.
+    // Call abs() to turn negative eigenvalues to positive before
+    // taking the square root
+    var sdImage = ee.Image(eigenValues.abs().sqrt())
+      .arrayProject([0]).arrayFlatten([getNewBandNames('sd')]);
 
- // Turn the PCs into a P-band image, normalized by SD.
- return principalComponents
- // Throw out an an unneeded dimension, [[]] -> [].
- .arrayProject([0])
- // Make the one band array image a multi-band image, [] -> image.
- .arrayFlatten([getNewBandNames('pc')])
- // Normalize the PCs by their SDs.
- .divide(sdImage)
- .set(varianceDict);
- };
- var pcImage = getPrincipalComponents(centered, scale, region);
- return pcImage.mask(maskedImage.mask());
+    // Turn the PCs into a P-band image, normalized by SD.
+    return principalComponents
+      // Throw out an an unneeded dimension, [[]] -> [].
+      .arrayProject([0])
+      // Make the one band array image a multi-band image, [] -> image.
+      .arrayFlatten([getNewBandNames('pc')])
+      // Normalize the PCs by their SDs.
+      .divide(sdImage)
+      .set(varianceDict);
+  };
+  var pcImage = getPrincipalComponents(centered, scale, region);
+  return pcImage.mask(maskedImage.mask());
 }
+
 ```
 
 
 
-### Multi-temporal Composites for Crop Classification
+### 作物分类的多时复合
 
-
-Crop classification is a difficult problem. A useful technique that aids in clear distinction of crops is to account for crop phenology. This technique can be applied to detect a specific type of crop or distinguish crops from other forms of vegetation. You can create composite images for different periods of the cropping cycle and create a stacked image to be used for classification. This allows the classifier to learn the temporal pattern and detect pixels that exhibit similar patterns.
-
+作物分类是一个难题。有助于清楚区分作物的一项有用技术是解释作物物候。该技术可用于检测特定类型的作物，或者将作物从其他形式的植被中区分开来。你可以为不同时期的作物周期创建复合图像，然后创建堆叠图像以用于分类。这允许分类器学习时间模式以及检测表现出相似模式的像素。
 
 
 ![Capturing Crop Phenology through Seasonal Composites](https://courses.spatialthoughts.com/images/end_to_end_gee/seasonal_composite.png)
-
-Capturing Crop Phenology through Seasonal Composites
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FSeasonal_Composites_for_Crop_Classification)
 
 
 
-```
-var s2 = ee.ImageCollection("COPERNICUS/S2\_SR")
-var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7")
-var arkavathy = basin.filter(ee.Filter.eq('HYBAS\_ID', 4071139640))
+```js
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR")
+var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas_7")
+var arkavathy = basin.filter(ee.Filter.eq('HYBAS_ID', 4071139640))
 var boundary = arkavathy.geometry()
 Map.centerObject(boundary, 11)
 
 // Function to remove cloud pixels from Sentinel-2 SR image 
 function maskCloudAndShadowsSR(image) {
- var cloudProb = image.select('MSK\_CLDPRB');
- var snowProb = image.select('MSK\_SNWPRB');
- var cloud = cloudProb.lt(10);
- var scl = image.select('SCL'); 
- var shadow = scl.eq(3); // 3 = cloud shadow
- var cirrus = scl.eq(10); // 10 = cirrus
- // Cloud probability less than 10% or cloud shadow classification
- var mask = cloud.and(cirrus.neq(1)).and(shadow.neq(1));
- return image.updateMask(mask).divide(10000)
- .copyProperties(image, ['system:time\_start']);
+  var cloudProb = image.select('MSK_CLDPRB');
+  var snowProb = image.select('MSK_SNWPRB');
+  var cloud = cloudProb.lt(10);
+  var scl = image.select('SCL'); 
+  var shadow = scl.eq(3); // 3 = cloud shadow
+  var cirrus = scl.eq(10); // 10 = cirrus
+  // Cloud probability less than 10% or cloud shadow classification
+  var mask = cloud.and(cirrus.neq(1)).and(shadow.neq(1));
+  return image.updateMask(mask).divide(10000)
+    .copyProperties(image, ['system:time_start']);
 }
 
 
 var filtered = s2
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
- .filter(ee.Filter.bounds(boundary))
- .map(maskCloudAndShadowsSR)
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
+  .filter(ee.Filter.bounds(boundary))
+  .map(maskCloudAndShadowsSR)
 // There are 3 distinct crop seasons in the area of interest
 // Jan-March = Winter (Rabi) Crops
-// April-June = Summer Crops / Harvest
+// April-June  = Summer Crops / Harvest
 // July-December = Monsoon (Kharif) Crops
 var cropCalendar = ee.List([[1,3], [4,6], [7,12]])
 
 // We create different composites for each season
 var createSeasonComposites = function(months) {
- var startMonth = ee.List(months).get(0)
- var endMonth = ee.List(months).get(1)
- var monthFilter = ee.Filter.calendarRange(startMonth, endMonth, 'month')
- var seasonFiltered = filtered.filter(monthFilter)
- var composite = seasonFiltered.median()
- return composite.select('B.\*').clip(boundary)
+  var startMonth = ee.List(months).get(0)
+  var endMonth = ee.List(months).get(1)
+  var monthFilter = ee.Filter.calendarRange(startMonth, endMonth, 'month')
+  var seasonFiltered = filtered.filter(monthFilter)
+  var composite = seasonFiltered.median()
+  return composite.select('B.*').clip(boundary)
 }
 
 var compositeList = cropCalendar.map(createSeasonComposites)
@@ -5196,63 +5094,62 @@ print(composite)
 
 ### 计算相关性
 
-A useful technique to aid crop classification is to model the correlation between precipitation and changes in vegetation. This allows the model to capture differentiated responses to rainfall (i.e. raid-fed crops vs permanent forests). We first prepare an image collection where each image consists of 2 bands - cumulative rainfall for each month and average NDVI for the next month. This will create 11 images per year which show precipitation and 1-month lagged NDVI at each pixels. The collection is then reduced using the `ee.Reducer.pearsonsCorrelation()` which outputs a `correlation` band. Positive values will show regions where precipitation caused an increase in NDVI. Adding this band to your input image for classification will greatly aid the classifier in separating different types of vegetations.
-
+帮助作物分类的一种有用技术是对降水和植被变化之间的相关性进行建模。这使得模型能够捕获对降雨对不同反应（即雨水灌溉作物 vs 永久森林）。首先，准备一个图像集，其中每个图像都由 2 个波段组成—— 每个月都累积降雨量和下个月的平均 NDVI。这将为每年创建 11 张图像，其中，图像的每个像素显示降水和滞后一个月的 NDVI。然后，使用 `ee.Reducer.pearsonsCorrelation()` 缩减集合，输出一个 `correlation` 波段。正值表示将水导致 NDVI 增加的区域。将这个波段添加到用于分类的输入图像将极大地帮助分类器分离不同类型的植被。
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FRainfall_NDVI_Correlation)
 
 
 
-```
+```js
 // Calculate Rainfall-NDVI Correlation
 var geometry = ee.Geometry.Point([75.71168046831512, 13.30751919691132]);
 Map.centerObject(geometry, 10)
-var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR");
 
 var rgbVis = {
- min: 0.0,
- max: 3000,
- bands: ['B4', 'B3', 'B2'],
+  min: 0.0,
+  max: 3000,
+  bands: ['B4', 'B3', 'B2'],
 };
 
 
 // Function to remove cloud and snow pixels from Sentinel-2 SR image
 function maskCloudAndShadowsSR(image) {
- var cloudProb = image.select('MSK\_CLDPRB');
- var snowProb = image.select('MSK\_SNWPRB');
- var cloud = cloudProb.lt(5);
- var snow = snowProb.lt(5);
- var scl = image.select('SCL'); 
- var shadow = scl.eq(3); // 3 = cloud shadow
- var cirrus = scl.eq(10); // 10 = cirrus
- // Cloud probability less than 5% or cloud shadow classification
- var mask = cloud.and(cirrus.neq(1)).and(shadow.neq(1));
- return image.updateMask(mask);
+  var cloudProb = image.select('MSK_CLDPRB');
+  var snowProb = image.select('MSK_SNWPRB');
+  var cloud = cloudProb.lt(5);
+  var snow = snowProb.lt(5);
+  var scl = image.select('SCL'); 
+  var shadow = scl.eq(3); // 3 = cloud shadow
+  var cirrus = scl.eq(10); // 10 = cirrus
+  // Cloud probability less than 5% or cloud shadow classification
+  var mask = cloud.and(cirrus.neq(1)).and(shadow.neq(1));
+  return image.updateMask(mask);
 }
 
 
 // Write a function that computes NDVI for an image and adds it as a band
 function addNDVI(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
- return image.addBands(ndvi);
+  var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
+  return image.addBands(ndvi);
 }
 
 var s2Filtered = s2
- .filter(ee.Filter.date('2020-01-01', '2021-01-01'))
- .filter(ee.Filter.bounds(geometry))
- .map(maskCloudAndShadowsSR)
- .map(addNDVI)
+  .filter(ee.Filter.date('2020-01-01', '2021-01-01'))
+  .filter(ee.Filter.bounds(geometry))
+  .map(maskCloudAndShadowsSR)
+  .map(addNDVI)
 
 
 var composite = s2Filtered.median()
-Map.addLayer(composite, rgbVis, 'Composite') 
+Map.addLayer(composite, rgbVis, 'Composite')  
 
 
 
 // Rainfall
 var chirps = ee.ImageCollection("UCSB-CHG/CHIRPS/PENTAD");
 var chirpsFiltered = chirps
- .filter(ee.Filter.date('2020-01-01', '2021-01-01'))
+  .filter(ee.Filter.date('2020-01-01', '2021-01-01'))
 
 
 // Monsoon months
@@ -5260,17 +5157,17 @@ var months = ee.List.sequence(1, 11)
 
 // Monthly Images
 var byMonth = months.map(function(month) {
- var monthlyRain = chirpsFiltered
- .filter(ee.Filter.calendarRange(month, month, 'month'))
- var totalRain = monthlyRain.sum()
+    var monthlyRain = chirpsFiltered
+      .filter(ee.Filter.calendarRange(month, month, 'month'))
+    var totalRain = monthlyRain.sum()
 
- var nextMonth = ee.Number(month).add(1)
- var monthly = s2Filtered
- .filter(ee.Filter.calendarRange(nextMonth, nextMonth, 'month'))
- var medianComposite = monthly.median()
- 
+    var nextMonth = ee.Number(month).add(1)
+    var monthly = s2Filtered
+      .filter(ee.Filter.calendarRange(nextMonth, nextMonth, 'month'))
+    var medianComposite = monthly.median()
+  
 
- return totalRain.addBands(medianComposite).set({'month': month})
+    return totalRain.addBands(medianComposite).set({'month': month})
 })
 var monthlyCol = ee.ImageCollection.fromImages(byMonth)
 
@@ -5291,17 +5188,16 @@ var correlation = correlationCol.reduce(ee.Reducer.pearsonsCorrelation());
 var positive = correlation.select('correlation').gt(0.5)
 
 Map.addLayer(correlation.select('correlation'), 
- {min:-1, max:1, palette: ['red', 'white', 'green']}, 'Correlation');
+  {min:-1, max:1, palette: ['red', 'white', 'green']}, 'Correlation');
 Map.addLayer(positive.selfMask(), 
- {palette: ['yellow']}, 'Positive Correlation', false); 
+  {palette: ['yellow']}, 'Positive Correlation', false);  
 ```
 
 
 
-### Calculating Area by Class
+### 计算每个类别的面积
 
-
-This code snippet shows how to use a [Grouped Reducer](https://developers.google.com/earth-engine/guides/reducers_grouping) to calculate area covered by each class in a classified image. It also shows how to use the `ui.Chart.image.byClass()` function to create a chart showing the area for each class.
+该代码片段显示了如何使用 [Grouped Reducer](https://developers.google.com/earth-engine/guides/reducers_grouping) 来计算已分类图像中每个类别覆盖的面积。它还展示了如何使用 `ui.Chart.image.byClass()` 函数创建一个显示每个类别面积的图表。
 
 
 ![](https://courses.spatialthoughts.com/images/end_to_end_gee/area_by_class.png)
@@ -5311,9 +5207,9 @@ This code snippet shows how to use a [Grouped Reducer](https://developers.google
 
 
 
-```
-var classified = ee.Image("users/ujavalgandhi/e2e/bangalore\_classified");
-var bangalore = ee.FeatureCollection("users/ujavalgandhi/public/bangalore\_boundary");
+```js
+var classified = ee.Image("users/ujavalgandhi/e2e/bangalore_classified");
+var bangalore = ee.FeatureCollection("users/ujavalgandhi/public/bangalore_boundary");
 
 Map.addLayer(classified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']}, '2019');
 
@@ -5324,67 +5220,56 @@ var areaImage = ee.Image.pixelArea().divide(1e6).addBands(classified);
 // Calculate Area by Class
 // Using a Grouped Reducer
 var areas = areaImage.reduceRegion({
- reducer: ee.Reducer.sum().group({
- groupField: 1,
- groupName: 'classification',
- }),
- geometry: bangalore,
- scale: 100,
- tileScale: 4,
- maxPixels: 1e10
- }); 
+      reducer: ee.Reducer.sum().group({
+      groupField: 1,
+      groupName: 'classification',
+    }),
+    geometry: bangalore,
+    scale: 100,
+    tileScale: 4,
+    maxPixels: 1e10
+    }); 
 
 var classAreas = ee.List(areas.get('groups'))
 print(classAreas)
 
 var areaChart = ui.Chart.image.byClass({
- image: areaImage,
- classBand: 'classification', 
- region: bangalore,
- scale: 100,
- reducer: ee.Reducer.sum(),
- classLabels: ['urban', 'bare', 'water', 'vegetation'],
+  image: areaImage,
+  classBand: 'classification', 
+  region: bangalore,
+  scale: 100,
+  reducer: ee.Reducer.sum(),
+  classLabels: ['urban', 'bare', 'water', 'vegetation'],
 }).setOptions({
- hAxis: {title: 'Classes'},
- vAxis: {title: 'Area Km^2'},
- title: 'Area by class',
- series: {
- 0: { color: 'gray' },
- 1: { color: 'brown' },
- 2: { color: 'blue' },
- 3: { color: 'green' }
- }
+  hAxis: {title: 'Classes'},
+  vAxis: {title: 'Area Km^2'},
+  title: 'Area by class',
+  series: {
+    0: { color: 'gray' },
+    1: { color: 'brown' },
+    2: { color: 'blue' },
+    3: { color: 'green' }
+  }
 });
 print(areaChart); 
+
 ```
 
 
 
-### Spectral Signature Plots
+### 光谱特征图
 
+对于有监督分类，可视化每个类别的每个波段的平均光谱响应很有用。这种图称为 *Spectral Response Curves* 或者 *Spectral Signatures*。这样的图表有助于确定类的可分离性。如果类具有非常不同的签名，那么分类器将能够很好地分离它们。
 
-For supervised classification, it is useful to visualize average spectral responses for each band for each class. Such charts are called *Spectral Response Curves* or *Spectral Signatures*. Such charts helps determine separability of classes. If classes have very different signatures, a classifier will be able to separate them well.
+我们还可以绘制一个类的所有训练样本的光谱特征，并检查训练数据集的质量。如果所有训练样本都显示出相似的特征，这就表明你在收集适当样本方面做得很好。你还可以从这些图中捕获潜在的异常值。
 
-
-We can also plot spectral signatures of all training samples for a class and check the quality of the training dataset. If all training samples show similar signatures - it indicates that you have done a good job of collecting appropriate samples. You can also catch potential outliers from these plots.
-
-
-These charts provide a qualitative and visual methods for checking separability of classes. For quantitative methods, one can apply measures such as Spectral Distance, Mahalanobis distance, Bhattacharyya distance , Jeffreys-Matusita (JM) distance etc. You can find the code for these in [this Stack Exchange answer](https://gis.stackexchange.com/a/323778/5160).
-
-
+这些图表提供了用于检查类可分离性的定性和可视化方法。对于定量方法，可以应用诸如光谱距离、马氏距离、Bhattacharyya 距离、Jeffreys-Matusita (JM) 距离等度量方法。你可以在[这个 Stack Exchange 回答](https://gis.stackexchange.com/a/323778/5160)中找到对应的代码。
 
 ![Mean Signatures for All Classes](https://courses.spatialthoughts.com/images/end_to_end_gee/mean_signatures.png)
-
-Mean Signatures for All Classes
-
-
 
 
 
 ![Spectral Signatures for All Training Points by Class](https://courses.spatialthoughts.com/images/end_to_end_gee/spectral_signatures.png)
-
-Spectral Signatures for All Training Points by Class
-
 
 
 
@@ -5392,15 +5277,15 @@ Spectral Signatures for All Training Points by Class
 
 
 
-```
-var gcps = ee.FeatureCollection("users/ujavalgandhi/e2e/bangalore\_gcps");
-var composite = ee.Image('users/ujavalgandhi/e2e/bangalore\_composite');
+```js
+var gcps = ee.FeatureCollection("users/ujavalgandhi/e2e/bangalore_gcps");
+var composite = ee.Image('users/ujavalgandhi/e2e/bangalore_composite');
 
 // Overlay the point on the image to get bands data.
 var training = composite.sampleRegions({
- collection: gcps, 
- properties: ['landcover'], 
- scale: 10
+  collection: gcps, 
+  properties: ['landcover'], 
+  scale: 10
 });
 
 
@@ -5422,16 +5307,16 @@ var classIndex = bandsWithClass.indexOf('landcover')
 // Use .combine() to get a reducer capable of 
 // computing multiple stats on the input
 var combinedReducer = ee.Reducer.mean().combine({
- reducer2: ee.Reducer.stdDev(),
- sharedInputs: true})
+  reducer2: ee.Reducer.stdDev(),
+  sharedInputs: true})
 
 // Use .repeat() to get a reducer for each band
 // We then use .group() to get stats by class
 var repeatedReducer = combinedReducer.repeat(numBands).group(classIndex)
 
 var gcpStats = training.reduceColumns({
- selectors: bands.add('landcover'),
- reducer: repeatedReducer,
+    selectors: bands.add('landcover'),
+    reducer: repeatedReducer,
 })
 
 // Result is a dictionary, we do some post-processing to
@@ -5441,49 +5326,49 @@ var groups = ee.List(gcpStats.get('groups'))
 var classNames = ee.List(['urban', 'bare', 'water', 'vegetation'])
 
 var fc = ee.FeatureCollection(groups.map(function(item) {
- // Extract the means
- var values = ee.Dictionary(item).get('mean')
- var groupNumber = ee.Dictionary(item).get('group')
- var properties = ee.Dictionary.fromLists(bands, values)
- var withClass = properties.set('class', classNames.get(groupNumber))
- return ee.Feature(null, withClass)
+  // Extract the means
+  var values = ee.Dictionary(item).get('mean')
+  var groupNumber = ee.Dictionary(item).get('group')
+  var properties = ee.Dictionary.fromLists(bands, values)
+  var withClass = properties.set('class', classNames.get(groupNumber))
+  return ee.Feature(null, withClass)
 }))
 
 // Chart spectral signatures of training data
 var options = {
- title: 'Average Spectral Signatures',
- hAxis: {title: 'Bands'},
- vAxis: {title: 'Reflectance', 
- viewWindowMode:'explicit',
- viewWindow: {
- max:0.6,
- min:0
- }},
- lineWidth: 1,
- pointSize: 4,
- series: {
- 0: {color: 'grey'}, 
- 1: {color: 'brown'}, 
- 2: {color: 'blue'}, 
- 3: {color: 'green'},
+  title: 'Average Spectral Signatures',
+  hAxis: {title: 'Bands'},
+  vAxis: {title: 'Reflectance', 
+    viewWindowMode:'explicit',
+    viewWindow: {
+        max:0.6,
+        min:0
+    }},
+  lineWidth: 1,
+  pointSize: 4,
+  series: {
+    0: {color: 'grey'}, 
+    1: {color: 'brown'}, 
+    2: {color: 'blue'}, 
+    3: {color: 'green'},
 }};
 
 // Default band names don't sort propertly
 // Instead, we can give a dictionary with
 // labels for each band in the X-Axis
 var bandDescriptions = {
- 'B2': 'B02/Blue',
- 'B3': 'B03/Green',
- 'B4': 'B04/Red',
- 'B8': 'B08/NIR',
- 'B11': 'B11/SWIR-1',
- 'B12': 'B12/SWIR-2'
+  'B2': 'B02/Blue',
+  'B3': 'B03/Green',
+  'B4': 'B04/Red',
+  'B8': 'B08/NIR',
+  'B11': 'B11/SWIR-1',
+  'B12': 'B12/SWIR-2'
 }
 // Create the chart and set options.
 var chart = ui.Chart.feature.byProperty({
- features: fc,
- xProperties: bandDescriptions,
- seriesProperty: 'class'
+  features: fc,
+  xProperties: bandDescriptions,
+  seriesProperty: 'class'
 })
 .setChartType('ScatterChart')
 .setOptions(options);
@@ -5491,24 +5376,24 @@ var chart = ui.Chart.feature.byProperty({
 print(chart)
 
 var classChart = function(landcover, label, color) {
- var options = {
- title: 'Spectral Signatures for ' + label + ' Class',
- hAxis: {title: 'Bands'},
- vAxis: {title: 'Reflectance', 
- viewWindowMode:'explicit',
- viewWindow: {
- max:0.6,
- min:0
- }},
- lineWidth: 1,
- pointSize: 4,
- };
+  var options = {
+  title: 'Spectral Signatures for ' + label + ' Class',
+  hAxis: {title: 'Bands'},
+  vAxis: {title: 'Reflectance', 
+    viewWindowMode:'explicit',
+    viewWindow: {
+        max:0.6,
+        min:0
+    }},
+  lineWidth: 1,
+  pointSize: 4,
+  };
 
- var fc = training.filter(ee.Filter.eq('landcover', landcover))
- var chart = ui.Chart.feature.byProperty({
- features: fc,
- xProperties: bandDescriptions,
- })
+  var fc = training.filter(ee.Filter.eq('landcover', landcover))
+  var chart = ui.Chart.feature.byProperty({
+  features: fc,
+  xProperties: bandDescriptions,
+  })
 .setChartType('ScatterChart')
 .setOptions(options);
 
@@ -5524,34 +5409,34 @@ classChart(3, 'Vegetation')
 
 ### 识别错误分类的 GCP
 
-While doing accuracy assessment, you will see the validation features that were not classified correctly. It is useful to visually see the points that were misclassified. We can use `ee.Filter.eq()` and `ee.Filter.neq()` filters to filter the features where the actual and predicted classes were different. The code below shows how to implement this and also use the `style()` function visualize them effectively.
+在进行准确性评估的时候，你会看到未正确分类的验证特征。直观地查看被错误分类的点很有用。我们可以使用 `ee.Filter.eq()` 和 `ee.Filter.neq()` 过滤器来过滤那些实际类别和预测类别不同的特征。下面的代码显示了如何实现这一点，并使用 `style()` 函数有效地进行可视化。
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FIdentify_Misclassified_Data)
 
 
 
-```
+```js
 // Script that shows how to apply filters to identify
 // validation points that were misclassified
-var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
-var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas\_7");
-var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_gcps");
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR");
+var basin = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas_7");
+var gcp = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy_gcps");
 
 Map.centerObject(gcp)
-var arkavathy = basin.filter(ee.Filter.eq('HYBAS\_ID', 4071139640))
+var arkavathy = basin.filter(ee.Filter.eq('HYBAS_ID', 4071139640))
 var boundary = arkavathy.geometry()
 var rgbVis = {
- min: 0.0,
- max: 3000,
- bands: ['B4', 'B3', 'B2'],
+  min: 0.0,
+  max: 3000,
+  bands: ['B4', 'B3', 'B2'],
 };
  
 var filtered = s2
-.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
- .filter(ee.Filter.bounds(boundary))
- .select('B.\*')
+.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
+  .filter(ee.Filter.bounds(boundary))
+  .select('B.*')
 
 var composite = filtered.median().clip(boundary) 
 
@@ -5566,18 +5451,18 @@ var validationGcp = gcp.filter(ee.Filter.gte('random', 0.6));
 
 // Overlay the point on the image to get training data.
 var training = composite.sampleRegions({
- collection: trainingGcp,
- properties: ['landcover'],
- scale: 10,
- tileScale: 16,
- geometries:true
+  collection: trainingGcp,
+  properties: ['landcover'],
+  scale: 10,
+  tileScale: 16,
+  geometries:true
 });
 // Train a classifier.
 var classifier = ee.Classifier.smileRandomForest(50)
 .train({
- features: training, 
- classProperty: 'landcover',
- inputProperties: composite.bandNames()
+  features: training,  
+  classProperty: 'landcover',
+  inputProperties: composite.bandNames()
 });
 
 // Classify the image.
@@ -5586,11 +5471,11 @@ var classified = composite.classify(classifier);
 Map.addLayer(classified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']}, '2019');
 
 var test = classified.sampleRegions({
- collection: validationGcp,
- properties: ['landcover'],
- tileScale: 16,
- scale: 10,
- geometries:true
+  collection: validationGcp,
+  properties: ['landcover'],
+  tileScale: 16,
+  scale: 10,
+  geometries:true
 });
 
 var testConfusionMatrix = test.errorMatrix('landcover', 'classification')
@@ -5602,7 +5487,7 @@ print('Confusion Matrix', testConfusionMatrix);
 
 // We use ee.Filter.and() function to create a combined filter
 var combinedFilter = ee.Filter.and(
- ee.Filter.eq('landcover', 0), ee.Filter.neq('classification', 0))
+  ee.Filter.eq('landcover', 0), ee.Filter.neq('classification', 0))
 var urbanMisclassified = test.filter(combinedFilter)
 print('Urban Misclassified Points', urbanMisclassified)
 
@@ -5610,106 +5495,105 @@ print('Urban Misclassified Points', urbanMisclassified)
 // Since we are comparing 2 properties agaist each-other,
 // we need to use a binary filter
 var misClassified = test.filter(ee.Filter.notEquals({
- leftField:'classification', rightField:'landcover'}))
- 
+  leftField:'classification', rightField:'landcover'}))
+  
 print('All Misclassified Points', misClassified)
 
 // Display the misclassified points by styling them
 var landcover = ee.List([0, 1, 2, 3])
 var palette = ee.List(['gray','brown','blue','green'])
 var misclassStyled = ee.FeatureCollection(
- landcover.map(function(lc){
- var feature = misClassified.filter(ee.Filter.eq('landcover', lc))
- var color = palette.get(landcover.indexOf(lc));
- var markerStyle = {color:color}
- return feature.map(function(point){
- return point.set('style', markerStyle)
- })
- })).flatten();
- 
+  landcover.map(function(lc){
+    var feature = misClassified.filter(ee.Filter.eq('landcover', lc))
+    var color = palette.get(landcover.indexOf(lc));
+    var markerStyle = {color:color}
+    return feature.map(function(point){
+       return point.set('style', markerStyle)
+       })
+    })).flatten();
+      
 Map.addLayer(misclassStyled.style({styleProperty:"style"}), {}, 'Misclassified Points')
 ```
 
 
-
 ### 图像归一化和标准化
 
-For machine learning, it is a recommended practice to either normalize or standardize your features. The code below shows how to implement these feature scaling techniques.
+对于机器学习，推荐归一化或者标准化特征。下面的代码展示了如何实现这些特征缩放技术。
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FSupervised_Classification%2FImage_Normalization_and_Standardization)
 
 
 
-```
-var image = ee.Image("users/ujavalgandhi/e2e/arkavathy\_2019\_composite");
-var boundary = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy\_boundary")
+```js
+var image = ee.Image("users/ujavalgandhi/e2e/arkavathy_2019_composite");
+var boundary = ee.FeatureCollection("users/ujavalgandhi/e2e/arkavathy_boundary")
 var geometry = boundary.geometry()
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Function to Normalize Image
 // Pixel Values should be between 0 and 1
 // Formula is (x - xmin) / (xmax - xmin)
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 function normalize(image){
- var bandNames = image.bandNames();
- // Compute min and max of the image
- var minDict = image.reduceRegion({
- reducer: ee.Reducer.min(),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
- });
- var maxDict = image.reduceRegion({
- reducer: ee.Reducer.max(),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
- });
- var mins = ee.Image.constant(minDict.values(bandNames));
- var maxs = ee.Image.constant(maxDict.values(bandNames));
+  var bandNames = image.bandNames();
+  // Compute min and max of the image
+  var minDict = image.reduceRegion({
+    reducer: ee.Reducer.min(),
+    geometry: geometry,
+    scale: 10,
+    maxPixels: 1e9,
+    bestEffort: true,
+    tileScale: 16
+  });
+  var maxDict = image.reduceRegion({
+    reducer: ee.Reducer.max(),
+    geometry: geometry,
+    scale: 10,
+    maxPixels: 1e9,
+    bestEffort: true,
+    tileScale: 16
+  });
+  var mins = ee.Image.constant(minDict.values(bandNames));
+  var maxs = ee.Image.constant(maxDict.values(bandNames));
 
- var normalized = image.subtract(mins).divide(maxs.subtract(mins))
- return normalized
+  var normalized = image.subtract(mins).divide(maxs.subtract(mins))
+  return normalized
 }
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Function to Standardize Image
 // (Mean Centered Imagery with Unit Standard Deviation)
 // https://365datascience.com/tutorials/statistics-tutorials/standardization/
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 function standardize(image){
- var bandNames = image.bandNames();
- // Mean center the data to enable a faster covariance reducer
- // and an SD stretch of the principal components.
- var meanDict = image.reduceRegion({
- reducer: ee.Reducer.mean(),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
- });
- var means = ee.Image.constant(meanDict.values(bandNames));
- var centered = image.subtract(means)
- 
- var stdDevDict = image.reduceRegion({
- reducer: ee.Reducer.stdDev(),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
- });
- var stddevs = ee.Image.constant(stdDevDict.values(bandNames));
+  var bandNames = image.bandNames();
+  // Mean center the data to enable a faster covariance reducer
+  // and an SD stretch of the principal components.
+  var meanDict = image.reduceRegion({
+    reducer: ee.Reducer.mean(),
+    geometry: geometry,
+    scale: 10,
+    maxPixels: 1e9,
+    bestEffort: true,
+    tileScale: 16
+  });
+  var means = ee.Image.constant(meanDict.values(bandNames));
+  var centered = image.subtract(means)
+  
+  var stdDevDict = image.reduceRegion({
+    reducer: ee.Reducer.stdDev(),
+    geometry: geometry,
+    scale: 10,
+    maxPixels: 1e9,
+    bestEffort: true,
+    tileScale: 16
+  });
+  var stddevs = ee.Image.constant(stdDevDict.values(bandNames));
 
- var standardized = centered.divide(stddevs);
- 
- return standardized
+  var standardized = centered.divide(stddevs);
+   
+  return standardized
 }
 
 var standardizedImage = standardize(image)
@@ -5717,31 +5601,31 @@ var normalizedImage = normalize(image)
 
 
 Map.addLayer(image, 
- {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3, gamma: 1.2}, 'Original Image');
+  {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3, gamma: 1.2}, 'Original Image');
 Map.addLayer(normalizedImage,
- {bands: ['B4', 'B3', 'B2'], min: 0, max: 1, gamma: 1.2}, 'Normalized Image');
+  {bands: ['B4', 'B3', 'B2'], min: 0, max: 1, gamma: 1.2}, 'Normalized Image');
 Map.addLayer(standardizedImage,
- {bands: ['B4', 'B3', 'B2'], min: -1, max: 2, gamma: 1.2}, 'Standarized Image');
+  {bands: ['B4', 'B3', 'B2'], min: -1, max: 2, gamma: 1.2}, 'Standarized Image');
 Map.centerObject(geometry)
 
 // Verify Normalization
 
 var beforeDict = image.reduceRegion({
- reducer: ee.Reducer.minMax(),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
+  reducer: ee.Reducer.minMax(),
+  geometry: geometry,
+  scale: 10,
+  maxPixels: 1e9,
+  bestEffort: true,
+  tileScale: 16
 });
 
 var afterDict = normalizedImage.reduceRegion({
- reducer: ee.Reducer.minMax(),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
+  reducer: ee.Reducer.minMax(),
+  geometry: geometry,
+  scale: 10,
+  maxPixels: 1e9,
+  bestEffort: true,
+  tileScale: 16
 });
 
 print('Original Image Min/Max', beforeDict)
@@ -5750,28 +5634,28 @@ print('Normalized Image Min/Max', afterDict)
 // Verify Standadization
 // Verify that the means are 0 and standard deviations are 1
 var beforeDict = image.reduceRegion({
- reducer: ee.Reducer.mean().combine({
- reducer2: ee.Reducer.stdDev(), sharedInputs: true}),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
+  reducer: ee.Reducer.mean().combine({
+      reducer2: ee.Reducer.stdDev(), sharedInputs: true}),
+  geometry: geometry,
+  scale: 10,
+  maxPixels: 1e9,
+  bestEffort: true,
+  tileScale: 16
 });
 
 var resultDict = standardizedImage.reduceRegion({
- reducer: ee.Reducer.mean().combine({
- reducer2: ee.Reducer.stdDev(), sharedInputs: true}),
- geometry: geometry,
- scale: 10,
- maxPixels: 1e9,
- bestEffort: true,
- tileScale: 16
+  reducer: ee.Reducer.mean().combine({
+      reducer2: ee.Reducer.stdDev(), sharedInputs: true}),
+  geometry: geometry,
+  scale: 10,
+  maxPixels: 1e9,
+  bestEffort: true,
+  tileScale: 16
 });
 // Means are very small franctions close to 0
 // Round them off to 2 decimals
 var afterDict = resultDict.map(function(key, value) {
- return ee.Number(value).format('%.2f')
+  return ee.Number(value).format('%.2f')
 })
 
 print('Original Image Mean/StdDev', beforeDict)
@@ -5782,14 +5666,9 @@ print('Standadized Image Mean/StdDev', afterDict)
 
 ### 计算特征重要性
 
-Many classifiers in GEE have a `explain()` method that calculates feature importances. The classifier will assign a score to each input variable on how useful they were at predicting the correct value. The script below shows how to extract the feature importance and create a chart to visualize it.
-
-
+GEE 中的许多分类器都有一个 `explain()` 方法，用来计算特征重要性。分类器会给每个输入变量分配一个分数，用以说明它们在预测正确值的有用程度。下面的脚本展示了如何提取特征重要性并创建图表来可视化。
 
 ![Relative Feature Importance](https://courses.spatialthoughts.com/images/end_to_end_gee/feature_importance.png)
-
-Relative Feature Importance
-
 
 
 
@@ -5797,32 +5676,32 @@ Relative Feature Importance
 
 
 
-```
-var bangalore = ee.FeatureCollection('users/ujavalgandhi/public/bangalore\_boundary')
-var s2 = ee.ImageCollection('COPERNICUS/S2\_SR')
-var gcps = ee.FeatureCollection('users/ujavalgandhi/e2e/bangalore\_gcps')
+```js
+var bangalore = ee.FeatureCollection('users/ujavalgandhi/public/bangalore_boundary')
+var s2 = ee.ImageCollection('COPERNICUS/S2_SR')
+var gcps = ee.FeatureCollection('users/ujavalgandhi/e2e/bangalore_gcps')
 
 var filtered = s2
-.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
- .filter(ee.Filter.bounds(bangalore))
- .select('B.\*')
+.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
+  .filter(ee.Filter.bounds(bangalore))
+  .select('B.*')
 
 var composite = filtered.median().clip(bangalore) 
 
 
 var addIndices = function(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).rename(['ndvi']);
- var ndbi = image.normalizedDifference(['B11', 'B8']).rename(['ndbi']);
- var mndwi = image.normalizedDifference(['B3', 'B11']).rename(['mndwi']); 
- var bsi = image.expression(
- '(( X + Y ) - (A + B)) /(( X + Y ) + (A + B)) ', {
- 'X': image.select('B11'), //swir1
- 'Y': image.select('B4'), //red
- 'A': image.select('B8'), // nir
- 'B': image.select('B2'), // blue
- }).rename('bsi');
- return image.addBands(ndvi).addBands(ndbi).addBands(mndwi).addBands(bsi)
+  var ndvi = image.normalizedDifference(['B8', 'B4']).rename(['ndvi']);
+  var ndbi = image.normalizedDifference(['B11', 'B8']).rename(['ndbi']);
+  var mndwi = image.normalizedDifference(['B3', 'B11']).rename(['mndwi']); 
+  var bsi = image.expression(
+      '(( X + Y ) - (A + B)) /(( X + Y ) + (A + B)) ', {
+        'X': image.select('B11'), //swir1
+        'Y': image.select('B4'),  //red
+        'A': image.select('B8'), // nir
+        'B': image.select('B2'), // blue
+  }).rename('bsi');
+  return image.addBands(ndvi).addBands(ndbi).addBands(mndwi).addBands(bsi)
 }
 
 composite = addIndices(composite)
@@ -5830,36 +5709,36 @@ composite = addIndices(composite)
 
 // Display the input composite.
 var rgbVis = {
- min: 0.0,
- max: 3000,
- bands: ['B4', 'B3', 'B2'],
+  min: 0.0,
+  max: 3000,
+  bands: ['B4', 'B3', 'B2'],
 };
 Map.addLayer(composite, rgbVis, 'image');
 
 
 // Overlay the point on the image to get training data.
 var training = composite.sampleRegions({
- collection: gcps, 
- properties: ['landcover'], 
- scale: 10
+  collection: gcps, 
+  properties: ['landcover'], 
+  scale: 10
 });
 
 
 // Train a classifier.
 var classifier = ee.Classifier.smileRandomForest(50).train({
- features: training, 
- classProperty: 'landcover', 
- inputProperties: composite.bandNames()
+  features: training,  
+  classProperty: 'landcover', 
+  inputProperties: composite.bandNames()
 });
 // // Classify the image.
 var classified = composite.classify(classifier);
 Map.addLayer(classified, {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']}, '2019'); 
 
 
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
+//************************************************************************** 
 // Calculate Feature Importance
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* 
- 
+//************************************************************************** 
+    
 // Run .explain() to see what the classifer looks like
 print(classifier.explain())
 
@@ -5871,23 +5750,23 @@ var importance = ee.Dictionary(classifier.explain().get('importance'))
 var sum = importance.values().reduce(ee.Reducer.sum())
 
 var relativeImportance = importance.map(function(key, val) {
- return (ee.Number(val).multiply(100)).divide(sum)
- })
+   return (ee.Number(val).multiply(100)).divide(sum)
+  })
 print(relativeImportance)
 
 // Create a FeatureCollection so we can chart it
 var importanceFc = ee.FeatureCollection([
- ee.Feature(null, relativeImportance)
+  ee.Feature(null, relativeImportance)
 ])
 
 var chart = ui.Chart.feature.byProperty({
- features: importanceFc
+  features: importanceFc
 }).setOptions({
- title: 'Feature Importance',
- vAxis: {title: 'Importance'},
- hAxis: {title: 'Feature'},
- legend: {position: 'none'}
- })
+      title: 'Feature Importance',
+      vAxis: {title: 'Importance'},
+      hAxis: {title: 'Feature'},
+      legend: {position: 'none'}
+  })
 print(chart)
 ```
 
@@ -5899,14 +5778,9 @@ print(chart)
 
 ### 移动窗口平滑
 
-A technique applied to a time series for removal of the fine-grained variation between time steps is known as Smoothing. This example shows how a moving-window smoothing algorithm can be applied in Earth Engine. Using a [Save-all Join](https://developers.google.com/earth-engine/guides/joins_save_all), the collection is joined with itself and all images that fall within the temporal-window are added as a property of each image. Next, a *mean* reducer is applied on all the images, resulting in the average value of the pixel within the time-frame. The resulting time-series reduces the sharp peaks and valleys - and is more robust against outliers (such as cloudy pixels)
-
-
+平滑（Smoothing）是一项用于时间序列以消除时间步长之间细粒度变化的技术。下面的例子展示了如何在 Earth Engine 中应用移动窗口平滑算法。使用 [Save-all Join](https://developers.google.com/earth-engine/guides/joins_save_all)，集合会与自身连接，而所有落在时间窗口内的图像都会作为每个图像的属性被添加进去。接下来，会在所有图像上应用 *mean* 缩减器，从而得到时间帧内像素的平均值。由此产生的时间序列减少了尖峰和尖谷，并且对于异常值（例如多云像素）更健壮。
 
 ![Moving Window Average Smoothing](https://courses.spatialthoughts.com/images/end_to_end_gee/Moving_Window_Smoothing.png)
-
-Moving Window Average Smoothing
-
 
 
 
@@ -5914,41 +5788,41 @@ Moving Window Average Smoothing
 
 
 
-```
+```js
 // Moving-Window Temporal Smoothing 
 var s2 = ee.ImageCollection("COPERNICUS/S2");
 var geometry = ee.Geometry.Polygon([[
- [82.60642647743225, 27.16350437805251],
- [82.60984897613525, 27.1618529901377],
- [82.61088967323303, 27.163695288375266],
- [82.60757446289062, 27.16517483230927]
+  [82.60642647743225, 27.16350437805251],
+  [82.60984897613525, 27.1618529901377],
+  [82.61088967323303, 27.163695288375266],
+  [82.60757446289062, 27.16517483230927]
 ]]);
 Map.addLayer(geometry, {color: 'red'}, 'Farm')
 Map.centerObject(geometry)
 var rgbVis = {min: 0.0, max: 3000, bands: ['B4', 'B3', 'B2']};
 
 var filtered = s2
- .filter(ee.Filter.date('2017-01-01', '2018-01-01'))
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.bounds(geometry))
+  .filter(ee.Filter.date('2017-01-01', '2018-01-01'))
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.bounds(geometry))
 
 // Write a function for Cloud masking
 function maskS2clouds(image) {
- var qa = image.select('QA60')
- var cloudBitMask = 1 << 10;
- var cirrusBitMask = 1 << 11;
- var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
- qa.bitwiseAnd(cirrusBitMask).eq(0))
- return image.updateMask(mask).divide(10000)
- .select("B.\*")
- .copyProperties(image, ["system:time\_start"])
+  var qa = image.select('QA60')
+  var cloudBitMask = 1 << 10;
+  var cirrusBitMask = 1 << 11;
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
+             qa.bitwiseAnd(cirrusBitMask).eq(0))
+  return image.updateMask(mask).divide(10000)
+      .select("B.*")
+      .copyProperties(image, ["system:time_start"])
 }
 
 var filtered = filtered.map(maskS2clouds)
 // Write a function that computes NDVI for an image and adds it as a band
 function addNDVI(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
- return image.addBands(ndvi);
+  var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
+  return image.addBands(ndvi);
 }
 
 // Map the function over the collection
@@ -5964,99 +5838,97 @@ var days = 30
 // The join will add all matching images into a
 // new property called 'images'
 var join = ee.Join.saveAll({
- matchesKey: 'images'
+  matchesKey: 'images'
 });
 
 // This filter will match all images that are captured
 // within the specified day of the source image
 var diffFilter = ee.Filter.maxDifference({
- difference: 1000 \* 60 \* 60 \* 24 \* days,
- leftField: 'system:time\_start', 
- rightField: 'system:time\_start'
+  difference: 1000 * 60 * 60 * 24 * days,
+  leftField: 'system:time_start', 
+  rightField: 'system:time_start'
 });
 
 // Select the 'ndvi' band
 var ndviCol = withNdvi.select('ndvi')
 
 var joinedCollection = join.apply({
- primary: ndviCol, 
- secondary: ndviCol, 
- condition: diffFilter
+  primary: ndviCol, 
+  secondary: ndviCol, 
+  condition: diffFilter
 });
 
 // Each image in the joined collection will contain
 // matching images in the 'images' property
 // Extract and return the mean of matched images
 var smoothedCollection = ee.ImageCollection(joinedCollection.map(function(image) {
- var collection = ee.ImageCollection.fromImages(image.get('images'));
- return ee.Image(image).addBands(collection.mean().rename('moving\_average'));
+  var collection = ee.ImageCollection.fromImages(image.get('images'));
+  return ee.Image(image).addBands(collection.mean().rename('moving_average'));
 }))
- 
+  
 // Display a time-series chart
 var chart = ui.Chart.image.series({
- imageCollection: smoothedCollection.select(['ndvi', 'moving\_average']),
- region: geometry,
- reducer: ee.Reducer.mean(),
- scale: 20
+  imageCollection: smoothedCollection.select(['ndvi', 'moving_average']),
+  region: geometry,
+  reducer: ee.Reducer.mean(),
+  scale: 20
 }).setOptions({
- lineWidth: 1,
- title: 'NDVI Time Series',
- interpolateNulls: true,
- vAxis: {title: 'NDVI'},
- hAxis: {title: '', format: 'YYYY-MMM'},
- series: {
- 1: {color: 'gray', lineDashStyle: [1, 1]}, // Original NDVI
- 0: {color: 'red', lineWidth: 2 }, // Smoothed NDVI
- },
+      lineWidth: 1,
+      title: 'NDVI Time Series',
+      interpolateNulls: true,
+      vAxis: {title: 'NDVI'},
+      hAxis: {title: '', format: 'YYYY-MMM'},
+      series: {
+        1: {color: 'gray', lineDashStyle: [1, 1]}, // Original NDVI
+        0: {color: 'red', lineWidth: 2 }, // Smoothed NDVI
+      },
 
- })
+    })
 print(chart);
 ```
 
-
-
 ### 时间插值
 
-The code below shows how to do temporal gap-filling of time-series data. A detailed explanation of the code and other examples are described in our blog post [Temporal Gap-Filling with Linear Interpolation in GEE](https://spatialthoughts.com/2021/11/08/temporal-interpolation-gee/).
+下面的代码显示了如何时间序列数据进行时间间隙填充。我们的博文 [Temporal Gap-Filling with Linear Interpolation in GEE](https://spatialthoughts.com/2021/11/08/temporal-interpolation-gee/) 中对代码和其他示例进行了详细的说明。
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FTemporal_Interpolation)
 
 
 
-```
+```js
 // Temporal Interpolation (Gap-Filling Masked Pixels)
 var geometry = ee.Geometry.Polygon([[
- [82.60642647743225, 27.16350437805251],
- [82.60984897613525, 27.1618529901377],
- [82.61088967323303, 27.163695288375266],
- [82.60757446289062, 27.16517483230927]
+  [82.60642647743225, 27.16350437805251],
+  [82.60984897613525, 27.1618529901377],
+  [82.61088967323303, 27.163695288375266],
+  [82.60757446289062, 27.16517483230927]
 ]]);
 
 Map.addLayer(geometry, {color: 'red'}, 'Farm')
 Map.centerObject(geometry)
 
-var s2 = ee.ImageCollection("COPERNICUS/S2\_SR");
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR");
 
 var filtered = s2
- .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.bounds(geometry))
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.bounds(geometry))
 
 // Write a function for Cloud masking
 function maskCloudAndShadowsSR(image) {
- var cloudProb = image.select('MSK\_CLDPRB');
- var snowProb = image.select('MSK\_SNWPRB');
- var cloud = cloudProb.lt(5);
- var snow = snowProb.lt(5);
- var scl = image.select('SCL'); 
- var shadow = scl.eq(3); // 3 = cloud shadow
- var cirrus = scl.eq(10); // 10 = cirrus
- // Cloud probability less than 5% or cloud shadow classification
- var mask = (cloud.and(snow)).and(cirrus.neq(1)).and(shadow.neq(1));
- return image.updateMask(mask).divide(10000)
- .select("B.\*")
- .copyProperties(image, ["system:time\_start"]);
+  var cloudProb = image.select('MSK_CLDPRB');
+  var snowProb = image.select('MSK_SNWPRB');
+  var cloud = cloudProb.lt(5);
+  var snow = snowProb.lt(5);
+  var scl = image.select('SCL'); 
+  var shadow = scl.eq(3); // 3 = cloud shadow
+  var cirrus = scl.eq(10); // 10 = cirrus
+  // Cloud probability less than 5% or cloud shadow classification
+  var mask = (cloud.and(snow)).and(cirrus.neq(1)).and(shadow.neq(1));
+  return image.updateMask(mask).divide(10000)
+      .select("B.*")
+      .copyProperties(image, ["system:time_start"]);
 }
 
 var filtered = filtered.map(maskCloudAndShadowsSR)
@@ -6064,11 +5936,11 @@ var filtered = filtered.map(maskCloudAndShadowsSR)
 // Add a band containing timestamp to each image
 // This will be used to do pixel-wise interpolation later
 var filtered = filtered.map(function(image) {
- var timeImage = image.metadata('system:time\_start').rename('timestamp')
- // The time image doesn't have a mask. 
- // We set the mask of the time band to be the same as the first band of the image
- var timeImageMasked = timeImage.updateMask(image.mask().select(0))
- return image.addBands(timeImageMasked)
+  var timeImage = image.metadata('system:time_start').rename('timestamp')
+  // The time image doesn't have a mask. 
+  // We set the mask of the time band to be the same as the first band of the image
+  var timeImageMasked = timeImage.updateMask(image.mask().select(0))
+  return image.addBands(timeImageMasked)
 })
 
 // Specify the time-window
@@ -6089,25 +5961,25 @@ var days = 30
 // Define a maxDifference filter to find all images within the specified days
 // The filter needs the time difference in milliseconds
 // Convert days to milliseconds
-var millis = ee.Number(days).multiply(1000\*60\*60\*24)
+var millis = ee.Number(days).multiply(1000*60*60*24)
 var maxDiffFilter = ee.Filter.maxDifference({
- difference: millis,
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  difference: millis,
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 // We need a lessThanOrEquals filter to find all images after a given image
 // This will compare the given image's timestamp against other images' timestamps
 var lessEqFilter = ee.Filter.lessThanOrEquals({
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 // We need a greaterThanOrEquals filter to find all images before a given image
 // This will compare the given image's timestamp against other images' timestamps
 var greaterEqFilter = ee.Filter.greaterThanOrEquals({
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 // Apply the joins
@@ -6121,14 +5993,14 @@ var filter1 = ee.Filter.and(maxDiffFilter, lessEqFilter)
 // This join will find all images after, sorted in descending order
 // This will gives us images so that closest is last
 var join1 = ee.Join.saveAll({
- matchesKey: 'after',
- ordering: 'system:time\_start',
- ascending: false})
- 
+  matchesKey: 'after',
+  ordering: 'system:time_start',
+  ascending: false})
+  
 var join1Result = join1.apply({
- primary: filtered,
- secondary: filtered,
- condition: filter1
+  primary: filtered,
+  secondary: filtered,
+  condition: filter1
 })
 // Each image now as a property called 'after' containing
 // all images that come after it within the time-window
@@ -6140,14 +6012,14 @@ var filter2 = ee.Filter.and(maxDiffFilter, greaterEqFilter)
 // This join will find all images before, sorted in ascending order
 // This will gives us images so that closest is last
 var join2 = ee.Join.saveAll({
- matchesKey: 'before',
- ordering: 'system:time\_start',
- ascending: true})
- 
+  matchesKey: 'before',
+  ordering: 'system:time_start',
+  ascending: true})
+  
 var join2Result = join2.apply({
- primary: join1Result,
- secondary: join1Result,
- condition: filter2
+  primary: join1Result,
+  secondary: join1Result,
+  condition: filter2
 })
 
 // Each image now as a property called 'before' containing
@@ -6162,47 +6034,47 @@ print(join2Result.first())
 // with the interpolated value from before and after images.
 
 var interpolateImages = function(image) {
- var image = ee.Image(image)
- // We get the list of before and after images from the image property
- // Mosaic the images so we a before and after image with the closest unmasked pixel
- var beforeImages = ee.List(image.get('before'))
- var beforeMosaic = ee.ImageCollection.fromImages(beforeImages).mosaic()
- var afterImages = ee.List(image.get('after'))
- var afterMosaic = ee.ImageCollection.fromImages(afterImages).mosaic()
+  var image = ee.Image(image)
+  // We get the list of before and after images from the image property
+  // Mosaic the images so we a before and after image with the closest unmasked pixel
+  var beforeImages = ee.List(image.get('before'))
+  var beforeMosaic = ee.ImageCollection.fromImages(beforeImages).mosaic()
+  var afterImages = ee.List(image.get('after'))
+  var afterMosaic = ee.ImageCollection.fromImages(afterImages).mosaic()
 
- // Interpolation formula
- // y = y1 + (y2-y1)\*((t – t1) / (t2 – t1))
- // y = interpolated image
- // y1 = before image
- // y2 = after image
- // t = interpolation timestamp
- // t1 = before image timestamp
- // t2 = after image timestamp
- 
- // We first compute the ratio (t – t1) / (t2 – t1)
+  // Interpolation formula
+  // y = y1 + (y2-y1)*((t – t1) / (t2 – t1))
+  // y = interpolated image
+  // y1 = before image
+  // y2 = after image
+  // t = interpolation timestamp
+  // t1 = before image timestamp
+  // t2 = after image timestamp
+  
+  // We first compute the ratio (t – t1) / (t2 – t1)
 
- // Get image with before and after times
- var t1 = beforeMosaic.select('timestamp').rename('t1')
- var t2 = afterMosaic.select('timestamp').rename('t2')
+  // Get image with before and after times
+  var t1 = beforeMosaic.select('timestamp').rename('t1')
+  var t2 = afterMosaic.select('timestamp').rename('t2')
 
- var t = image.metadata('system:time\_start').rename('t')
+  var t = image.metadata('system:time_start').rename('t')
 
- var timeImage = ee.Image.cat([t1, t2, t])
+  var timeImage = ee.Image.cat([t1, t2, t])
 
- var timeRatio = timeImage.expression('(t - t1) / (t2 - t1)', {
- 't': timeImage.select('t'),
- 't1': timeImage.select('t1'),
- 't2': timeImage.select('t2'),
- })
- // You can replace timeRatio with a constant value 0.5
- // if you wanted a simple average
- 
- // Compute an image with the interpolated image y
- var interpolated = beforeMosaic
- .add((afterMosaic.subtract(beforeMosaic).multiply(timeRatio)))
- // Replace the masked pixels in the current image with the average value
- var result = image.unmask(interpolated)
- return result.copyProperties(image, ['system:time\_start'])
+  var timeRatio = timeImage.expression('(t - t1) / (t2 - t1)', {
+    't': timeImage.select('t'),
+    't1': timeImage.select('t1'),
+    't2': timeImage.select('t2'),
+  })
+  // You can replace timeRatio with a constant value 0.5
+  // if you wanted a simple average
+  
+  // Compute an image with the interpolated image y
+  var interpolated = beforeMosaic
+    .add((afterMosaic.subtract(beforeMosaic).multiply(timeRatio)))
+  // Replace the masked pixels in the current image with the average value
+  var result = image.unmask(interpolated)
+  return result.copyProperties(image, ['system:time_start'])
 }
 
 // map() the function to interpolate all images in the collection
@@ -6213,32 +6085,32 @@ var interpolatedCol = ee.ImageCollection(join2Result.map(interpolateImages))
 
 // Let's visualize the NDVI time-series
 function addNDVI(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
- return image.addBands(ndvi);
+  var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
+  return image.addBands(ndvi);
 }
 
-var ndviVis = {min:0, max: 0.9, palette: [
- 'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718', '74A901',
- '66A000', '529400', '3E8601', '207401', '056201', '004C00', '023B01',
- '012E01', '011D01', '011301'
- ]}
+var ndviVis = {min:0, max: 0.9,  palette: [
+    'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718', '74A901',
+    '66A000', '529400', '3E8601', '207401', '056201', '004C00', '023B01',
+    '012E01', '011D01', '011301'
+  ]}
 
 var visualizeImage = function(image) {
- return image.select('ndvi').visualize(ndviVis).clip(geometry)
+  return image.select('ndvi').visualize(ndviVis).clip(geometry)
 }
 
 var visCollectionOriginal = filtered
- .map(addNDVI)
- .map(visualizeImage)
+  .map(addNDVI)
+  .map(visualizeImage)
 var visCollectionInterpolated = interpolatedCol
- .map(addNDVI)
- .map(visualizeImage)
+  .map(addNDVI)
+  .map(visualizeImage)
 
 var videoArgs = {
- dimensions: 400,
- region: geometry,
- framesPerSecond: 1,
- crs: 'EPSG:3857',
+  dimensions: 400,
+  region: geometry,
+  framesPerSecond: 1,
+  crs: 'EPSG:3857',
 };
 
 print('Original NDVI Images', visCollectionOriginal.getVideoThumbURL(videoArgs))
@@ -6249,22 +6121,16 @@ print('Gap Filled NDVI Images', visCollectionInterpolated.getVideoThumbURL(video
 
 ### Savitzky-Golay 平滑
 
-The Savitzky–Golay filter fits a polynomial to a set of data points in a time-series. The [Open Earth Engine Library (OEEL)](https://www.open-geocomputing.org/OpenEarthEngineLibrary/) provides an efficient implementation of this filter that can be applied on an ImageCollection. However, the time-series must be pre-processed so there are images at a regular interval. We use the [interpolation technique](#temporal-interpolation) described in the previous section and prepare a continous time-series without any masked pixels. The result is a new ImageCollection containing images at a regular interval (5-day) and with pixel values smoothed using the Savitzky–Golay filter.
-
+Savitzky–Golay 过滤器对时间序列中的一组数据点进行多项式拟合。[Open Earth Engine Library (OEEL)](https://www.open-geocomputing.org/OpenEarthEngineLibrary/) 提供了这种过滤器的有效实现，可应用于 ImageCollection。但是，必须对时间序列进行预处理，使得每隔一定时间就有图像。我们使用前面描述的[插值技术](#temporal-interpolation)，并且准备一个没有任何掩码像素的连续时间序列。所得的结果是一个新的 ImageCollection，包含定期（5 天）图像，以及使用 Savitzky–Golay 过滤器进行平滑处理的值。
 
 
 ![Savitzky-Golay Smoothing](https://courses.spatialthoughts.com/images/end_to_end_gee/Savitzky_Golay_Smoothing.png)
-
-Savitzky-Golay Smoothing
-
-
-
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FTime_Series_Smoothing%2FSavitzky_Golay_Smoothing)
 
 
 
-```
+```js
 // Aplying Savitzky-Golay Filter on a NDVI Time-Series
 // This script uses the OEEL library to apply a 
 // Savitzky-Golay filter on a imagecollection
@@ -6287,10 +6153,10 @@ Savitzky-Golay Smoothing
 
 var s2 = ee.ImageCollection("COPERNICUS/S2"); 
 var geometry = ee.Geometry.Polygon([[
- [82.60642647743225, 27.16350437805251],
- [82.60984897613525, 27.1618529901377],
- [82.61088967323303, 27.163695288375266],
- [82.60757446289062, 27.16517483230927]
+  [82.60642647743225, 27.16350437805251],
+  [82.60984897613525, 27.1618529901377],
+  [82.61088967323303, 27.163695288375266],
+  [82.60757446289062, 27.16517483230927]
 ]]);
 Map.addLayer(geometry, {color: 'red'}, 'Farm')
 Map.centerObject(geometry)
@@ -6299,20 +6165,20 @@ var startDate = ee.Date('2017-01-01')
 var endDate = startDate.advance(1, 'year')
 
 var filtered = s2
- .filter(ee.Filter.date(startDate, endDate))
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.bounds(geometry))
+  .filter(ee.Filter.date(startDate, endDate))
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.bounds(geometry))
 
 // Write a function for Cloud masking
 function maskS2clouds(image) {
- var qa = image.select('QA60')
- var cloudBitMask = 1 << 10;
- var cirrusBitMask = 1 << 11;
- var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
- qa.bitwiseAnd(cirrusBitMask).eq(0))
- return image.updateMask(mask)//.divide(10000)
- .select("B.\*")
- .copyProperties(image, ["system:time\_start"])
+  var qa = image.select('QA60')
+  var cloudBitMask = 1 << 10;
+  var cirrusBitMask = 1 << 11;
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
+             qa.bitwiseAnd(cirrusBitMask).eq(0))
+  return image.updateMask(mask)//.divide(10000)
+      .select("B.*")
+      .copyProperties(image, ["system:time_start"])
 }
 
 var filtered = filtered.map(maskS2clouds)
@@ -6320,8 +6186,8 @@ var filtered = filtered.map(maskS2clouds)
 
 // Write a function that computes NDVI for an image and adds it as a band
 function addNDVI(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).toFloat().rename('ndvi');
- return image.addBands(ndvi);
+  var ndvi = image.normalizedDifference(['B8', 'B4']).toFloat().rename('ndvi');
+  return image.addBands(ndvi);
 }
 
 
@@ -6341,13 +6207,13 @@ var totalDays = endDate.difference(startDate, 'day');
 var daysToInterpolate = ee.List.sequence(1, totalDays, n)
 
 var initImages = daysToInterpolate.map(function(day) {
- var image = ee.Image().rename('ndvi').toFloat().set({
- 'system:index': ee.Number(day).format('%d'),
- 'system:time\_start': startDate.advance(day, 'day').millis(),
- // Set a property so we can identify interpolated images
- 'type': 'interpolated'
- })
- return image
+  var image = ee.Image().rename('ndvi').toFloat().set({
+    'system:index': ee.Number(day).format('%d'),
+    'system:time_start': startDate.advance(day, 'day').millis(),
+    // Set a property so we can identify interpolated images
+    'type': 'interpolated'
+  })
+  return image
 })
 
 var initCol = ee.ImageCollection.fromImages(initImages)
@@ -6362,57 +6228,57 @@ print('Empty Collection', initCol)
 var mergedCol = ndviCol.merge(initCol)
 
 var mergedCol = mergedCol.map(function(image) {
- var timeImage = image.metadata('system:time\_start').rename('timestamp')
- var timeImageMasked = timeImage.updateMask(image.mask().select(0))
- return image.addBands(timeImageMasked)
+  var timeImage = image.metadata('system:time_start').rename('timestamp')
+  var timeImageMasked = timeImage.updateMask(image.mask().select(0))
+  return image.addBands(timeImageMasked)
 })
 
 // Specify the time-window
 // Set it so that we have at least 1 non-cloudy image in the period
 var days = 60
-var millis = ee.Number(days).multiply(1000\*60\*60\*24)
+var millis = ee.Number(days).multiply(1000*60*60*24)
 
 var maxDiffFilter = ee.Filter.maxDifference({
- difference: millis,
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  difference: millis,
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 var lessEqFilter = ee.Filter.lessThanOrEquals({
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 
 var greaterEqFilter = ee.Filter.greaterThanOrEquals({
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 
 var filter1 = ee.Filter.and(maxDiffFilter, lessEqFilter)
 var join1 = ee.Join.saveAll({
- matchesKey: 'after',
- ordering: 'system:time\_start',
- ascending: false})
- 
+  matchesKey: 'after',
+  ordering: 'system:time_start',
+  ascending: false})
+  
 var join1Result = join1.apply({
- primary: mergedCol,
- secondary: mergedCol,
- condition: filter1
+  primary: mergedCol,
+  secondary: mergedCol,
+  condition: filter1
 })
 
 var filter2 = ee.Filter.and(maxDiffFilter, greaterEqFilter)
 
 var join2 = ee.Join.saveAll({
- matchesKey: 'before',
- ordering: 'system:time\_start',
- ascending: true})
- 
+  matchesKey: 'before',
+  ordering: 'system:time_start',
+  ascending: true})
+  
 var join2Result = join2.apply({
- primary: join1Result,
- secondary: join1Result,
- condition: filter2
+  primary: join1Result,
+  secondary: join1Result,
+  condition: filter2
 })
 
 //##############################################################
@@ -6426,34 +6292,34 @@ var filtered = join2Result.filter(ee.Filter.eq('type', 'interpolated'))
 
 // Interpolatinon function
 function interpolateImages(image) {
- var image = ee.Image(image)
+  var image = ee.Image(image)
 
- var beforeImages = ee.List(image.get('before'))
- var beforeMosaic = ee.ImageCollection.fromImages(beforeImages).mosaic()
- var afterImages = ee.List(image.get('after'))
- var afterMosaic = ee.ImageCollection.fromImages(afterImages).mosaic()
+  var beforeImages = ee.List(image.get('before'))
+  var beforeMosaic = ee.ImageCollection.fromImages(beforeImages).mosaic()
+  var afterImages = ee.List(image.get('after'))
+  var afterMosaic = ee.ImageCollection.fromImages(afterImages).mosaic()
 
- var t1 = beforeMosaic.select('timestamp').rename('t1')
- var t2 = afterMosaic.select('timestamp').rename('t2')
+  var t1 = beforeMosaic.select('timestamp').rename('t1')
+  var t2 = afterMosaic.select('timestamp').rename('t2')
 
- var t = image.metadata('system:time\_start').rename('t')
+  var t = image.metadata('system:time_start').rename('t')
 
- var timeImage = ee.Image.cat([t1, t2, t])
+  var timeImage = ee.Image.cat([t1, t2, t])
 
- var timeRatio = timeImage.expression('(t - t1) / (t2 - t1)', {
- 't': timeImage.select('t'),
- 't1': timeImage.select('t1'),
- 't2': timeImage.select('t2'),
- })
+  var timeRatio = timeImage.expression('(t - t1) / (t2 - t1)', {
+    't': timeImage.select('t'),
+    't1': timeImage.select('t1'),
+    't2': timeImage.select('t2'),
+  })
 
- var interpolated = beforeMosaic
- .add((afterMosaic.subtract(beforeMosaic).multiply(timeRatio)))
- var result = image.unmask(interpolated)
- return result.copyProperties(image, ['system:time\_start'])
+  var interpolated = beforeMosaic
+    .add((afterMosaic.subtract(beforeMosaic).multiply(timeRatio)))
+  var result = image.unmask(interpolated)
+  return result.copyProperties(image, ['system:time_start'])
 }
 
 var interpolatedCol = ee.ImageCollection(
- filtered.map(interpolateImages)).select('ndvi')
+  filtered.map(interpolateImages)).select('ndvi')
 print('Interpolated Collection', interpolatedCol)
 
 
@@ -6467,30 +6333,30 @@ var oeel=require('users/OEEL/lib:loadAll');
 
 // Use the same maxDiffFilter we used earlier
 var maxDiffFilter = ee.Filter.maxDifference({
- difference: millis,
- leftField: 'system:time\_start',
- rightField: 'system:time\_start'
+  difference: millis,
+  leftField: 'system:time_start',
+  rightField: 'system:time_start'
 })
 
 // Use the default distanceFunction
 var distanceFunction = function(infromedImage, estimationImage) {
- return ee.Image.constant(
- ee.Number(infromedImage.get('system:time\_start'))
- .subtract(
- ee.Number(estimationImage.get('system:time\_start')))
- );
- }
+  return ee.Image.constant(
+      ee.Number(infromedImage.get('system:time_start'))
+      .subtract(
+        ee.Number(estimationImage.get('system:time_start')))
+        );
+  }
 
 // Apply smoothing of order=3
 var order = 3;
 var smoothed = oeel.ImageCollection.SavatskyGolayFilter(
- interpolatedCol, 
- maxDiffFilter,
- distanceFunction,
- order)
+  interpolatedCol, 
+  maxDiffFilter,
+  distanceFunction,
+  order)
 
-// Select the d\_0\_ndvi band and rename it
-var smoothed = smoothed.select(['d\_0\_ndvi'], ['smoothed'])
+// Select the d_0_ndvi band and rename it
+var smoothed = smoothed.select(['d_0_ndvi'], ['smoothed'])
 
 //##############################################################
 // Step-6: Visualize the results
@@ -6498,65 +6364,63 @@ var smoothed = smoothed.select(['d\_0\_ndvi'], ['smoothed'])
 
 // Chart the time-series at a single location
 var title = 'Savitsky-Golay smoothing' +
- '(order = '+ order + ', window\_size = ' + days + ')'
+  '(order = '+ order + ', window_size = ' + days + ')'
 
 // Plot the original and fitted NDVI time-series
 var chart = ui.Chart.image.series({
- imageCollection: ndviCol.merge(smoothed),
- region: geometry,
- reducer: ee.Reducer.mean(),
- scale: 20
+  imageCollection: ndviCol.merge(smoothed),
+  region: geometry,
+  reducer: ee.Reducer.mean(),
+  scale: 20
 }).setOptions({
- lineWidth: 1,
- title: title,
- interpolateNulls: true,
- vAxis: {title: 'NDVI'},
- hAxis: {title: '', format: 'YYYY-MMM'},
- series: {
- 0: {color: 'blue', lineWidth: 1, 
- lineDashStyle: [1, 1], pointSize: 1,
- }, // Original NDVI
- 1: {color: 'red', lineWidth: 2 }, // Smoothed NDVI
- },
+      lineWidth: 1,
+      title: title,
+      interpolateNulls: true,
+      vAxis: {title: 'NDVI'},
+      hAxis: {title: '', format: 'YYYY-MMM'},
+      series: {
+        0: {color: 'blue', lineWidth: 1, 
+          lineDashStyle: [1, 1], pointSize: 1,
+          }, // Original NDVI
+        1: {color: 'red', lineWidth: 2 }, // Smoothed NDVI
+      },
 
- })
+    })
 print(chart)
 
 // Create an animation to visualize the smoothed collection
-var ndviVis = {min:0, max: 0.7, palette: [
- '#fdae61','#fee08b','#d9ef8b',
- '#a6d96a','#66bd63','#1a9850','#006837']
- }
+var ndviVis = {min:0, max: 0.7,  palette: [
+    '#fdae61','#fee08b','#d9ef8b',
+    '#a6d96a','#66bd63','#1a9850','#006837']
+  }
 
 var visualizeImage = function(image) {
- return image.visualize(ndviVis).clip(geometry)
+  return image.visualize(ndviVis).clip(geometry)
 }
 
 var visCollectionOriginal = ndviCol
- .map(visualizeImage)
+  .map(visualizeImage)
 var visCollectionInterpolated = smoothed
- .map(visualizeImage)
- 
+  .map(visualizeImage)
+  
 var videoArgs = {
- dimensions: 400,
- region: geometry,
- framesPerSecond: 2,
- crs: 'EPSG:3857',
+  dimensions: 400,
+  region: geometry,
+  framesPerSecond: 2,
+  crs: 'EPSG:3857',
 };
 
 print('Original NDVI Images', visCollectionOriginal.getVideoThumbURL(videoArgs))
 
 var videoArgs = {
- dimensions: 400,
- region: geometry,
- framesPerSecond: 5,
- crs: 'EPSG:3857',
+  dimensions: 400,
+  region: geometry,
+  framesPerSecond: 5,
+  crs: 'EPSG:3857',
 };
 
 print('SG Filtered NDVI Images', visCollectionInterpolated.getVideoThumbURL(videoArgs))
 ```
-
-
 
 
 ## 用户界面模版
@@ -6564,54 +6428,48 @@ print('SG Filtered NDVI Images', visCollectionInterpolated.getVideoThumbURL(vide
 
 ### 添加离散图例
 
-You may want to add a legend for a classified image to your map visualization in your App. Here’s a code snippet that shows how you can build it using the UI Widgets.
-
-
+你可能想在应用中可视化的地图上添加已分类图像的图例。下面的代码片段展示了如何使用 UI 小部件来构建它。
 
 ![Creating a Discrete Map Legend](https://courses.spatialthoughts.com/images/end_to_end_gee/map_legend.png)
-
-Creating a Discrete Map Legend
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FMap_Legend)
 
 
 
-```
-var classified = ee.Image("users/ujavalgandhi/e2e/bangalore\_classified")
+```js
+var classified = ee.Image("users/ujavalgandhi/e2e/bangalore_classified")
 Map.centerObject(classified)
 Map.addLayer(classified,
- {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']}, '2019');
+  {min: 0, max: 3, palette: ['gray', 'brown', 'blue', 'green']}, '2019');
 
 var legend = ui.Panel({style: {position: 'middle-right', padding: '8px 15px'}});
 
 var makeRow = function(color, name) {
- var colorBox = ui.Label({
- style: {color: '#ffffff',
- backgroundColor: color,
- padding: '10px',
- margin: '0 0 4px 0',
- }
- });
- var description = ui.Label({
- value: name,
- style: {
- margin: '0px 0 4px 6px',
- }
- }); 
- return ui.Panel({
- widgets: [colorBox, description],
- layout: ui.Panel.Layout.Flow('horizontal')}
+  var colorBox = ui.Label({
+    style: {color: '#ffffff',
+      backgroundColor: color,
+      padding: '10px',
+      margin: '0 0 4px 0',
+    }
+  });
+  var description = ui.Label({
+    value: name,
+    style: {
+      margin: '0px 0 4px 6px',
+    }
+  }); 
+  return ui.Panel({
+    widgets: [colorBox, description],
+    layout: ui.Panel.Layout.Flow('horizontal')}
 )};
 
 var title = ui.Label({
- value: 'Legend',
- style: {fontWeight: 'bold',
- fontSize: '16px',
- margin: '0px 0 4px 0px'}});
- 
+  value: 'Legend',
+  style: {fontWeight: 'bold',
+    fontSize: '16px',
+    margin: '0px 0 4px 0px'}});
+    
 legend.add(title);
 legend.add(makeRow('gray','Built-up'))
 legend.add(makeRow('brown','Bare Earth'))
@@ -6623,38 +6481,31 @@ Map.add(legend);
 
 
 
-### Adding a Continous Legend
+### 添加连续图例
 
-
-If you are displaying a raster layer in your app with a color palette, you can use the following technique to add a colorbar using the snipet below.
-
-
+如果在你的应用中，栅格图层使用调色板显示的，那么可以使用下面代码片段中使用的技术，来添加颜色条。
 
 ![Creating a Continuous Raster Legend](https://courses.spatialthoughts.com/images/end_to_end_gee/colorbar.png)
-
-Creating a Continuous Raster Legend
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FColorbar_Legend)
 
 
 
-```
+```js
 var s2 = ee.ImageCollection("COPERNICUS/S2");
-var admin2 = ee.FeatureCollection("FAO/GAUL\_SIMPLIFIED\_500m/2015/level2");
+var admin2 = ee.FeatureCollection("FAO/GAUL_SIMPLIFIED_500m/2015/level2");
 
-var bangalore = admin2.filter(ee.Filter.eq('ADM2\_NAME', 'Bangalore Urban'))
+var bangalore = admin2.filter(ee.Filter.eq('ADM2_NAME', 'Bangalore Urban'))
 var geometry = bangalore.geometry()
 
-var filtered = s2.filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
- .filter(ee.Filter.bounds(geometry))
+var filtered = s2.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.date('2019-01-01', '2020-01-01'))
+  .filter(ee.Filter.bounds(geometry))
 
 var image = filtered.median(); 
 
-// Calculate Normalized Difference Vegetation Index (NDVI)
+// Calculate  Normalized Difference Vegetation Index (NDVI)
 // 'NIR' (B8) and 'RED' (B4)
 var ndvi = image.normalizedDifference(['B8', 'B4']).rename(['ndvi']);
 
@@ -6665,39 +6516,39 @@ Map.addLayer(ndvi.clip(geometry), ndviVis, 'ndvi')
 
 
 function createColorBar(titleText, palette, min, max) {
- // Legend Title
- var title = ui.Label({
- value: titleText, 
- style: {fontWeight: 'bold', textAlign: 'center', stretch: 'horizontal'}});
+  // Legend Title
+  var title = ui.Label({
+    value: titleText, 
+    style: {fontWeight: 'bold', textAlign: 'center', stretch: 'horizontal'}});
 
- // Colorbar
- var legend = ui.Thumbnail({
- image: ee.Image.pixelLonLat().select(0),
- params: {
- bbox: [0, 0, 1, 0.1],
- dimensions: '200x20',
- format: 'png', 
- min: 0, max: 1,
- palette: palette},
- style: {stretch: 'horizontal', margin: '8px 8px', maxHeight: '40px'},
- });
- 
- // Legend Labels
- var labels = ui.Panel({
- widgets: [
- ui.Label(min, {margin: '4px 10px',textAlign: 'left', stretch: 'horizontal'}),
- ui.Label((min+max)/2, {margin: '4px 20px', textAlign: 'center', stretch: 'horizontal'}),
- ui.Label(max, {margin: '4px 10px',textAlign: 'right', stretch: 'horizontal'})],
- layout: ui.Panel.Layout.flow('horizontal')});
- 
- // Create a panel with all 3 widgets
- var legendPanel = ui.Panel({
- widgets: [title, legend, labels],
- style: {position: 'bottom-center', padding: '8px 15px'}
- })
- return legendPanel
+  // Colorbar
+  var legend = ui.Thumbnail({
+    image: ee.Image.pixelLonLat().select(0),
+    params: {
+      bbox: [0, 0, 1, 0.1],
+      dimensions: '200x20',
+      format: 'png', 
+      min: 0, max: 1,
+      palette: palette},
+    style: {stretch: 'horizontal', margin: '8px 8px', maxHeight: '40px'},
+  });
+  
+  // Legend Labels
+  var labels = ui.Panel({
+    widgets: [
+      ui.Label(min, {margin: '4px 10px',textAlign: 'left', stretch: 'horizontal'}),
+      ui.Label((min+max)/2, {margin: '4px 20px', textAlign: 'center', stretch: 'horizontal'}),
+      ui.Label(max, {margin: '4px 10px',textAlign: 'right', stretch: 'horizontal'})],
+    layout: ui.Panel.Layout.flow('horizontal')});
+  
+  // Create a panel with all 3 widgets
+  var legendPanel = ui.Panel({
+    widgets: [title, legend, labels],
+    style: {position: 'bottom-center', padding: '8px 15px'}
+  })
+  return legendPanel
 }
-// Call the function to create a colorbar legend 
+// Call the function to create a colorbar legend  
 var colorBar = createColorBar('NDVI Values', palette, 0, 0.5)
 
 Map.add(colorBar)
@@ -6707,22 +6558,18 @@ Map.add(colorBar)
 
 ### 更改可视化 UI 应用程序
 
-A common use-case for Earth Engine Apps is to display 2 images in a split panel app. Below script contains a simple template that you can use to create an interactive split panel app. Here we have 2 map objects - `leftMap` and `rightMap`. You can add different images to each of the maps and users will be able to explore them side-by-side. [[View Animated GIF ↗](https://courses.spatialthoughts.com/images/end_to_end_gee/dust_storm_app.gif)]
+Earth Engine 应用程序的一个常见用法是在拆分面板应用中显示 2 个图像。下面的脚本包含了一个简单的模版，你可以使用它来创建交互式拆分面板应用。这里，我们有 2 个地图对象：`leftMap` 和 `rightMap`。你可以给每个地图添加不同的图像，这样，用户就能够并排探索它们。[查看动画 GIF ↗](https://courses.spatialthoughts.com/images/end_to_end_gee/dust_storm_app.gif)]
 
 
 
 ![A Split Panel App that displays Pre- and Post-Storm Images](https://courses.spatialthoughts.com/images/end_to_end_gee/dust_storm_app.png)
-
-A Split Panel App that displays Pre- and Post-Storm Images
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FChange_Visualization_UI_App)
 
 
 
-```
+```js
 // On June 9, 2018 - A massive dust storm hit North India
 // This example shows before and after imagery from Sentinel-2
 
@@ -6745,10 +6592,10 @@ var linker = new ui.Map.Linker([leftMap, rightMap]);
 
 // Create a split panel with the two maps.
 var splitPanel = ui.SplitPanel({
- firstPanel: leftMap,
- secondPanel: rightMap,
- orientation: 'horizontal',
- wipe: true
+  firstPanel: leftMap,
+  secondPanel: rightMap,
+  orientation: 'horizontal',
+  wipe: true
 });
 
 // Remove the default map from the root panel.
@@ -6757,14 +6604,14 @@ ui.root.clear();
 // Add our split panel to the root panel.
 ui.root.add(splitPanel);
 
-var rgb\_vis = {min: 0, max: 3200, bands: ['B4', 'B3', 'B2']};
+var rgb_vis = {min: 0, max: 3200, bands: ['B4', 'B3', 'B2']};
 
-var preStorm = ee.Image('COPERNICUS/S2/20180604T052651\_20180604T053435\_T43RGM')
-var postStorm = ee.Image('COPERNICUS/S2/20180614T052651\_20180614T053611\_T43RGM')
+var preStorm = ee.Image('COPERNICUS/S2/20180604T052651_20180604T053435_T43RGM')
+var postStorm = ee.Image('COPERNICUS/S2/20180614T052651_20180614T053611_T43RGM')
 
 // Add a RGB Landsat 8 layer to the left map.
-leftMap.addLayer(preStorm, rgb\_vis);
-rightMap.addLayer(postStorm, rgb\_vis);
+leftMap.addLayer(preStorm, rgb_vis);
+rightMap.addLayer(postStorm, rgb_vis);
 ```
 
 
@@ -6772,88 +6619,82 @@ rightMap.addLayer(postStorm, rgb\_vis);
 ### NDVI Explorer UI 应用程序
 
 
-Earth Engine Apps allow you to display interactive charts in response to user action. This app shows the common design pattern to build an app that allows the user to click anywhere on the map and obtain a chart using the clicked-location.
-
-
+Earth Engine 应用允许你显示交互式图表以响应用户操作。该应用程序展示了构建应用程序的常见设计模式，它允许用户单击地图上的任何位置并使用单击位置获取图表。
 
 ![Global NDVI Explorer App](https://courses.spatialthoughts.com/images/end_to_end_gee/global_ndvi_explorer.png)
-
-Global NDVI Explorer App
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.com/?scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FUI_Widgets_and_Apps%2FNDVI%20Explorer%20UI%20App)
 
 
 
-```
+```js
 var geometry = ee.Geometry.Point([77.5979, 13.00896]);
 Map.centerObject(geometry, 10)
 
 var s2 = ee.ImageCollection("COPERNICUS/S2")
 var rgbVis = {
- min: 0.0,
- max: 0.3,
- bands: ['B4', 'B3', 'B2'],
+  min: 0.0,
+  max: 0.3,
+  bands: ['B4', 'B3', 'B2'],
 };
 
 var palette = [
- 'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718',
- '74A901', '66A000', '529400', '3E8601', '207401', '056201',
- '004C00', '023B01', '012E01', '011D01', '011301'];
+  'FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', '99B718',
+  '74A901', '66A000', '529400', '3E8601', '207401', '056201',
+  '004C00', '023B01', '012E01', '011D01', '011301'];
 
 var ndviVis = {min:0, max:0.5, palette: palette }
 
 
 // Write a function for Cloud masking
 function maskS2clouds(image) {
- var qa = image.select('QA60')
- var cloudBitMask = 1 << 10;
- var cirrusBitMask = 1 << 11;
- var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
- qa.bitwiseAnd(cirrusBitMask).eq(0))
- return image.updateMask(mask).divide(10000)
- .select("B.\*")
- .copyProperties(image, ["system:time\_start"])
+  var qa = image.select('QA60')
+  var cloudBitMask = 1 << 10;
+  var cirrusBitMask = 1 << 11;
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
+             qa.bitwiseAnd(cirrusBitMask).eq(0))
+  return image.updateMask(mask).divide(10000)
+      .select("B.*")
+      .copyProperties(image, ["system:time_start"])
 }
 
 
 // Write a function that computes NDVI for an image and adds it as a band
 function addNDVI(image) {
- var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
- return image.addBands(ndvi);
+  var ndvi = image.normalizedDifference(['B8', 'B4']).rename('ndvi');
+  return image.addBands(ndvi);
 }
 
 function getComposite(geometry) {
- var filtered = s2
- .filter(ee.Filter.date('2019-01-01', '2019-12-31'))
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 30))
- .filter(ee.Filter.bounds(geometry))
- .map(maskS2clouds)
- // Map the function over the collection
- var withNdvi = filtered.map(addNDVI);
+  var filtered = s2
+  .filter(ee.Filter.date('2019-01-01', '2019-12-31'))
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+  .filter(ee.Filter.bounds(geometry))
+  .map(maskS2clouds)
+  // Map the function over the collection
+  var withNdvi = filtered.map(addNDVI);
 
- var composite = withNdvi.median()
- return composite
+  var composite = withNdvi.median()
+  return composite
 }
 
 
 // Create UI Elements
 var title = ui.Label('Global NDVI Explorer');
 title.style().set({
- 'position': 'top-center',
- 'fontSize': '24px'
- });
+  'position':  'top-center',
+  'fontSize': '24px'
+  });
 var resultsPanel = ui.Panel();
 var chartPanel = ui.Panel();
 var selectionPanel = ui.Panel({
- layout: ui.Panel.Layout.flow('horizontal'),
+  layout: ui.Panel.Layout.flow('horizontal'),
 });
 
 resultsPanel.style().set({
- width: '400px',
- position: 'bottom-right'
+  width: '400px',
+  position: 'bottom-right'
 });
 
 var resetPanel = ui.Panel();
@@ -6865,74 +6706,74 @@ resultsPanel.add(resetPanel)
 
 // Function to reset the app to initial state
 var resetEverything = function() {
- chartPanel.clear()
- selectionPanel.clear()
- resetPanel.clear()
+  chartPanel.clear()
+  selectionPanel.clear()
+  resetPanel.clear()
 
- Map.clear()
+  Map.clear()
 
- Map.add(title);
- Map.add(resultsPanel)
- Map.onClick(displayChart)
- // Use the current viewport
- var bounds = ee.Geometry.Rectangle(Map.getBounds())
- var composite = getComposite(bounds)
- Map.addLayer(composite, rgbVis, 'Sentinel-2 Composite')
- var label = ui.Label('Click anywhere to see the chart')
- resetPanel.add(label)
+  Map.add(title);
+  Map.add(resultsPanel)
+  Map.onClick(displayChart)
+  // Use the current viewport
+  var bounds = ee.Geometry.Rectangle(Map.getBounds())
+  var composite = getComposite(bounds)
+  Map.addLayer(composite, rgbVis, 'Sentinel-2 Composite')
+  var label = ui.Label('Click anywhere to see the chart')
+  resetPanel.add(label)
 
 }
 
 // Function to create and display NDVI time-series chart
 var displayChart = function(point) {
- resetPanel.clear()
- var button = ui.Button({
- label: 'Reset',
- onClick: resetEverything})
- resetPanel.add(button)
- var geometry = ee.Geometry.Point(point['lon'], point['lat']);
- 
- var filtered = s2
- .filter(ee.Filter.date('2019-01-01', '2019-12-31'))
- .filter(ee.Filter.lt('CLOUDY\_PIXEL\_PERCENTAGE', 50))
- .map(maskS2clouds)
- .map(addNDVI)
- .filter(ee.Filter.bounds(geometry))
- 
- var chart = ui.Chart.image.series({
- imageCollection: filtered.select('ndvi'),
- region: geometry,
- reducer: ee.Reducer.mean(),
- scale: 20}).setOptions({
- title: 'NDVI Time Series',
- vAxis: {title: 'NDVI'},
- hAxis: {title: 'Date', gridlines: {count: 12}}
- })
- 
- chartPanel.clear()
- selectionPanel.clear()
- selectionPanel.add(ui.Label('Choose an image to display:'))
- chartPanel.add(chart)
- 
- 
- var addNdviLayer = function(dateString) {
- var date = ee.Date.parse('YYYY-MM-dd', dateString)
- var image = ee.Image(filtered.filter(ee.Filter.date(date, date.advance(1, 'day'))).mosaic())
- Map.addLayer(image.select('ndvi'), ndviVis, 'NDVI Image -' + dateString)
- }
+  resetPanel.clear()
+  var button = ui.Button({
+    label: 'Reset',
+    onClick: resetEverything})
+  resetPanel.add(button)
+  var geometry = ee.Geometry.Point(point['lon'], point['lat']);
+  
+  var filtered = s2
+    .filter(ee.Filter.date('2019-01-01', '2019-12-31'))
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 50))
+    .map(maskS2clouds)
+    .map(addNDVI)
+    .filter(ee.Filter.bounds(geometry))
+  
+  var chart = ui.Chart.image.series({
+    imageCollection: filtered.select('ndvi'),
+    region: geometry,
+    reducer: ee.Reducer.mean(),
+    scale: 20}).setOptions({
+      title: 'NDVI Time Series',
+      vAxis: {title: 'NDVI'},
+      hAxis: {title: 'Date', gridlines: {count: 12}}
+    })
+      
+  chartPanel.clear()
+  selectionPanel.clear()
+  selectionPanel.add(ui.Label('Choose an image to display:'))
+  chartPanel.add(chart)
+  
+  
+  var addNdviLayer = function(dateString) {
+    var date = ee.Date.parse('YYYY-MM-dd', dateString)
+    var image = ee.Image(filtered.filter(ee.Filter.date(date, date.advance(1, 'day'))).mosaic())
+    Map.addLayer(image.select('ndvi'), ndviVis, 'NDVI Image -' + dateString)
+  }
 
 
- filtered.aggregate\_array('system:time\_start').evaluate(function(ids) {
- var dates = ee.List(ids).distinct().map(function(timestamp) {
- return ee.Date(timestamp).format('YYYY-MM-dd')
- })
- dates.evaluate(function(dateList){
- selectionPanel.add(ui.Select({
- items: dateList,
- onChange: addNdviLayer,
- placeholder: 'Select a date'
- }))
- })
+  filtered.aggregate_array('system:time_start').evaluate(function(ids) {
+    var dates = ee.List(ids).distinct().map(function(timestamp) {
+      return ee.Date(timestamp).format('YYYY-MM-dd')
+    })
+    dates.evaluate(function(dateList){
+      selectionPanel.add(ui.Select({
+      items: dateList,
+      onChange: addNdviLayer,
+      placeholder: 'Select a date'
+    }))
+    })
 
 });
 
@@ -6942,101 +6783,68 @@ resetEverything();
 ```
 
 
-
-
 ## 代码共享和脚本模块
 
-As your Earth Engine project grows, you need a way to organize and share your code to collaborate with others. We will learn some best practices on how best to set-up your project in Earth Engine.
+随着你的 Earth Engine 项目的增长，你需要一种方法来组织和共享代码从而与他人协作。我们将学习一些关于如何最好地在 Earth Engine 中设置项目的最佳实践。
 
 
 
 ### 分享单个脚本
 
-To share your code from a single script, you need to use the **Get Link** button in the code editor. As you click the button, the contents of your code editor is captured and encoded into a URL. When you share this URL with someone, they will be able see same content as your code editor. This is a great way to send a snapshot of your code so others can reproduce your output. Remember that the script links are just snapshots, if you change your code after sending the link to someone, they will not see the updates.
-
+要分享单个脚本的代码，你需要使用代码编辑器中的 **Get Link** 按钮。单击该按钮时，代码编辑器的内容将被捕获并编码到一个 URL 中。当你与某人共享此 URL 时，他们将能够看到与你的代码编辑器相同的内容。这是发送代码快照的好方法，以便其他人可以重现你的输出结果。请记住，脚本链接只是快照，如果你在将链接发送给某人后更改代码，他们将看不到更新。
 
 
 > 
-> When trying to send someone a link, do NOT click the *Copy Script Path* button. Sending this path to someone will NOT give them access to your code. The script path only works only on public or shared repositories.
-> 
-> 
+> 尝试向某人发送链接时，请勿单击 *Copy Script Path* 按钮。将此路径发送给某人不会让他们能够访问你的代码。脚本路径仅适用于公共或共享存储库。
 > 
 
 
 
 ![Code Sharing using Get Link button](https://courses.spatialthoughts.com/images/end_to_end_gee/get_link.png)
 
-Code Sharing using Get Link button
 
-
-
-
-While sharing the script using *Get Link*, you should also share any private **Assets** that you may have uploaded and are using in the script. You can share the asset with a specific email address, or check the *Anyone can read* box if you want anyone with the script link to be able to access it. Failing to do so will prevent others from running your script.
-
+在使用 *Get Link* 共享脚本时，还应该共享你可能已上传并在脚本中使用的任何私有**资产**。可以使用特定的电子邮件地址共享资产，或者如果希望任何拥有脚本链接的人都能够访问它，请选中*Anyone can read* 框。否则将阻止其他人运行你的脚本。
 
 
 ![Sharing Uploaded Assets](https://courses.spatialthoughts.com/images/end_to_end_gee/sharing_assets.png)
 
-Sharing Uploaded Assets
 
-
-
-
-Learn more in the [Script links](https://developers.google.com/earth-engine/guides/playground#get-link) section of the Google Earth Engine User Guide.
-
-
+阅读 Google Earth Engine 用户指南的 [Script links](https://developers.google.com/earth-engine/guides/playground#get-link) 部分了解更多。
 
 
 ### 分享多个脚本
 
-If you want to share a collection of scripts with other users or your collaborators, the best way is to create a new **Repository**.
+如果想与其他用户或合作者共享一组脚本，最好的方法是创建一个新的 **Repository**。
 
 
 
 ![Creating New Repository](https://courses.spatialthoughts.com/images/end_to_end_gee/new_repository.png)
 
-Creating New Repository
 
-
-
-
-You can put multiple scripts within the repository and share the repository with other users. You can grant them **Reader** or **Writer** access so they can view/add/modify/delete scripts in that repository. If you want to make it readable by **Public**, you can check the *Anyone can read* option. You will see a URL in the form of `https://code.earthengine.google.co.in/?accept_repo=...`. When you share this URL with other users and they visit that link, your repository will be added to their Code Editor under the *Reader* or *Writer* folder depending on their access.
-
+可以在存储库中放置多个脚本并与其他用户共享存储库。可以授予他们 **Reader** 或 **Writer** 访问权限，以便他们可以查看/添加/修改/删除该存储库中的脚本。如果你想让它 **Public** 可读，那么可以点上 *Anyone can read* 选项。你将看到一个格式为 `https://code.earthengine.google.co.in/?accept_repo=...` 的 URL。当与其他用户共享此 URL 并且他们访问该链接时，你的存储库将根据他们的访问权限添加到他们的代码编辑器上的 Reader或Writer文件夹下。
 
 
 ![Creating New Repository](https://courses.spatialthoughts.com/images/end_to_end_gee/sharing_repository.png)
 
-Creating New Repository
 
-
-
-
-Learn more in the [Script Manager](https://developers.google.com/earth-engine/guides/playground#script-manager-scripts-tab) section of the Google Earth Engine User Guide.
-
+阅读 Google Earth Engine 用户指南的 [Script Manager](https://developers.google.com/earth-engine/guides/playground#script-manager-scripts-tab) 部分了解更多信息。
 
 
 
 ### 在脚本间共享代码
 
-For a large project, it is preferable to share commonly used functions between scripts. That way, each script doesn’t have to re-implement the same code. Earth Engine enables this using **Script Modules**. Using a special object called `exports`, you can expose a function to other scripts. Learn more in the [Script modules](https://developers.google.com/earth-engine/guides/playground#script-modules) section of the Google Earth Engine User Guide.
+对于大型项目，最好在脚本之间共享常用功能。这样，每个脚本就无需重复造轮子。Earth Engine 通过 **Script Modules** 启用此功能。使用名为 `exports` 的特殊对象，您可以将函数公开给其他脚本。阅读 Google Earth Engine 用户指南的 [Script modules](https://developers.google.com/earth-engine/guides/playground#script-modules) 部分了解更多信息。
 
-
-There are many Earth Engine users who have shared their repositories publicly and written script modules to perform a variety of tasks. Here’s an example of using the `grid` module from the `users/gena/packages` repository to create regularly spaced grids in Earth Engine.
-
-
+有许多 Earth Engine 用户公开共享了他们的存储库并编写了脚本模块来执行各种任务。下面是使用 `users/gena/packages` 存储库中的 grid 模块 在 Earth Engine 中创建规律间隔网格的示例。
 
 ![Using a function from a script module](https://courses.spatialthoughts.com/images/end_to_end_gee/script_modules.png)
-
-Using a function from a script module
-
-
 
 
 [在代码编辑器中打开 ↗](https://code.earthengine.google.co.in/?accept_repo=users%2Fujavalgandhi%2FEnd-to-End-GEE&scriptPath=users%2Fujavalgandhi%2FEnd-to-End-GEE%3ASupplement%2FMiscellaneous%2FCode_Sharing_and_Script_Modules)
 
 
 
-```
+```js
 var karnataka = ee.FeatureCollection("users/ujavalgandhi/public/karnataka");
 Map.addLayer(karnataka, {color: 'gray'}, 'State Boundary')
 var bounds = karnataka.geometry().bounds()
@@ -7046,14 +6854,14 @@ var ymin = ee.List(coords.get(0)).get(1)
 var xmax = ee.List(coords.get(2)).get(0)
 var ymax = ee.List(coords.get(2)).get(1)
 // source code for the grid package:
-// https://code.earthengine.google.com/?accept\_repo=users/gena/packages
+// https://code.earthengine.google.com/?accept_repo=users/gena/packages
 
 // Import the module to our script using 'require'
 var gridModule = require('users/gena/packages:grid')
 
 // Now we can run any function from the module
 // We try running the generateGrid function to create regularly spaced vector grid
-// generateGrid(xmin, ymin, xmax, ymax, dx, dy, marginx, marginy, opt\_proj)
+// generateGrid(xmin, ymin, xmax, ymax, dx, dy, marginx, marginy, opt_proj)
 
 var spacing = 0.5
 var gridVector = gridModule.generateGrid(xmin, ymin, xmax, ymax, spacing, spacing, 0, 0)
@@ -7065,27 +6873,25 @@ Map.addLayer(gridVector, {color: 'blue'}, 'Grids')
 
 ### 有用的公共存储库
 
-Please visit [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE) to see a curated list of Google Earth Engine resources.
+请访问 [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE)，查看精选的 Google Earth Engine 资源列表。
+
+我们还推荐一些选定的软件包，它们具有非常有用的功能，可帮助你在 Earth Engine 中高效工作。
+
+**通用包**
 
 
-We also have a few recommendations of a few selected packages, which have very useful functions to make you productive in Earth Engine.
+* [eepackages](https://github.com/gee-community/ee-packages-py)：一组 Google Earth Engine 实用工具。
+* [geetools](https://github.com/fitoprincipe/geetools-code-editor/wiki)：用于云屏蔽、批处理等的工具
+* [ee-palettes](https://github.com/gee-community/ee-palettes)：生成调色板的模块。
+* [spectral](https://github.com/awesome-spectral-indices/spectral)：一个 javascript 模块，为 GEE 提供现成的光谱索引列表。
+* [eemont](https://github.com/davemlz/eemont)：Python 包，它提供实用方法，通过与 Python 方法链来友好地创建更流畅的代码。
 
 
-**General Purpose Packages**
+**特定应用程序包**
 
 
-* [eepackages](https://github.com/gee-community/ee-packages-py): A set of Google Earth Engine utilities by maintained by Gennadii Donchyts for both Javascript and Python API.
-* [geetools](https://github.com/fitoprincipe/geetools-code-editor/wiki): Tools for cloud masking, batch processing, and more
-* [ee-palettes](https://github.com/gee-community/ee-palettes): Module for generating color palettes
-* [spectral](https://github.com/awesome-spectral-indices/spectral): A javascript module that provides ready-to-use curated list of spectral indices for GEE.
-* [eemont](https://github.com/davemlz/eemont): Python package that provides utility methods to create a more fluid code by being friendly with the Python method chaining.
-
-
-**Application Specific Packages**
-
-
-* [LEAF-Toolbox](https://github.com/rfernand387/LEAF-Toolbox/wiki): Google Earth Engine application that produces various Vegetation Biophysical Products, including Leaf Area Index (LAI).
-* [RivWidthCloud](https://github.com/seanyx/RivWidthCloudPaper): Package to automate extracting river centerline and width for both Javascript and Python API.
+* [LEAF-Toolbox](https://github.com/rfernand387/LEAF-Toolbox/wiki)：Google Earth Engine 应用程序，产生各种植被生物物理产品，包括叶面积指数 (LAI)。
+* [RivWidthCloud](https://github.com/seanyx/RivWidthCloudPaper)：用于自动提取 Javascript 和 Python API 的河流中心线和宽度的包。
 
 
 
@@ -7095,19 +6901,17 @@ We also have a few recommendations of a few selected packages, which have very u
 
 # 指导项目
 
-Below are step-by-step video-based walkthrough of implementing real-world projects using Earth Engine. You can continue their learning journey by implementing these projects for their region of interest after the class.
-
+以下是使用 Earth Engine 实施实际项目的基于视频的分步演练。可以在课后为感兴趣的区域实施这些项目来继续你的学习之旅。
 
 
 ## 获取代码
 
-1. [Click this link](https://code.earthengine.google.co.in/?accept_repo=users/ujavalgandhi/End-to-End-%20Projects) to open Google Earth Engine code editor and add the repository to your account.
-2. If successful, you will have a new repository named `users/ujavalgandhi/End-to-End-Projects` in the *Scripts* tab in the *Reader* section.
-
+1. [单击此链接](https://code.earthengine.google.co.in/?accept_repo=users/ujavalgandhi/End-to-End-%20Projects) 以打开 Google Earth Engine代码编辑器并将存储库添加到你的帐户。
+2. 如果成功，你将在 *Reader* 部分的 *Scripts* 选项卡中拥有一个名为 `users/ujavalgandhi/End-to-End-Projects` 的新存储库。
 
 
 > 
-> If you do not see the repository in the *Reader* section, refresh your browser tab and it will show up.
+> 如果你在 *Reader* 部分没有看到存储库，请刷新浏览器选项卡，它将显示出来。
 > 
 > 
 > 
@@ -7116,62 +6920,50 @@ Below are step-by-step video-based walkthrough of implementing real-world projec
 
 ![Code Editor After Adding the Projects Repository](https://courses.spatialthoughts.com/images/end_to_end_gee/projects.png)
 
-Code Editor After Adding the Projects Repository
-
-
-
-
-
 
 ## 项目 1：干旱监测
 
-
-Calculating Rainfall Deviation from the 30-year mean using CHIRPS Gridded Rainfall Data
-
+使用 CHIRPS 网格降雨数据，根据 30 年平均值计算降雨偏差
 
 [![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_drought.png)](https://www.youtube.com/watch?v=zHUCM3XLc6k&list=PLppGmFLhQ1HJ5VhW6BZfhPX6spUcTY7SR)
 
 
-[Start Guided Project](https://www.youtube.com/watch?v=zHUCM3XLc6k&list=PLppGmFLhQ1HJ5VhW6BZfhPX6spUcTY7SR)
+[开始指导项目](https://www.youtube.com/watch?v=zHUCM3XLc6k&list=PLppGmFLhQ1HJ5VhW6BZfhPX6spUcTY7SR)
 
 
 
 
 ## 项目 2：洪水测绘
 
-Rapid mapping of a flood using Sentinel-1 SAR Data.
-
+使用 Sentinel-1 SAR 数据快速绘制洪水图。
 
 [![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_flood.png)](https://www.youtube.com/watch?v=jYsK9Y4ICrY&list=PLppGmFLhQ1HJzzKVS_4v8nBiXLYxAu100)
 
 
-[Start Guided Project](https://www.youtube.com/watch?v=jYsK9Y4ICrY&list=PLppGmFLhQ1HJzzKVS_4v8nBiXLYxAu100)
-
+[开始指导项目](https://www.youtube.com/watch?v=jYsK9Y4ICrY&list=PLppGmFLhQ1HJzzKVS_4v8nBiXLYxAu100)
 
 
 
 ## 项目 3：提取时间序列
 
-Extracting a 10-year NDVI time-series over multiple polygons using MODIS data.
-
+使用 MODIS 数据在多个多边形上提取 10 年 NDVI 时间序列。
 
 [![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_ndvi.png)](https://www.youtube.com/watch?v=LqSClCXrMl4&list=PLppGmFLhQ1HJV1CctqanQvXQI1JmqGDDD)
 
 
-[Start Guided Project](https://www.youtube.com/watch?v=LqSClCXrMl4&list=PLppGmFLhQ1HJV1CctqanQvXQI1JmqGDDD)
+[开始指导项目](https://www.youtube.com/watch?v=LqSClCXrMl4&list=PLppGmFLhQ1HJV1CctqanQvXQI1JmqGDDD)
 
 
 
 
 ## 项目 4：土地覆盖分析
 
-Use existing land cover products to extract specific classes and compute statistics across many regions.
-
+使用现有的土地覆盖产品来提取特定类别并计算跨区域的统计数据。
 
 [![Video](https://courses.spatialthoughts.com/images/end_to_end_gee/project_landcover.png)](https://youtube.com/playlist?list=PLppGmFLhQ1HLl0St2wiOPePr58sKu0Vh1)
 
 
-[Start Guided Project](https://youtube.com/playlist?list=PLppGmFLhQ1HLl0St2wiOPePr58sKu0Vh1)
+[开始指导项目](https://youtube.com/playlist?list=PLppGmFLhQ1HLl0St2wiOPePr58sKu0Vh1)
 
 
 
@@ -7180,9 +6972,7 @@ Use existing land cover products to extract specific classes and compute statist
 
 # 学习资源
 
-* [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE): A curated list of Google Earth Engine resources.
-
-
+* [Awesome Earth Engine](https://github.com/giswqs/Awesome-GEE)：Google Earth Engine 资源的精选列表。
 
 
 # Data Credits
